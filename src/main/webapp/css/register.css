@@ -1,0 +1,191 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+/* ===================== LEFT SIDE ===================== */
+.left {
+    width: 50%;
+    background: #E5EEFF;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-start;      /* was: center */
+    justify-content: flex-start;  /* was: center */
+}
+
+
+.paw-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: url("../images/authentication/pawprints.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    pointer-events: none;
+}
+
+.left-content {
+    position: relative;
+    color: #222222;
+    padding: 80px 70px;           /* more top padding so it breathes */
+    padding-top: 80px;
+}
+
+.left-content h1 {
+    font-size: 72px;              /* was: 52px */
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.left-content p {
+	padding-top: 30px;
+    font-size: 22px;              /* was: 20px */
+    line-height: 1.5;
+}
+
+/* Dog Image */
+.dog-image {
+    position: absolute;
+    bottom: 0;
+    left: 30%;                        /* was: left: 40px */
+    transform: translateX(-50%);      /* centers it horizontally */
+    width: 400px;                     /* was: 280px */
+    z-index: 3;
+}
+
+/* ===================== RIGHT SIDE ===================== */
+.right {
+    width: 50%;
+    background: #F8F1E9;           /* Cream color */
+    padding: 40px 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+.top-bar span {
+    font-size: 15px;
+    color: #555;
+}
+
+.login-btn {
+    padding: 8px 20px;
+    background: transparent;
+    border: 2px solid #2A9D8F;
+    color: #2A9D8F;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.login-btn:hover {
+    background: #2A9D8F;
+    color: white;
+}
+
+/* Form */
+.form-container {
+    max-width: 420px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-container h2 {
+    font-size: 18px;
+    margin-bottom: 40px;
+    color: #1D3557;
+}
+
+/* Profile Upload */
+.profile-upload {
+    margin-bottom: 30px;
+}
+
+.profile-circle {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #2A9D8F;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.profile-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 14px 18px;
+    margin-bottom: 22px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 15px;
+    background: white;
+}
+
+input:focus {
+    outline: none;
+    border-color: #2A9D8F;
+    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
+}
+
+/* Sign Up Button */
+.signup-btn {
+    width: 100%;
+    padding: 14px;
+    background: #2A9D8F;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.signup-btn:hover {
+    background: #24877A;
+}
+
+/* Terms */
+.terms {
+    margin-top: 25px;
+    font-size: 13px;
+    color: #666;
+}
+
+.terms a {
+    color: #2A9D8F;
+    text-decoration: none;
+}
+
+.terms a:hover {
+    text-decoration: underline;
+}

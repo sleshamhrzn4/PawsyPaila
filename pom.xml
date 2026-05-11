@@ -24,7 +24,7 @@
       <scope>test</scope>
     </dependency>
 
- 
+    <!-- Your Database and Security Dependencies -->
     <dependency>
         <groupId>com.mysql</groupId>
         <artifactId>mysql-connector-j</artifactId>
@@ -36,7 +36,7 @@
         <version>0.4</version>
     </dependency>
 
-
+    <!-- JSTL Support -->
     <dependency>
     	<groupId>jakarta.servlet.jsp.jstl</groupId>
     	<artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -48,6 +48,7 @@
     	<version>3.0.1</version>
 	</dependency>
 
+    <!-- Noko's Servlet and Hashing Updates -->
     <dependency>
         <groupId>jakarta.servlet</groupId>
         <artifactId>jakarta.servlet-api</artifactId>

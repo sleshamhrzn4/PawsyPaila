@@ -16,15 +16,15 @@ body {
     height: 100vh;
 }
 
-/* ===================== LEFT SIDE ===================== */
+/* left side */
 .left {
     width: 50%;
     background: #E5EEFF;
     position: relative;
     overflow: hidden;
     display: flex;
-    align-items: flex-start;      /* was: center */
-    justify-content: flex-start;  /* was: center */
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 
@@ -40,12 +40,12 @@ body {
 .left-content {
     position: relative;
     color: #222222;
-    padding: 80px 70px;           /* more top padding so it breathes */
+    padding: 80px 70px;
     padding-top: 80px;
 }
 
 .left-content h1 {
-    font-size: 72px;              /* was: 52px */
+    font-size: 72px;
     line-height: 1.6;
     margin-bottom: 20px;
     font-weight: 400;
@@ -53,25 +53,24 @@ body {
 
 .left-content p {
 	padding-top: 30px;
-    font-size: 22px;              /* was: 20px */
+    font-size: 22px;
     line-height: 1.5;
 }
-
 /* Dog Image */
 .dog-image {
     position: absolute;
     bottom: 0;
-    left: 30%;                        /* was: left: 40px */
-    transform: translateX(-50%);      /* centers it horizontally */
-    width: 400px;                     /* was: 280px */
+    left: 30%;
+    transform: translateX(-50%);
+    width: 400px;
     z-index: 3;
 }
 
-/* ===================== RIGHT SIDE ===================== */
+/* right side */
 .right {
     width: 50%;
-    background: #F8F1E9;           /* Cream color */
-    padding: 40px 60px;
+    background: #FDF8F0;
+    padding: 20px 40px;
     display: flex;
     flex-direction: column;
 }
@@ -86,25 +85,25 @@ body {
 
 .top-bar span {
     font-size: 15px;
-    color: #555;
+    color: #222222;
 }
 
 .login-btn {
     padding: 8px 20px;
     background: transparent;
-    border: 2px solid #2A9D8F;
-    color: #2A9D8F;
+    border: 2px solid #008080;
+    color: #008080;
     border-radius: 30px;
     cursor: pointer;
     font-weight: bold;
 }
 
 .login-btn:hover {
-    background: #2A9D8F;
+    background: #008080;
     color: white;
 }
 
-/* Form */
+/* form */
 .form-container {
     max-width: 420px;
     margin: 0 auto;
@@ -113,13 +112,13 @@ body {
 
 .form-container h2 {
     font-size: 18px;
-    margin-bottom: 40px;
-    color: #1D3557;
+    margin-bottom: 20px;
+    color: #222222;
 }
 
-/* Profile Upload */
+/* image upload */
 .profile-upload {
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .profile-circle {
@@ -127,7 +126,7 @@ body {
     height: 110px;
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid #2A9D8F;
+    border: 3px solid #008080;
     cursor: pointer;
     display: inline-block;
     margin: 0 auto;
@@ -139,7 +138,7 @@ body {
     object-fit: cover;
 }
 
-/* Inputs */
+/* from feilds */
 input {
     width: 100%;
     padding: 14px 18px;
@@ -152,15 +151,33 @@ input {
 
 input:focus {
     outline: none;
-    border-color: #2A9D8F;
+    border-color: #008080;
     box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
 }
+.row-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+.row-group select {
+    flex: 1;
+    padding: 14px 18px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    font-size: 15px;
+    background: white;
+    color: #757575;
+}
 
-/* Sign Up Button */
+.row-group input[type="number"] {
+    flex: 1;
+    margin-bottom: 0;
+}
+/* sugn up */
 .signup-btn {
     width: 100%;
     padding: 14px;
-    background: #2A9D8F;
+    background: #008080;
     color: white;
     border: none;
     border-radius: 30px;
@@ -171,18 +188,18 @@ input:focus {
 }
 
 .signup-btn:hover {
-    background: #24877A;
+    background: #008080;
 }
 
-/* Terms */
+/* tnc */
 .terms {
     margin-top: 25px;
     font-size: 13px;
-    color: #666;
+    color: #222222;
 }
 
 .terms a {
-    color: #2A9D8F;
+    color: #008080;
     text-decoration: none;
 }
 

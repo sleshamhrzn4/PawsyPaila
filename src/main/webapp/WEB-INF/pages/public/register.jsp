@@ -18,7 +18,7 @@
 <div class="container">
 
 
-    <!-- LEFT SIDE - Hero -->
+    <!-- left -->
     <div class="left">
         <div class="paw-pattern"></div>
         
@@ -27,11 +27,10 @@
             <p>Welcome! Let's continue your journey<br>to find your perfect companion.</p>
         </div>
 
-        <img src="${pageContext.request.contextPath}/images/authentication/login_hero.png" 
-             alt="Happy Dog" class="dog-image">
+        <img src="${pageContext.request.contextPath}/images/authentication/login_hero.png" alt="Happy Dog" class="dog-image">
     </div>
 
-    <!-- RIGHT SIDE - Form -->
+    <!-- right -->
     <div class="right">
         <div class="top-bar">
             <span>Already Have an Account?</span>
@@ -56,6 +55,16 @@
                 </div>
 
                 <input type="text" name="fullName" placeholder="Full Name" required>
+				<input type="text" name="address" placeholder="Address" required>
+				<div class="row-group">
+				    <select name="gender" required>
+				        <option value="" disabled selected>Gender</option>
+				        <option value="male">Male</option>
+				        <option value="female">Female</option>
+				        <option value="other">Other</option>
+				    </select>
+				    <input type="number" name="age" placeholder="Age" min="16" max="100" required>
+				</div>
                 <input type="text" name="phone" placeholder="Phone Number" required>
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>

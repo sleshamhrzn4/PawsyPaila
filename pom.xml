@@ -24,7 +24,7 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Your Database and Security Dependencies -->
+<!-- Your Database and Security Dependencies -->
     <dependency>
         <groupId>com.mysql</groupId>
         <artifactId>mysql-connector-j</artifactId>
@@ -47,19 +47,6 @@
     	<artifactId>jakarta.servlet.jsp.jstl</artifactId>
     	<version>3.0.1</version>
 	</dependency>
-
-    <!-- Noko's Servlet and Hashing Updates -->
-    <dependency>
-        <groupId>jakarta.servlet</groupId>
-        <artifactId>jakarta.servlet-api</artifactId>
-        <version>6.0.0</version>
-        <scope>provided</scope>
-    </dependency>
-    <dependency>
-    	<groupId>com.islington</groupId>
-    	<artifactId>hashing</artifactId>
-    	<version>0.0.1-SNAPSHOT</version>
-    </dependency>
   </dependencies>
   
   <build>

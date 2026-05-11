@@ -1,0 +1,121 @@
+@charset "UTF-8";
+/* ===================== ADD PET PAGE STYLES ===================== */
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.welcome-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1e2937;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.welcome-text i {
+    color: #14b8a6;
+}
+
+.btn-home {
+    background-color: #14b8a6;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+/* Add Pet Card */
+.add-pet-card {
+    background: white;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 40px 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    text-align: center;
+}
+
+.add-pet-card h2 {
+    font-size: 28px;
+    margin-bottom: 30px;
+    color: #1e2937;
+}
+
+.pet-avatar-upload {
+    margin-bottom: 30px;
+}
+
+.avatar-circle {
+    width: 90px;
+    height: 90px;
+    background: #14b8a6;
+    color: white;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 38px;
+    box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+}
+
+/* Form */
+.form-group {
+    margin-bottom: 22px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #374151;
+    font-size: 15px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 15.5px;
+    transition: all 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.btn-add-pet {
+    background-color: #14b8a6;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    transition: all 0.2s;
+}
+
+.btn-add-pet:hover {
+    background-color: #0f9b8a;
+    transform: translateY(-2px);
+}

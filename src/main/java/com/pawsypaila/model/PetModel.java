@@ -6,6 +6,7 @@ public class PetModel {
     private String petType;
     private String breed;
     private String petDesc;
+    
 
     public int getPetId() { return petId; }
     public void setPetId(int petId) { this.petId = petId; }

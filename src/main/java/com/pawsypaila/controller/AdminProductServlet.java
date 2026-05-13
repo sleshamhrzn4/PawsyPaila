@@ -24,8 +24,7 @@ public class AdminProductServlet extends HttpServlet {
     	String action = request.getParameter("action");
     	
     	if ("showAdd".equals(action)) {
-    		request.getRequestDispatcher("/WEB-INF/pages/admin/addProduct.jsp")
-            .forward(request, response);
+    		request.getRequestDispatcher("/WEB-INF/pages/admin/addProduct.jsp").forward(request, response);
      return;
     	}
 
@@ -38,7 +37,7 @@ public class AdminProductServlet extends HttpServlet {
             SessionUtil.setAttribute(request, "error", "Error loading products: " + e.getMessage(), 60);
         }
 
-        request.getRequestDispatcher("/WEB-INF/pages/admin/manageProduct.jsp")
+        request.getRequestDispatcher("/WEB-INF/pages/admin/adminProduct.jsp")
                .forward(request, response);
     }
 

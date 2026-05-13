@@ -10,7 +10,7 @@
     
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageProduct.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminProduct.css">
     
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
@@ -20,7 +20,7 @@
     <div class="admin-container">
         
         <!-- Sidebar -->
-       <%-- Or paste your sidebar code directly --%>
+       <%@include file = "/WEB-INF/pages/admin/adminSidebar.jsp"%>
 
         <!-- Main Content -->
         <div class="main-content">

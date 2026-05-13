@@ -37,7 +37,7 @@ public class AddProductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		 request.getRequestDispatcher("addProduct.jsp").forward(request, response);
+		 request.getRequestDispatcher("/WEB-INF/pages/admin/addProduct.jsp").forward(request, response);
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class AddProductServlet extends HttpServlet {
                     FileUploadUtil.saveFile(filePart, UPLOAD_DIR, imageFileName);
                 } else {
                     SessionUtil.setAttribute(request, "error", "Invalid image file type!", 60);
-                    response.sendRedirect(request.getContextPath() + "/addProduct.jsp");
+                    response.sendRedirect(request.getContextPath() + "/WEB-INF/pages/admin/addProduct.jsp");
                     return;
                 }
             }
@@ -86,7 +86,7 @@ public class AddProductServlet extends HttpServlet {
         }
 
         // Redirect back to products list page
-        response.sendRedirect(request.getContextPath() + "/manageProducts.jsp");
+        response.sendRedirect(request.getContextPath() + "/WEB-INF/pages/admin/adminProduct.jsp");
     }
 }
 

@@ -16,17 +16,18 @@ import com.pawsypaila.utils.DBconfig;
 public class ProductDAO {
  
     
-    public void addProduct(String productName, double price, int productQuantity, String productDescription) 
+    public void addProduct(String productName, double productPrice, int productQuantity, String productDescription, String productImage) 
     		throws Exception {
     
     	Connection con = DBconfig.getConnection();
         
-    	String sql = "INSERT INTO Product (productName, price, productQuantity, productDescription) VALUES (?, ?, ?, ?)";
+    	String sql = "INSERT INTO product (productName, productPrice, productQuantity, productDescription, productImage) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, productName);
-        pst.setDouble(2, price);
+        pst.setDouble(2, productPrice);
         pst.setInt(3, productQuantity);
         pst.setString(4,  productDescription);
+        pst.setString(5, productImage);
         pst.executeUpdate();
         pst.close();
         con.close();
@@ -35,7 +36,7 @@ public class ProductDAO {
     public List<ProductModel> getAllProducts() throws Exception {
         List<ProductModel> productList = new ArrayList<>();
         Connection con = DBconfig.getConnection();
-        String sql = "SELECT * FROM Product";
+        String sql = "SELECT * FROM product";
 
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
@@ -44,9 +45,10 @@ public class ProductDAO {
             ProductModel product = new ProductModel();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
-            product.setproductPrice(rs.getDouble("price"));
+            product.setproductPrice(rs.getDouble("productPrice"));
             product.setProductQuantity(rs.getInt("productQuantity"));
             product.setProductDescription(rs.getString("productDescription"));
+            product.setProductImage(rs.getString("productImage"));
             productList.add(product);
         }
 
@@ -60,7 +62,7 @@ public class ProductDAO {
     public ProductModel getProductById(int productId) throws Exception {
         ProductModel product = null;
         Connection con = DBconfig.getConnection();
-        String sql = "SELECT * FROM Product WHERE productId = ?";
+        String sql = "SELECT * FROM product WHERE productId = ?";
 
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setInt(1, productId);
@@ -70,9 +72,10 @@ public class ProductDAO {
             product = new ProductModel();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
-            product.setproductPrice(rs.getDouble("price"));
+            product.setproductPrice(rs.getDouble("productPrice"));
             product.setProductQuantity(rs.getInt("productQuantity"));
             product.setProductDescription(rs.getString("productDescription"));
+            product.setProductImage(rs.getString("productImage"));
         }
 
         rs.close();
@@ -84,7 +87,7 @@ public class ProductDAO {
     // ====================== UPDATE PRODUCT ======================
     public int updateProduct(int productId, String name, double price, int quantity, String description) throws Exception {
         Connection con = DBconfig.getConnection();
-        String sql = "UPDATE Product SET productName=?, price=?, productQuantity=?, productDescription=? WHERE productId=?";
+        String sql = "UPDATE product SET productName=?, productPrice=?, productQuantity=?, productDescription=? WHERE productId=?";
 
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, name);
@@ -103,7 +106,7 @@ public class ProductDAO {
     // ====================== DELETE PRODUCT ======================
     public void deleteProduct(int productId) throws Exception {
         Connection con = DBconfig.getConnection();
-        String sql = "DELETE FROM Product WHERE productId=?";
+        String sql = "DELETE FROM product WHERE productId=?";
 
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setInt(1, productId);

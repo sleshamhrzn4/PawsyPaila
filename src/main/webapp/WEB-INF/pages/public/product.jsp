@@ -48,9 +48,11 @@
             <c:forEach var="product" items="${products}">
                 <div class="product-card">
                     <div class="product-image">
-                        <img src="${pageContext.request.contextPath}/images/product/${product.image}" 
-                             alt="${product.name}"
+                        <img src="${pageContext.request.contextPath}/images/product/${product.productImage}" 
+                             alt="${product.productName}"
                              onerror="this.src='${pageContext.request.contextPath}/images/product/default.jpg'">
+                             <h3>${product.productName}</h3>
+                             <p class="price">Rs. ${product.productPrice}</p>
                     </div>
                     <div class="product-info">
                         <h3>${product.name}</h3>

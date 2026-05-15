@@ -37,13 +37,18 @@
             <div class="add-product-container">
                 <div class="add-product-box">
                     <h2>Add Product</h2>
+                    	
+                    	<form action="${pageContext.request.contextPath}/addProduct" method="post" enctype="multipart/form-data">
+                    	
+                    	<input type="hidden" name="action" value="add">
                     
-                    <div class="icon-circle">
-                        <i class="fas fa-user"></i>
-                    </div>
+						<input type="file" id="productImage" name="productImage" accept="image/*" hidden>
 
-                    <form action="${pageContext.request.contextPath}/WEB-INF/pages/admin/adminProducts" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="action" value="add">
+						<!-- Clickable avatar that previews the image -->
+						<div class="icon-circle" onclick="document.getElementById('productImage').click()" style="cursor:pointer;">
+						    <img id="imagePreview" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+						    <i class="fas fa-user" id="userIcon"></i>
+						</div>
 
                         <div class="form-group">
                             <label>Name</label>
@@ -65,17 +70,29 @@
                             <textarea name="description" rows="4" required></textarea>
                         </div>
 
-                        <div class="form-group">
-                            <label>Product Image</label>
-                            <input type="file" name="productImage" accept="image/*">
-                        </div>
-
                         <button type="submit" class="add-btn">Add</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+    document.getElementById('productImage').addEventListener('change', function() {
+        const file = this.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const preview = document.getElementById('imagePreview');
+                const icon = document.getElementById('userIcon');
+
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                icon.style.display = 'none';
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+</script>
 
 </body>
 </html>

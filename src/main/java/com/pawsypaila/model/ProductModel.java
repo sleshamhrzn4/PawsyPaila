@@ -6,6 +6,7 @@ public class ProductModel {
     private double productPrice;
     private int productQuantity;
     private String productDescription;
+    private String productImage;
 
     public int getProductId() { return productId; }
     public void setProductId(int productId) { this.productId = productId; }
@@ -21,6 +22,9 @@ public class ProductModel {
 
     public String getProductDescription() { return productDescription; }
     public void setProductDescription(String productDescription) { this.productDescription = productDescription; }
+    
+    public String getProductImage() { return productImage; }
+    public void setProductImage(String productImage) { this.productImage = productImage; }
 }
 
 

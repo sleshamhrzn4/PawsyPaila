@@ -6,22 +6,18 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
-
-import com.pawsypaila.dao.ProductDAO;
-import com.pawsypaila.model.ProductModel;
 
 /**
- * Servlet implementation class ProductServlet
+ * Servlet implementation class userProfile
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/products" })
-public class ProductServlet extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/userProfile" })
+public class userProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductServlet() {
+    public userProfile() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +26,8 @@ public class ProductServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 try {
-	            ProductDAO dao = new ProductDAO();
-	            List<ProductModel> products = dao.getAllProducts();
-	            request.setAttribute("products", products);
-	        } catch (Exception e) {
-	            e.printStackTrace();
-	        }
-		request.getRequestDispatcher("/WEB-INF/pages/public/product.jsp").forward(request, response);
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

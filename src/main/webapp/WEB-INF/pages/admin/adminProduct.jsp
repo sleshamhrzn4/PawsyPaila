@@ -28,7 +28,7 @@
             <!-- Top Header -->
             <div class="top-header">
                 <h1>Welcome Back, Yunisha!</h1>
-                <button class="home-btn">Home</button>
+                <button class="home-btn" onclick="window.location.href='admin/adminDashboard'">Home</button>
             </div>
 
             <!-- Manage Products Section -->
@@ -55,9 +55,9 @@
                             <!-- Data will come from database later -->
                             <c:forEach var="product" items="${products}">
                                 <tr>
-                                    <td>${product.name}</td>
-                                    <td>Rs. ${product.price}</td>
-                                    <td>${product.description}</td>
+                                    <td>${product.productName}</td>
+                                    <td>Rs. ${product.productPrice}</td>
+                                    <td>${product.productDescription}</td>
                                     <td>
                                         <a href="#" class="edit-btn">Edit</a>
                                     </td>

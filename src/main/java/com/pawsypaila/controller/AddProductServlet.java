@@ -43,51 +43,44 @@ public class AddProductServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		// Get form data
-        String name = request.getParameter("name");
-        String priceStr = request.getParameter("price");
-        String quantityStr = request.getParameter("quantity");
-        String description = request.getParameter("description");
+		@Override
+		protected void doPost(HttpServletRequest request, HttpServletResponse response)
+		        throws ServletException, IOException {
 
-        try {
-           
-
-            String imageFileName = null;
-
-            // Handle Image Upload
-            Part filePart = request.getPart("productImage");
-            if (filePart != null && filePart.getSize() > 0) {
-                if (FileUploadUtil.isImage(filePart)) {
-                    String extension = FileUploadUtil.getFileExtension(filePart.getSubmittedFileName());
-                    imageFileName = System.currentTimeMillis() + extension;   // Unique filename
-
-                    FileUploadUtil.saveFile(filePart, UPLOAD_DIR, imageFileName);
-                } else {
-                    SessionUtil.setAttribute(request, "error", "Invalid image file type!", 60);
-                    response.sendRedirect(request.getContextPath() + "/WEB-INF/pages/admin/addProduct.jsp");
-                    return;
-                }
-            }
-
-            // TODO: Save product to database (You will add this later)
-            // ProductDAO productDAO = new ProductDAO();
-            // boolean isSaved = productDAO.addProduct(name, price, quantity, description, imageFileName);
-
-            // Success Message
-            SessionUtil.setAttribute(request, "message", "Product added successfully!", 60);
-
-        } catch (NumberFormatException e) {
-            SessionUtil.setAttribute(request, "error", "Invalid price or quantity format.", 60);
-        } catch (Exception e) {
-            e.printStackTrace();
-            SessionUtil.setAttribute(request, "error", "Error adding product: " + e.getMessage(), 60);
-        }
-
-        // Redirect back to products list page
-        response.sendRedirect(request.getContextPath() + "/WEB-INF/pages/admin/adminProduct.jsp");
-    }
+			String name = request.getParameter("name");
+		    String priceStr = request.getParameter("price");
+		    String quantityStr = request.getParameter("quantity");
+		    String description = request.getParameter("description");
+		    
+		    try {
+		        double price = Double.parseDouble(priceStr);
+		        int quantity = Integer.parseInt(quantityStr);
+		        
+		        // Handle image first
+		        String imageName = "default.jpg"; 
+		        Part filePart = request.getPart("productImage");
+		        if (filePart != null && filePart.getSize() > 0) {
+		            if (FileUploadUtil.isImage(filePart)) {
+		                String extension = FileUploadUtil.getFileExtension(filePart.getSubmittedFileName());
+		                imageName = System.currentTimeMillis() + extension;
+		                String uploadPath = getServletContext().getRealPath("/images/product");
+		                FileUploadUtil.saveFile(filePart, uploadPath, imageName);
+		            }
+		        }
+		        
+		        // Now calling DAO with imageName
+		        ProductDAO dao = new ProductDAO();
+		        dao.addProduct(name, price, quantity, description, imageName); 
+		        
+		        SessionUtil.setAttribute(request, "message", "Product added successfully!", 60);
+		    } catch (NumberFormatException e) {
+		        SessionUtil.setAttribute(request, "error", "Invalid price or quantity!", 60);
+		    } catch (Exception e) {
+		        e.printStackTrace();
+		        SessionUtil.setAttribute(request, "error", "Error adding product: " + e.getMessage(), 60);
+		    }
+		    response.sendRedirect(request.getContextPath() + "/adminProduct");
 }
+		}
 
 

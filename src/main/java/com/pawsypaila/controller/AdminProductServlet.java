@@ -14,9 +14,9 @@ import com.pawsypaila.utils.SessionUtil;
 /**
  * Servlet implementation class AdminProductServlet
  */
-@WebServlet("/adminProduct")   // ← This matches your sidebar link
+@WebServlet("/adminProduct")  
 public class AdminProductServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+    
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,50 +45,33 @@ public class AdminProductServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String action = request.getParameter("action");
-
+    	String action = request.getParameter("action");
         try {
             ProductDAO dao = new ProductDAO();
-
-            if ("add".equals(action)) {
-                // ==================== ADD PRODUCT ====================
-                ProductModel product = new ProductModel();
-                product.setProductName(request.getParameter("name"));
-                product.setproductPrice(Double.parseDouble(request.getParameter("price")));
-                product.setProductQuantity(Integer.parseInt(request.getParameter("quantity")));
-                product.setProductDescription(request.getParameter("description"));
-
-                dao.addProduct(   request.getParameter("name"),
-                	    Double.parseDouble(request.getParameter("price")),
-                	    Integer.parseInt(request.getParameter("quantity")),
-                	    request.getParameter("description")
-                	);
-                SessionUtil.setAttribute(request, "message", "Product added successfully!", 60);
-
-            } else if ("edit".equals(action)) {
-                // ==================== EDIT PRODUCT ====================
+             if ("edit".equals(action)) {
                 int productId = Integer.parseInt(request.getParameter("productId"));
-                String name = request.getParameter("name");
-                double price = Double.parseDouble(request.getParameter("price"));
-                int quantity = Integer.parseInt(request.getParameter("quantity"));
-                String description = request.getParameter("description");
-
-                dao.updateProduct(productId, name, price, quantity, description);
-                SessionUtil.setAttribute(request, "message", "Product updated successfully!", 60);
-
+                dao.updateProduct(productId,
+                    request.getParameter("name"),
+                    Double.parseDouble(request.getParameter("price")),
+                    Integer.parseInt(request.getParameter("quantity")),
+                    request.getParameter("description")
+                );
             } else if ("delete".equals(action)) {
-                // ==================== DELETE PRODUCT ====================
                 int productId = Integer.parseInt(request.getParameter("productId"));
                 dao.deleteProduct(productId);
-                SessionUtil.setAttribute(request, "message", "Product deleted successfully!", 60);
             }
+
+            // Fetch all products after any action
+            List<ProductModel> products = dao.getAllProducts();
+            request.setAttribute("products", products);
 
         } catch (Exception e) {
             e.printStackTrace();
-            SessionUtil.setAttribute(request, "error", "Operation failed: " + e.getMessage(), 60);
+            request.setAttribute("error", "Operation failed: " + e.getMessage());
         }
 
-        // Redirect back to manage products page
-        response.sendRedirect(request.getContextPath() + "/adminDashboard");
+        // Forward to adminProduct.jsp with updated list
+        request.getRequestDispatcher("/WEB-INF/pages/admin/adminProduct.jsp")
+               .forward(request, response);
     }
-}
+    }

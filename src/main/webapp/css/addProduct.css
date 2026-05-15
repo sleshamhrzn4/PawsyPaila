@@ -1,121 +1,97 @@
-@charset "UTF-8";
-/* ===================== ADD PET PAGE STYLES ===================== */
-
-.top-header {
+/* Outer wrapper - centers the card */
+.add-product-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e2e8f0;
+    padding: 40px;
+    min-height: calc(100vh - 80px);
 }
 
-.welcome-text {
-    font-size: 24px;
-    font-weight: 700;
-    color: #1e2937;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.welcome-text i {
-    color: #14b8a6;
-}
-
-.btn-home {
-    background-color: #14b8a6;
-    color: white;
-    padding: 10px 24px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 15px;
-}
-
-/* Add Pet Card */
-.add-pet-card {
-    background: white;
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 40px 35px;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+/* The card */
+.add-product-box {
+    background: #f5f0e8;
+    border-radius: 16px;
+    padding: 40px 36px;
+    width: 400px;
     text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
 }
 
-.add-pet-card h2 {
-    font-size: 28px;
-    margin-bottom: 30px;
-    color: #1e2937;
+.add-product-box h2 {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #222;
 }
 
-.pet-avatar-upload {
-    margin-bottom: 30px;
-}
-
-.avatar-circle {
-    width: 90px;
-    height: 90px;
-    background: #14b8a6;
-    color: white;
+/* Teal avatar circle */
+.icon-circle {
+    width: 60px;
+    height: 60px;
+    background: #4a9e8e;
     border-radius: 50%;
-    margin: 0 auto;
+    margin: 0 auto 28px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 38px;
-    box-shadow: 0 4px 15px rgba(20, 184, 166, 0.3);
+    color: white;
+    font-size: 26px;
+    overflow: hidden; 
 }
 
-/* Form */
+/* Each row */
 .form-group {
-    margin-bottom: 22px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 14px;
     text-align: left;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #374151;
-    font-size: 15px;
+    width: 90px;
+    font-size: 14px;
+    color: #555;
+    padding-top: 10px;
+    flex-shrink: 0;
 }
 
 .form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 14px 16px;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 10px;
-    font-size: 15.5px;
-    transition: all 0.2s;
+.form-group textarea,
+.form-group select {
+    flex: 1;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #faf7f2;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    font-family: inherit;
 }
 
 .form-group input:focus,
-.form-group select:focus,
 .form-group textarea:focus {
-    outline: none;
-    border-color: #14b8a6;
-    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+    border-color: #4a9e8e;
 }
 
-.btn-add-pet {
-    background-color: #14b8a6;
+.form-group textarea {
+    resize: none;
+}
+
+/* Submit button */
+.add-btn {
+    margin-top: 20px;
+    padding: 10px 40px;
+    background: #4a9e8e;
     color: white;
     border: none;
-    padding: 14px 40px;
-    font-size: 16px;
-    font-weight: 700;
-    border-radius: 12px;
+    border-radius: 20px;
+    font-size: 15px;
     cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-    transition: all 0.2s;
+    font-family: inherit;
 }
 
-.btn-add-pet:hover {
-    background-color: #0f9b8a;
-    transform: translateY(-2px);
+.add-btn:hover {
+    background: #3a8e7e;
 }

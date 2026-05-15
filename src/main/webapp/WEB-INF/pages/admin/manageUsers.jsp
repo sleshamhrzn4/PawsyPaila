@@ -1,57 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+    
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+<meta charset="UTF-8">
+
     <meta charset="UTF-8">
-    <title>Pawsy Paila - Manage Users</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageUsers.css">
+    <title>Admin Dashboard - Pawsy Paila</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminPets.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
 </head>
+
 <body>
+
 
 <div class="layout">
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-        <div class="logo">
-            <span class="logo-paw">🐾</span>
-            <div class="logo-text">
-                <span class="logo-main">Pawsy</span>
-                <span class="logo-sub">पाइला</span>
-            </div>
-        </div>
-
-        <nav class="nav-menu">
-            <a href="${pageContext.request.contextPath}/dashboard" class="nav-item">
-                <span class="nav-icon">⊞</span> Dashboard
-            </a>
-            <a href="${pageContext.request.contextPath}/pets" class="nav-item">
-                <span class="nav-icon">🐾</span> Pets
-            </a>
-            <a href="${pageContext.request.contextPath}/products" class="nav-item">
-                <span class="nav-icon">🛒</span> Products
-            </a>
-            <a href="${pageContext.request.contextPath}/users" class="nav-item active">
-                <span class="nav-icon">📋</span> User
-            </a>
-            <a href="${pageContext.request.contextPath}/donation" class="nav-item">
-                <span class="nav-icon">🩷</span> Donation
-            </a>
-        </nav>
-
-        <div class="sidebar-user">
-            <div class="user-avatar">
-                <img src="${pageContext.request.contextPath}/images/default-avatar.png"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex'"
-                     alt="avatar" />
-                <div class="avatar-fallback" style="display:flex;">
-                    <span class="avatar-icon">👤</span>
-                </div>
-            </div>
-            <span class="sidebar-username">${sessionScope.loggedInUser.fullName}</span>
-        </div>
-    </aside>
+    <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
 
     <!-- Main Content -->
     <main class="main-content">

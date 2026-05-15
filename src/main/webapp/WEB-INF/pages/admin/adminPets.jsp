@@ -2,12 +2,10 @@
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-
     <meta charset="UTF-8">
     <title>Admin Dashboard - Pawsy Paila</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminPets.css">
@@ -15,20 +13,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    
 </head>
 
 <body>
-
-
 <div class="flex">
-       
-            <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
-        
+
+    <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
 
     <!-- Main Content -->
     <div class="main-content">
-    
+
         <!-- Page Header -->
         <div class="page-header">
             <i class="fa-solid fa-paw"></i>
@@ -50,7 +44,10 @@
         <div class="card">
             <div class="card-header">
                 <h2>Manage Pets</h2>
-                <a href="${pageContext.request.contextPath}/AddPets" class="btn-add">Add Pet</a>
+                <!-- ✅ Fixed: points to AdminPets?action=showAdd -->
+                <a href="${pageContext.request.contextPath}/AdminPets?action=showAdd" class="btn-add">
+                    <i class="fa-solid fa-plus"></i> Add Pet
+                </a>
             </div>
 
             <c:choose>
@@ -63,7 +60,8 @@
                             <tr>
                                 <th>Pet</th>
                                 <th>Type</th>
-                                <th>Breed</th>
+                                <th>Age</th>
+                                <th>Gender</th>
                                 <th>Description</th>
                                 <th>Action</th>
                             </tr>
@@ -74,16 +72,32 @@
                                     <td>
                                         <div class="pet-name-cell">
                                             <div class="pet-avatar">
-                                                <i class="fa-solid fa-user"></i>
+                                                <i class="fa-solid fa-paw"></i>
                                             </div>
                                             ${pet.petName}
                                         </div>
                                     </td>
                                     <td>${pet.petType}</td>
-                                    <td>${pet.breed}</td>
+                                    <td>${pet.petAge}</td>
+                                    <td>${pet.petGender}</td>
                                     <td>${pet.petDesc}</td>
                                     <td>
-                                        <a href="edit-pet?petId=${pet.petId}" class="btn-edit">Edit</a>
+                                        <!-- Edit button -->
+                                        <a href="${pageContext.request.contextPath}/AdminPets?action=showEdit&petId=${pet.petId}" 
+                                           class="btn-edit">
+                                            <i class="fa-solid fa-pen"></i> Edit
+                                        </a>
+
+                                        <!-- Delete button -->
+                                        <form action="${pageContext.request.contextPath}/AdminPets" 
+                                              method="post" style="display:inline;"
+                                              onsubmit="return confirm('Delete ${pet.petName}?')">
+                                            <input type="hidden" name="action" value="delete"/>
+                                            <input type="hidden" name="petId" value="${pet.petId}"/>
+                                            <button type="submit" class="btn-delete">
+                                                <i class="fa-solid fa-trash"></i> Delete
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                             </c:forEach>
@@ -95,9 +109,5 @@
 
     </div>
 </div>
-
-
-
-
 </body>
 </html>

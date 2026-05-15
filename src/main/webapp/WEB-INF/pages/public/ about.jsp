@@ -28,7 +28,7 @@
         </div>
 
         <div class="story-right">
-            <img src="images/cat.png" alt="Cat">
+            <img src="images/about cat.png" alt="Cat">
         </div>
 
     </div>
@@ -36,7 +36,7 @@
     <div class="story-bottom">
 
         <div class="dog-image">
-            <img src="images/dog.png" alt="Dog">
+            <img src="images/about dog.png" alt="Dog">
         </div>
 
         <div class="bottom-texts">

@@ -1,4 +1,4 @@
-package com.aboutus;
+package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,7 +10,7 @@ import java.io.IOException;
 /**
  * Servlet implementation class AboutServlet
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/Aboutus" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/about" })
 public class AboutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

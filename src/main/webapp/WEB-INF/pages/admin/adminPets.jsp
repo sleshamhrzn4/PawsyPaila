@@ -22,10 +22,9 @@
 
 
 <div class="flex">
-        <!-- Sidebar -->
-        <div class="sidebar">
+       
             <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
-        </div>
+        
 
     <!-- Main Content -->
     <div class="main-content">
@@ -51,7 +50,7 @@
         <div class="card">
             <div class="card-header">
                 <h2>Manage Pets</h2>
-                <a href="${pageContext.request.contextPath}/admin/addPets.jsp" class="btn-add">Add Pet</a>
+                <a href="${pageContext.request.contextPath}/AddPets" class="btn-add">Add Pet</a>
             </div>
 
             <c:choose>

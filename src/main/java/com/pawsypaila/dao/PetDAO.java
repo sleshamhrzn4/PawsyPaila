@@ -15,11 +15,12 @@ public class PetDAO {
 	 
 	public static void addPet(PetModel pet) throws Exception {
 	    Connection con = DBconfig.getConnection();
-	    String sql = "INSERT INTO pet (petName, petType, Breed, petDesc) VALUES (?, ?, ?, ?)";
+	    String sql = "INSERT INTO pet (petName, petAge, petType,petGender, petDesc) VALUES (?, ?, ?, ?,?)";
 	    PreparedStatement pst = con.prepareStatement(sql);
 	    pst.setString(1, pet.getPetName());
-	    pst.setString(2, pet.getPetType());
-	    pst.setString(3, pet.getBreed());
+	    pst.setInt(2, pet.getPetAge());
+	    pst.setString(3, pet.getPetType());
+	    pst.setString(3, pet.getPetGender());
 	    pst.setString(4, pet.getPetDesc());
 	    
 	    pst.executeUpdate();
@@ -39,8 +40,9 @@ public class PetDAO {
 	                PetModel pet = new PetModel();
 	                pet.setPetId(rs.getInt("petId"));
 	                pet.setPetName(rs.getString("petName"));
+	                pet.setPetAge(rs.getInt("petAge"));
 	                pet.setPetType(rs.getString("petType"));
-	                pet.setBreed(rs.getString("Breed"));
+	                pet.setPetType(rs.getString("petGender"));
 	                pet.setPetDesc(rs.getString("petDesc"));
 	                petList.add(pet);
 	            }
@@ -70,8 +72,9 @@ public class PetDAO {
 	        pet = new PetModel();
 	        pet.setPetId(rs.getInt("petId"));
 	        pet.setPetName(rs.getString("petName"));
+	        pet.setPetAge(rs.getInt("petAge"));
 	        pet.setPetType(rs.getString("petType"));
-	        pet.setBreed(rs.getString("Breed"));
+	        pet.setPetType(rs.getString("petGender"));
 	        pet.setPetDesc(rs.getString("petDesc"));
 	    }
 		
@@ -83,16 +86,17 @@ public class PetDAO {
 	}
 	
 	
-	public int updatePet(int petId, String petName,String  petType,String Breed, String petDesc)  throws Exception {
+	public int updatePet(int petId, String petName,int petAge, String  petType,String petGender, String petDesc)  throws Exception {
 	    Connection con = DBconfig.getConnection();
-	    String sql = "UPDATE pet SET petName=?, petType=?, Breed=?, petDesc=? WHERE petId=?";
+	    String sql = "UPDATE pet SET petName=?, petType=?, petGender=?, petDesc=? WHERE petId=?";
 	    PreparedStatement pst = con.prepareStatement(sql);
 	    
 	    pst.setString(1, petName);
-	    pst.setString(2, petType);
-	    pst.setString(3, Breed);
-	    pst.setString(4, petDesc);
-	    pst.setInt(5, petId);
+	    pst.setInt(2, petAge);
+	    pst.setString(3, petType);
+	    pst.setString(4, petGender);
+	    pst.setString(5, petDesc);
+	    pst.setInt(6, petId);
 	    
 	    int rowsAffected = pst.executeUpdate();
 	    

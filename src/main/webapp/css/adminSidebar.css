@@ -16,7 +16,7 @@
     box-shadow: 2px 0 12px rgba(0, 0, 0, 0.07);
     height: 100vh;
     flex-shrink: 0;
-    overflow-y: auto;           /* Allows scrolling only if content is long */
+    overflow: hidden;
 }
 
 /* ---------- Logo / Brand ---------- */

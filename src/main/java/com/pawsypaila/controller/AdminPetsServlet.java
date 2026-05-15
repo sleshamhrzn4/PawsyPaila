@@ -2,6 +2,7 @@ package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
 
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -48,19 +49,23 @@ public class AdminPetsServlet extends HttpServlet {
             if ("add".equals(action)) {
                 PetModel pet = new PetModel();
                 pet.setPetName(request.getParameter("petName"));
-                pet.setPetType(request.getParameter("petType"));
-                pet.setBreed(request.getParameter("breed"));
+                pet.setPetAge(Integer.parseInt(request.getParameter("petAge")));
+                pet.setPetType(request.getParameter("type"));
+                pet.setPetGender(request.getParameter("petGender"));
                 pet.setPetDesc(request.getParameter("petDesc"));
+                
                 PetDAO.addPet(pet);
                 SessionUtil.setAttribute(request, "message", "Pet added successfully!", 60);
  
             } else if ("edit".equals(action)) {
                 int    petId = Integer.parseInt(request.getParameter("petId"));
                 String name  = request.getParameter("petName");
-                String type  = request.getParameter("petType");
-                String breed = request.getParameter("breed");
+                int    age  = Integer.parseInt(request.getParameter("petAge"));
+                String type = request.getParameter("type");
+                String gender = request.getParameter("petGender");
                 String desc  = request.getParameter("petDesc");
-                dao.updatePet(petId, name, type, breed, desc);
+                
+                dao.updatePet(petId, name, age, type,gender, desc);
                 SessionUtil.setAttribute(request, "message", "Pet updated successfully!", 60);
  
             } else if ("delete".equals(action)) {

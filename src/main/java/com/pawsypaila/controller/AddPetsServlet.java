@@ -48,15 +48,19 @@ public class AddPetsServlet extends HttpServlet {
 		        try {
 		            // Get form data
 		            String petName = request.getParameter("petName");
+		            int petAge = Integer.parseInt(request.getParameter("petAge"));
 		            String petType = request.getParameter("petType");
-		            String breed   = request.getParameter("breed");
+		            String petGender = request.getParameter("petGender");
+		            
 		            String petDesc = request.getParameter("petDesc");
 
 		            // Create PetModel object
 		            PetModel pet = new PetModel();
 		            pet.setPetName(petName);
+		           
+		            pet.setPetAge(petAge);
 		            pet.setPetType(petType);
-		            pet.setBreed(breed);
+		            pet.setPetGender(petGender);
 		            pet.setPetDesc(petDesc);
 
 		            // Save to database

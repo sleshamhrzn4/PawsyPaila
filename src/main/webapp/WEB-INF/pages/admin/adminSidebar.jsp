@@ -34,23 +34,29 @@
     <a href="${pageContext.request.contextPath}/AdminItems" class="nav-item">
         <img src="${pageContext.request.contextPath}/images/adminDashboard/product.png" 
              alt="items" style="width: 30px; height: auto;">
-        Items
+        Products
     </a>
 
-    <a href="${pageContext.request.contextPath}/AdminApplications" class="nav-item">
+    <a href="${pageContext.request.contextPath}/ManageUsers" class="nav-item">
         <img src="${pageContext.request.contextPath}/images/adminDashboard/application.png" 
-             alt="applications" style="width: 30px; height: auto;">
-        Applications
+             alt="users" style="width: 30px; height: auto;">
+        Users
+    </a>
+    
+    <a href="${pageContext.request.contextPath}/AdminAdoption" class="nav-item">
+    <img src="${pageContext.request.contextPath}/images/adminDashboard/adoption.png"
+         alt="adoption" style="width: 30px; height: auto;">
+    Adoption
     </a>
 
-    <a href="${pageContext.request.contextPath}/AdminReports" class="nav-item">
-        <img src="${pageContext.request.contextPath}/images/adminDashboard/ 
-             alt="reports" style="width: 30px; height: auto;">
-        Reports
-    </a>
+   <a href="${pageContext.request.contextPath}/AdminReports" class="nav-item">
+    <img src="${pageContext.request.contextPath}/images/adminDashboard/donation.png"
+         alt="donation" style="width: 30px; height: auto;">
+    Donation
+   </a>
         </nav>
         <div class="sidebar-user">
-            <span class="user-icon">👤</span>
+            <span class="user-icon"></span>
             <span>${sessionScope.userName}</span>
         </div>
     </aside>

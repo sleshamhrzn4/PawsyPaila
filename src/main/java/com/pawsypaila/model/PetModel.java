@@ -16,7 +16,7 @@ public class PetModel {
     public void setPetName(String petName) { this.petName = petName; }
 
     public int getPetAge() { return petAge; }
-    public void setPetAge(int string) { this.petAge = string ; }
+    public void setPetAge(int petAge) { this.petAge = petAge; }
 
     public String getPetType() { return petType; }
     public void setPetType(String petType) { this.petType = petType; }

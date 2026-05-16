@@ -9,6 +9,8 @@ public class AdoptionRequestModel {
     private String adoptionStatus;
     private String reason;
     private Date requestDate;
+    private String fullName;
+    private String petName;
 
     public int getAdoptionId() { return adoptionId; }
     public void setAdoptionId(int adoptionId) { this.adoptionId = adoptionId; }
@@ -27,6 +29,12 @@ public class AdoptionRequestModel {
 
     public Date getRequestDate() { return requestDate; }
     public void setRequestDate(Date requestDate) { this.requestDate = requestDate; }
+
+    public String getFullName() { return fullName; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
+ 
+    public String getPetName() { return petName; }
+    public void setPetName(String petName) { this.petName = petName; }
 }
 
 

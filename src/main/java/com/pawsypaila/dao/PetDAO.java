@@ -17,8 +17,8 @@ public class PetDAO {
         pst.setString(1, pet.getPetName());
         pst.setInt(2, pet.getPetAge());
         pst.setString(3, pet.getPetType());
-        pst.setString(4, pet.getPetGender());  // ✅ fixed index 4
-        pst.setString(5, pet.getPetDesc());    // ✅ fixed index 5
+        pst.setString(4, pet.getPetGender());  
+        pst.setString(5, pet.getPetDesc());    
         pst.executeUpdate();
         pst.close();
         con.close();
@@ -72,23 +72,22 @@ public class PetDAO {
         return pet;
     }
 
-    public int updatePet(int petId, String petName, int petAge, String petType, String petGender, String petDesc) throws Exception {
-        Connection con = DBconfig.getConnection();
-        // ✅ fixed: added petAge=? placeholder
+    public int updatePet(PetModel pet) throws Exception {
         String sql = "UPDATE pet SET petName=?, petAge=?, petType=?, petGender=?, petDesc=? WHERE petId=?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setString(1, petName);
-        pst.setInt(2, petAge);     
-        pst.setString(3, petType);
-        pst.setString(4, petGender);
-        pst.setString(5, petDesc);
-        pst.setInt(6, petId);      
-        int rowsAffected = pst.executeUpdate();
-        pst.close();
-        con.close();
-        return rowsAffected;
-    }
 
+        try (Connection con = DBconfig.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, pet.getPetName());
+            pst.setInt(2, pet.getPetAge());
+            pst.setString(3, pet.getPetType());
+            pst.setString(4, pet.getPetGender());
+            pst.setString(5, pet.getPetDesc());
+            pst.setInt(6, pet.getPetId());
+
+            return pst.executeUpdate();
+        }
+    }
     public void deletePet(int petId) throws Exception {
         Connection con = DBconfig.getConnection();
         String sql = "DELETE FROM pet WHERE petId=?";  

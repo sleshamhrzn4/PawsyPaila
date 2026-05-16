@@ -44,8 +44,8 @@
         <div class="card">
             <div class="card-header">
                 <h2>Manage Pets</h2>
-                <!-- ✅ Fixed: points to AdminPets?action=showAdd -->
-                <a href="${pageContext.request.contextPath}/AdminPets?action=showAdd" class="btn-add">
+               
+                <a href="${pageContext.request.contextPath}/AddPets" class="btn-add">
                     <i class="fa-solid fa-plus"></i> Add Pet
                 </a>
             </div>
@@ -83,10 +83,10 @@
                                     <td>${pet.petDesc}</td>
                                     <td>
                                         <!-- Edit button -->
-                                        <a href="${pageContext.request.contextPath}/AdminPets?action=showEdit&petId=${pet.petId}" 
-                                           class="btn-edit">
-                                            <i class="fa-solid fa-pen"></i> Edit
-                                        </a>
+                                        
+										<a href="${pageContext.request.contextPath}/UpdatePets?petId=${pet.petId}" class="btn-edit">
+										    <i class="fa-solid fa-pen"></i> Edit
+										</a>
 
                                         <!-- Delete button -->
                                         <form action="${pageContext.request.contextPath}/AdminPets" 

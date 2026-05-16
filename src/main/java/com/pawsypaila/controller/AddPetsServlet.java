@@ -74,8 +74,9 @@ public class AddPetsServlet extends HttpServlet {
 		            session.setAttribute("error", "Failed to add pet. Please try again.");
 		        }
 
-		        // Redirect back to Add Pet page
-		        response.sendRedirect(request.getContextPath() + "WEB-INF/pages/admin/addPets.jsp");
+		       
+		        response.sendRedirect(request.getContextPath() + "/AdminPets");
+		
 		    }
 		}
 		

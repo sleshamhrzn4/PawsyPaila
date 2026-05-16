@@ -24,9 +24,8 @@
         <div class="welcome-banner">
             <img src="${pageContext.request.contextPath}/images/adminDashboard/paw.png" 
              alt="pets" style="width: 40px; height: auto;">
-            <h1>Welcome Back, ${sessionScope.userName}!</h1>
-            <img src="${pageContext.request.contextPath}/images/dashboard/paw.png" 
-             alt="pets" style="width: 40px; height: auto;">
+            <h1>Welcome Back, ${sessionScope.userName}!</h1> 
+             
         </div>
 
        

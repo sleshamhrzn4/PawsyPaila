@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #fdfaf4; /
+}
+
+.contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh; 
+    padding: 60px 20px;
+}
+
+.contact-card-container {
+    position: relative; 
+    width: 100%;
+    max-width: 800px;
+}
+
+
+.contact-card {
+    background: #ffffff;
+    padding: 60px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    position: relative;
+    z-index: 2;
+}
+
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+.card-header h1 {
+    font-size: 42px;
+    font-weight: 600;
+    margin: 0;
+    color: #2d2d2d;
+}
+
+.inline-logo {
+    width: 80px; 
+    height: auto;
+}
+
+/* Form Controls */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-field, .textarea-field {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.textarea-field {
+    height: 250px;
+    resize: none;
+}
+
+.input-field:focus, .textarea-field:focus {
+    border-color: #008080;
+}
+
+.send-btn {
+    background-color: #008080;
+    color: white;
+    padding: 12px 45px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.send-btn:hover {
+    background-color: #006666;
+}

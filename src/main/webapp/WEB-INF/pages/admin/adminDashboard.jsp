@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -125,7 +126,7 @@
                 <div class="manage-card">
                     <div class="manage-header">
                         <h3>Manage Products</h3>
-                        <a href="${pageContext.request.contextPath}/AddProduct">
+                        <a href="${pageContext.request.contextPath}/adminProduct">
                             <button class="btn-add">Add Product</button>
                         </a>
                     </div>

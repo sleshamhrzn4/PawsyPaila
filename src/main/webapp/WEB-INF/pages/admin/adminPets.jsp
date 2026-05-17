@@ -80,7 +80,9 @@
                                     <td>${pet.petType}</td>
                                     <td>${pet.petAge}</td>
                                     <td>${pet.petGender}</td>
-                                    <td>${pet.petDesc}</td>
+                                    <td class="desc-cell" title="${pet.petDesc}">
+									    ${pet.petDesc}
+									</td>
                                     <td>
                                         <!-- Edit button -->
                                         

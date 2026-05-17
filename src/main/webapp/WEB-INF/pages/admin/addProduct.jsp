@@ -4,94 +4,79 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Product - Pawsy Admin</title>
-    
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
+    <title>Add Product - Pawsy Paila</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addProduct.css">
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
 <body>
+<div class="flex">
 
-    <div class="admin-container">
-        
-        <!-- Sidebar -->
-        <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
+    <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
 
-        <!-- Main Content -->
-        <div class="main-content">
-            
-            <!-- Top Header -->
-            <div class="top-header">
-                <div class="flex items-center gap-3">
-                    <i class="fas fa-paw text-3xl text-teal-600"></i>
-                    <h1>Welcome Back, Yunisha!</h1>
+    <div class="main-content">
+
+        <div class="top-header">
+            <i class="fa-solid fa-paw"></i>
+            <h1>Welcome Back, ${sessionScope.username}!</h1>
+            <a href="${pageContext.request.contextPath}/adminProduct" class="btn-home">Back to Products</a>
+        </div>
+
+        <div class="add-pet-card">
+            <h2>Add Product</h2>
+
+            <form action="${pageContext.request.contextPath}/addProduct" method="post" enctype="multipart/form-data">
+
+                <div class="pet-avatar-upload">
+                    <label for="productImage" style="cursor:pointer;">
+                        <div class="avatar-circle">
+                            <img id="imagePreview" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                            <i class="fa-solid fa-image" id="imageIcon"></i>
+                        </div>
+                    </label>
+                    <input type="file" id="productImage" name="productImage" accept="image/*" hidden>
                 </div>
-                <button class="home-btn">Home</button>
-            </div>
 
-            <!-- Add Product Form -->
-            <div class="add-product-container">
-                <div class="add-product-box">
-                    <h2>Add Product</h2>
-                    	
-                    	<form action="${pageContext.request.contextPath}/addProduct" method="post" enctype="multipart/form-data">
-                    	
-                    	<input type="hidden" name="action" value="add">
-                    
-						<input type="file" id="productImage" name="productImage" accept="image/*" hidden>
-
-						<!-- Clickable avatar that previews the image -->
-						<div class="icon-circle" onclick="document.getElementById('productImage').click()" style="cursor:pointer;">
-						    <img id="imagePreview" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
-						    <i class="fas fa-user" id="userIcon"></i>
-						</div>
-
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Price</label>
-                            <input type="number" name="price" step="0.01" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Quantity</label>
-                            <input type="number" name="quantity" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Desc</label>
-                            <textarea name="description" rows="4" required></textarea>
-                        </div>
-
-                        <button type="submit" class="add-btn">Add</button>
-                    </form>
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" name="name" placeholder="Enter product name" required>
                 </div>
-            </div>
+
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" name="price" step="0.01" placeholder="Enter price" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" name="quantity" placeholder="Enter quantity" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea name="description" rows="4" placeholder="Enter product description" required></textarea>
+                </div>
+
+                <button type="submit" class="btn-add">Add Product</button>
+            </form>
         </div>
     </div>
-    <script>
-    document.getElementById('productImage').addEventListener('change', function() {
-        const file = this.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const preview = document.getElementById('imagePreview');
-                const icon = document.getElementById('userIcon');
+</div>
 
-                preview.src = e.target.result;
-                preview.style.display = 'block';
-                icon.style.display = 'none';
-            };
-            reader.readAsDataURL(file);
-        }
-    });
+<script>
+document.getElementById('productImage').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imagePreview').src = e.target.result;
+            document.getElementById('imagePreview').style.display = 'block';
+            document.getElementById('imageIcon').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+});
 </script>
 
 </body>

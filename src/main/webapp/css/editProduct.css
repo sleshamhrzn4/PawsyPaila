@@ -103,7 +103,6 @@ body {
 }
 
 .form-group input,
-.form-group select,
 .form-group textarea {
     width: 100%;
     padding: 12px 14px;
@@ -119,29 +118,51 @@ body {
 }
 
 .form-group input:focus,
-.form-group select:focus,
 .form-group textarea:focus {
     outline: none;
     border-color: #14b8a6;
     box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
 }
 
-.btn-add {
+.btn-group {
+    display: flex;
+    gap: 16px;
+    margin-top: 25px;
+}
+
+.btn-save {
+    flex: 1;
     background-color: #14b8a6;
     color: white;
     border: none;
-    padding: 14px 40px;
-    font-size: 16.5px;
+    padding: 14px;
+    font-size: 16px;
     font-weight: 700;
     border-radius: 10px;
     cursor: pointer;
-    margin-top: 25px;
-    width: 100%;
     transition: all 0.3s ease;
 }
 
-.btn-add:hover {
+.btn-save:hover {
     background-color: #0f9b8a;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    flex: 1;
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #dc2626;
     transform: translateY(-2px);
 }
 
@@ -151,6 +172,5 @@ body {
     }
     .add-pet-card {
         padding: 30px 25px;
-        max-width: 100%;
     }
 }

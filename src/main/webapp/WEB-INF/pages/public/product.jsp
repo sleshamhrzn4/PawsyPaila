@@ -51,12 +51,11 @@
                         <img src="${pageContext.request.contextPath}/images/product/${product.productImage}" 
                              alt="${product.productName}"
                              onerror="this.src='${pageContext.request.contextPath}/images/product/default.jpg'">
-                             <h3>${product.productName}</h3>
-                             <p class="price">Rs. ${product.productPrice}</p>
                     </div>
+                    
                     <div class="product-info">
-                        <h3>${product.name}</h3>
-                        <p class="price">Rs. ${product.price}</p>
+                        <h3>${product.productName}</h3>
+                        <p class="price">Rs. ${product.productPrice}</p>
                         <button class="add-to-cart">Add to Cart</button>
                     </div>
                 </div>

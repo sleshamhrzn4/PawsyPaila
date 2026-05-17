@@ -1,6 +1,5 @@
-
 @charset "UTF-8";
-/* ===================== ADD PET PAGE STYLES ===================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,40 +9,38 @@
 body {
     font-family: 'Nunito', system-ui, sans-serif;
     background-color: #f8f9fa;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
-/* =============== FLEX LAYOUT =============== */
 .flex {
     display: flex;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
-/* =============== MAIN CONTENT =============== */
 .main-content {
     flex: 1;
     padding: 25px 50px;
     background-color: #f8f9fa;
+    overflow-y: auto;
 }
 
-/* Top Header */
 .top-header {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 14px;
     margin-bottom: 25px;
 }
 
-.welcome-text {
+.top-header h1 {
     font-size: 22px;
     font-weight: 700;
     color: #1e2937;
+    flex: 1;
 }
 
-.welcome-text i {
+.top-header i {
     color: #14b8a6;
+    font-size: 24px;
 }
 
 .btn-home {
@@ -56,7 +53,6 @@ body {
     font-size: 15px;
 }
 
-/* Add Pet Card */
 .add-pet-card {
     background: white;
     width: 100%;
@@ -93,7 +89,6 @@ body {
     box-shadow: 0 4px 15px rgba(20, 184, 166, 0.25);
 }
 
-/* Compact & Clean Form */
 .form-group {
     margin-bottom: 17px;
     text-align: left;
@@ -131,7 +126,6 @@ body {
     box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
 }
 
-/* Submit Button */
 .btn-add {
     background-color: #14b8a6;
     color: white;
@@ -151,7 +145,6 @@ body {
     transform: translateY(-2px);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .main-content {
         padding: 20px;

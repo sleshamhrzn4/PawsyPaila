@@ -10,6 +10,7 @@
 </head>
 <body>
 
+
 <div class="flex">
 
     <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>

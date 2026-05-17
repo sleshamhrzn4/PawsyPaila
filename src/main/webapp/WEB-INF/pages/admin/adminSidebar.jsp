@@ -1,17 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
- <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
- <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
 
 
     
@@ -55,5 +43,3 @@
         </div>
     </aside>
   
-</body>
-</html>

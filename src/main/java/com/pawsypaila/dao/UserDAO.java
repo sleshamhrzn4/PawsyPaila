@@ -1,7 +1,5 @@
 package com.pawsypaila.dao;
 
-
-
 import java.sql.Connection;
 
 
@@ -48,14 +46,14 @@ public class UserDAO {
         ResultSet rs = pst.getGeneratedKeys();
         pst.executeUpdate();
         if (rs.next()) {
-            generatedId = rs.getInt(1);
+            System.out.println("New user inserted with ID: " + rs.getInt(1));
         }
         
         pst.close();
         con.close();
-        
-        
     }
+
+    // select statements
     public List<UserModel> getAllUsers() throws Exception {
         List<UserModel> users = new ArrayList<>();
         Connection con = DBconfig.getConnection();
@@ -81,23 +79,24 @@ public class UserDAO {
             
             users.add(u);
         }
-        
+
         rs.close();
         pst.close();
         con.close();
         return users;
     }
 
+    // select statement via email
     public UserModel getUserByEmail(String email) throws Exception {
         UserModel user = null;
         Connection con = DBconfig.getConnection();
- 
+
         String sql = "SELECT * FROM user WHERE email = ?";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, email);
- 
+
         ResultSet rs = pst.executeQuery();
- 
+
         if (rs.next()) {
             user = new UserModel();
             user.setUserId(rs.getInt("userId"));
@@ -111,7 +110,7 @@ public class UserDAO {
             user.setActive(rs.getBoolean("active"));
             user.setRole(rs.getString("role"));
         }
- 
+
         rs.close();
         pst.close();
         con.close();

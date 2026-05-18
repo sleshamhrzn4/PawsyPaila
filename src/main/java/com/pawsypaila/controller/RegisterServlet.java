@@ -15,33 +15,13 @@ import java.io.IOException;
 import com.pawsypaila.dao.UserDAO;
 import com.pawsypaila.utils.PasswordUtil;
 
-
-
-/**
- * Servlet implementation class RegisterServlet
- */
-@WebServlet( "/register" )
+@WebServlet("/register")
 @MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024 * 2,
-	    maxFileSize = 1024 * 1024 * 10,
-	    maxRequestSize = 1024 * 1024 * 50
-	)
-public class RegisterServlet extends HttpServlet {
-	
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    fileSizeThreshold = 1024 * 1024 * 2,   // 2 MB buffer in memory before writing to disk
+    maxFileSize       = 1024 * 1024 * 10,  // 10 MB max size
+    maxRequestSize    = 1024 * 1024 * 50   // 50 MB max total request
+)
+protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get text files
 		String fullName = request.getParameter("fullName");
 		String phone    = request.getParameter("phone");
@@ -102,8 +82,3 @@ public class RegisterServlet extends HttpServlet {
             }
 	}
 }
-            
-           
-	
-		
-	

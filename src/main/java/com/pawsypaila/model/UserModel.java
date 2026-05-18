@@ -62,4 +62,6 @@ public class UserModel {
     public void setRole(String role)    { this.role = role; }
 }
 
+    public String getAddress() { return address; }
+    public void setAddress(String address) { this.address = address; }
 

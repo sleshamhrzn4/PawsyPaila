@@ -16,7 +16,7 @@
             
             <div class="welcome-top-bar">
                 <div class="welcome-text">
-                    <span class="paw-icon">🐾</span> Welcome Back, <c:out value="${sessionScope.user.name != null ? sessionScope.user.name : 'User'}"/>!
+                    <span class="paw-icon">🐾</span> Welcome Back, <c:out value="${sessionScope.user.fullName != null ? sessionScope.user.fullName : 'User'}"/>!
                 </div>
                 <a href="${pageContext.request.contextPath}/home" class="home-nav-btn">Home</a>
             </div>
@@ -26,7 +26,15 @@
                     <h2>My Profile</h2>
                 </div>
 
-                <form action="${pageContext.request.contextPath}/profile" method="POST" class="profile-form">
+                <%-- Success / Error messages --%>
+                <c:if test="${not empty successMessage}">
+                    <div class="alert-success"><c:out value="${successMessage}"/></div>
+                </c:if>
+                <c:if test="${not empty errorMessage}">
+                    <div class="alert-error"><c:out value="${errorMessage}"/></div>
+                </c:if>
+
+                <form action="${pageContext.request.contextPath}/userprofile" method="POST" class="profile-form">
                     
                     <div class="avatar-view-block">
                         <div class="avatar-circle">
@@ -38,7 +46,7 @@
 
                     <div class="form-row-entry">
                         <label for="input-name">Name</label>
-                        <input type="text" id="input-name" name="userName" value="<c:out value='${sessionScope.user.name}'/>" required />
+                        <input type="text" id="input-name" name="userName" value="<c:out value='${sessionScope.user.fullName}'/>" required />
                     </div>
 
                     <div class="form-row-entry">

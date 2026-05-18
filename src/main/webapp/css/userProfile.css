@@ -177,3 +177,24 @@ body {
 .save-profile-btn:active {
     transform: scale(0.98);
 }
+.alert-success,
+.alert-error {
+    margin: 16px 40px 0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #e6f4f1;
+    color: #006666;
+    border: 1px solid #b2d8d8;
+}
+
+.alert-error {
+    background-color: #fdf0f0;
+    color: #cc3333;
+    border: 1px solid #f5b8b8;
+}

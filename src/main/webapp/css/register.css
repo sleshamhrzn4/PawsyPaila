@@ -149,11 +149,6 @@ input {
     background: white;
 }
 
-input:focus {
-    outline: none;
-    border-color: #008080;
-    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
-}
 .row-group {
     display: flex;
     gap: 12px;
@@ -169,11 +164,7 @@ input:focus {
     color: #757575;
 }
 
-.row-group input[type="number"] {
-    flex: 1;
-    margin-bottom: 0;
-}
-/* sugn up */
+/* sign up */
 .signup-btn {
     width: 100%;
     padding: 14px;
@@ -187,9 +178,6 @@ input:focus {
     margin-top: 10px;
 }
 
-.signup-btn:hover {
-    background: #008080;
-}
 
 /* tnc */
 .terms {

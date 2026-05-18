@@ -38,9 +38,10 @@
 
     <div class="top-bar">
       <span>Do Not Have an Account?</span>
-      <a href="${pageContext.request.contextPath}/register" class="signup-btn">Sign Up
-      <button class="login-btn">Sign Up</button>
-      </a>
+       <a href="${pageContext.request.contextPath}/register">
+                <button class="login-btn" onclick="location.href='${pageContext.request.contextPath}/register'">Sign Up</button>
+            </a>
+   
     </div>
 	<div class="form-container">
       <h4>Log In to adopt, shop, or connect with our community</h4>

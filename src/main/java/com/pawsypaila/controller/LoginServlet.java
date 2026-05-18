@@ -68,19 +68,28 @@ public class LoginServlet extends HttpServlet {
             // 3. Check password using PasswordUtil
             boolean passwordMatch = PasswordUtil.checkPassword(password, user.getPassword());
 
+            
             if (passwordMatch) {
-                // 4. Password correct — create session
                 System.out.println("Login successful!");
                 HttpSession session = request.getSession();
-                session.setAttribute("user", user);// save whole user object
-                response.sendRedirect(request.getContextPath() + "/home");
-               
+                session.setAttribute("user", user);
+                session.setAttribute("username", user.getFullName());
 
+                String redirectUrl = (String) session.getAttribute("redirectAfterLogin");
+                if (redirectUrl != null) {
+                    session.removeAttribute("redirectAfterLogin");
+                    response.sendRedirect(redirectUrl);
+                } else if ("admin".equalsIgnoreCase(user.getRole())) {
+                    response.sendRedirect(request.getContextPath() + "/adminDashboard");
+                } else {
+                    response.sendRedirect(request.getContextPath() + "/home");
+                }
             } else {
-                // Wrong password
+                // Wrong password — only runs if passwordMatch is false
                 System.out.println("Wrong password!!!");
                 response.sendRedirect(request.getContextPath() + "/login?error=2");
             }
+            
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());

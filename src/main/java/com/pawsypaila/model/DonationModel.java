@@ -1,6 +1,6 @@
 package com.pawsypaila.model;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class DonationModel {
 	private int donationId;

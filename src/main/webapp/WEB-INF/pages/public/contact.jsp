@@ -22,11 +22,21 @@
                     <h1>Contact</h1>
                     <img src="${pageContext.request.contextPath}/images/contact/logo_black.png" class="inline-logo" alt="Pawsy Paila">
                 </div>
+                
+                <%-- Success Message --%>
+                <c:if test="${not empty success}">
+                    <p class="msg-success">${success}</p>
+                </c:if>
 
-                <form action="ContactServlet" method="POST" class="contact-form">
-                    <input type="email" name="email" placeholder="Email" required class="input-field">
+                <%-- Error Message --%>
+                <c:if test="${not empty error}">
+                    <p class="msg-error">${error}</p>
+                </c:if>
+
+                <form action="contact" method="post" class="contact-form">
+                    <input type="email" name="email" placeholder="Email" class="input-field" value="${param.email}" required >
                     
-                    <textarea name="message" placeholder="Write Us a Message" required class="textarea-field"></textarea>
+                    <textarea name="message" placeholder="Write Us a Message" class="textarea-field" required>${param.message}</textarea>
                     
                     <button type="submit" class="send-btn">Send</button>
                 </form>

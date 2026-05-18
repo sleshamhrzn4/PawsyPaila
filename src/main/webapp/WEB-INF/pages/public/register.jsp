@@ -29,8 +29,8 @@
     <div class="right">
         <div class="top-bar">
             <span>Already Have an Account?</span>
-            <a href="${pageContext.request.contextPath}/login"> <%-- sending to login if account already exists --%>
-                <button class="login-btn">Log In</button>
+            <a href="${pageContext.request.contextPath}/login">
+                <button class="login-btn" onclick="location.href='${pageContext.request.contextPath}/login'">Log In</button>
             </a>
         </div>
 

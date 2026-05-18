@@ -1,0 +1,125 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page isELIgnored="false" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard - Pawsy Paila</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminPets.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="flex">
+
+    <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <i class="fa-solid fa-paw"></i>
+            <h1>Welcome Back, ${sessionScope.username}!</h1>
+        </div>
+
+        <!-- Flash Messages -->
+        <c:if test="${not empty sessionScope.message}">
+            <div class="alert alert-success">${sessionScope.message}</div>
+            <c:remove var="message" scope="session"/>
+        </c:if>
+
+        <c:if test="${not empty sessionScope.error}">
+            <div class="alert alert-error">${sessionScope.error}</div>
+            <c:remove var="error" scope="session"/>
+        </c:if>
+
+        <!-- Manage Pets Card -->
+        <div class="card">
+            <div class="card-header">
+                <h2>Manage Pets</h2>
+               
+                <a href="${pageContext.request.contextPath}/addPets" class="btn-add">
+                    <i class="fa-solid fa-plus"></i> Add Pet
+                </a>
+            </div>
+
+            <c:choose>
+                <c:when test="${empty requestScope.pets}">
+                    <div class="no-pets">No pets found. Click "Add Pet" to get started.</div>
+                </c:when>
+                <c:otherwise>
+                    <table class="pets-table">
+                        <thead>
+                            <tr>
+                                <th>Pet</th>
+                                <th>Type</th>
+                                <th>Age</th>
+                                <th>Gender</th>
+                                <th>Description</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="pet" items="${requestScope.pets}">
+                                <tr>
+                                    <td>
+    <div class="pet-name-cell">
+        <div class="pet-avatar">
+            <c:choose>
+                <c:when test="${not empty pet.petImage and pet.petImage != 'default.jpg'}">
+                    <img src="${pageContext.request.contextPath}/getImage?name=${pet.petImage}&type=pet"
+                         alt="${pet.petName}"
+                         style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                </c:when>
+                <c:otherwise>
+                    <i class="fa-solid fa-paw"></i>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        ${pet.petName}
+    </div>
+</td>
+                                    <td>${pet.petType}</td>
+                                    <td>${pet.petAge}</td>
+                                    <td>${pet.petGender}</td>
+                                    <td class="desc-cell" title="${pet.petDesc}">
+									    ${pet.petDesc}
+									</td>
+                                    <td>
+                                        <!-- Edit button -->
+                                        
+										<a href="${pageContext.request.contextPath}/updatePets?petId=${pet.petId}" class="btn-edit">
+										    <i class="fa-solid fa-pen"></i> Edit
+										</a>
+
+                                        <!-- Delete button -->
+                                        <form action="${pageContext.request.contextPath}/adminPets" 
+                                              method="post" style="display:inline;"
+                                              onsubmit="return confirm('Delete ${pet.petName}?')">
+                                            <input type="hidden" name="action" value="delete"/>
+                                            <input type="hidden" name="petId" value="${pet.petId}"/>
+                                            <button type="submit" class="btn-delete">
+                                                <i class="fa-solid fa-trash"></i> Delete
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

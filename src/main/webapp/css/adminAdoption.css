@@ -1,0 +1,273 @@
+@charset "UTF-8";
+
+/* =============================================
+   ADMIN ADOPTION REQUESTS CSS
+   ============================================= */
+ 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ 
+body {
+    font-family: 'Nunito', system-ui, sans-serif;
+    background-color: #FDF8F0;
+    height: 100vh;
+    overflow: hidden;
+    margin: 0;
+}
+ 
+/* =============== FLEX LAYOUT =============== */
+.flex {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #FDF8F0;
+    width: 100%;
+}
+ 
+/* =============== MAIN CONTENT =============== */
+.main-content {
+    flex: 1;
+    padding: 30px 35px;
+    height: 100vh;
+    overflow-y: auto;
+    background-color: #FDF8F0;
+    min-width: 0;
+}
+ 
+/* =============== PAGE HEADER (Welcome Box) =============== */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e2e8f0;
+}
+ 
+.page-header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e2937;
+}
+ 
+.page-header i {
+    font-size: 22px;
+    color: #14b8a6;
+}
+ 
+/* =============== CARD =============== */
+.card {
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e2e8f0;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
+}
+ 
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 26px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #f1f5f9;
+}
+ 
+.card-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1e2937;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.card-header h2 i {
+    color: #14b8a6;
+    font-size: 20px;
+}
+ 
+/* =============== TABLE =============== */
+.adoption-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+ 
+.adoption-table thead tr th {
+    text-align: left;
+    font-size: 13.5px;
+    font-weight: 600;
+    color: #64748b;
+    padding: 0 16px 16px 16px;
+    border-bottom: 2px solid #e2e8f0;
+}
+ 
+.adoption-table tbody tr {
+    border-bottom: 1px solid #f1f5f9;
+}
+ 
+.adoption-table tbody tr:hover {
+    background-color: #f8fafd;
+}
+ 
+.adoption-table tbody tr td {
+    padding: 16px;
+    font-size: 15px;
+    color: #334155;
+    vertical-align: middle;
+}
+ 
+/* =============== USER / PET CELLS =============== */
+.user-cell,
+.pet-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+ 
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #14b8a6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 15px;
+    flex-shrink: 0;
+}
+ 
+/* =============== REASON TEXT =============== */
+.reason-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 220px;
+    color: #64748b;
+    font-size: 14px;
+}
+ 
+/* =============== STATUS BADGE =============== */
+.status-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+ 
+.status-pending {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+ 
+.status-approved {
+    background-color: #d1fae5;
+    color: #0f766e;
+}
+ 
+.status-rejected {
+    background-color: #fee2e2;
+    color: #b91c1c;
+}
+ 
+/* =============== ACTION BUTTONS =============== */
+.action-cell {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+ 
+.btn-accept,
+.btn-reject {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Nunito', system-ui, sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.2s;
+}
+ 
+.btn-accept {
+    background-color: #14b8a6;
+    color: white;
+}
+ 
+.btn-accept:hover {
+    background-color: #0f9b8a;
+    transform: translateY(-1px);
+}
+ 
+.btn-reject {
+    background-color: #ef4444;
+    color: white;
+}
+ 
+.btn-reject:hover {
+    background-color: #dc2626;
+    transform: translateY(-1px);
+}
+ 
+.resolved-label {
+    color: #cbd5e1;
+    font-size: 18px;
+    font-weight: 300;
+}
+ 
+/* =============== ALERTS =============== */
+.alert {
+    padding: 15px 22px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 15px;
+}
+ 
+.alert-success {
+    background-color: #d1fae5;
+    color: #0f766e;
+    border: 1px solid #a7f3d0;
+}
+ 
+.alert-error {
+    background-color: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+ 
+/* =============== NO DATA =============== */
+.no-data {
+    text-align: center;
+    padding: 80px 30px;
+    color: #94a3b8;
+    font-size: 16px;
+    font-weight: 500;
+}
+ 
+/* =============== RESPONSIVE =============== */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 20px;
+    }
+}
+ 
+
+
+
+
+
+

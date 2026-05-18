@@ -76,6 +76,7 @@ public class UserDAO {
             u.setAge(rs.getInt("age"));
             u.setGender(rs.getString("gender"));
             u.setActive(rs.getBoolean("active"));
+            u.setRole(rs.getString("role"));
             
             
             users.add(u);
@@ -108,6 +109,7 @@ public class UserDAO {
             user.setAge(rs.getInt("age"));
             user.setGender(rs.getString("gender"));
             user.setActive(rs.getBoolean("active"));
+            user.setRole(rs.getString("role"));
         }
  
         rs.close();

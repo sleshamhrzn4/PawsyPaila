@@ -1,12 +1,7 @@
-
 @charset "UTF-8";
- 
+
 /* =============================================
-   ADMIN MANAGE USERS CSS
-   ============================================= */
- 
-/* =============================================
-   ADMIN MANAGE USERS CSS
+   ADMIN ADOPTION REQUESTS CSS
    ============================================= */
  
 * {
@@ -42,8 +37,8 @@ body {
     min-width: 0;
 }
  
-/* =============== WELCOME BOX =============== */
-.welcome-box {
+/* =============== PAGE HEADER (Welcome Box) =============== */
+.page-header {
     display: flex;
     align-items: center;
     gap: 14px;
@@ -55,33 +50,14 @@ body {
     border: 1px solid #e2e8f0;
 }
  
-.welcome-box h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #1e2937;
-}
- 
-.welcome-box i {
-    font-size: 22px;
-    color: #14b8a6;
-}
- 
-/* =============== PAGE HEADER =============== */
-.page-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 28px;
-}
- 
 .page-header h1 {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     color: #1e2937;
 }
  
 .page-header i {
-    font-size: 28px;
+    font-size: 22px;
     color: #14b8a6;
 }
  
@@ -92,12 +68,14 @@ body {
     padding: 28px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     border: 1px solid #e2e8f0;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
 }
  
 .card-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 10px;
     margin-bottom: 26px;
     padding-bottom: 18px;
     border-bottom: 1px solid #f1f5f9;
@@ -107,15 +85,23 @@ body {
     font-size: 20px;
     font-weight: 700;
     color: #1e2937;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+ 
+.card-header h2 i {
+    color: #14b8a6;
+    font-size: 20px;
 }
  
 /* =============== TABLE =============== */
-.users-table {
+.adoption-table {
     width: 100%;
     border-collapse: collapse;
 }
  
-.users-table thead tr th {
+.adoption-table thead tr th {
     text-align: left;
     font-size: 13.5px;
     font-weight: 600;
@@ -124,48 +110,75 @@ body {
     border-bottom: 2px solid #e2e8f0;
 }
  
-.users-table tbody tr {
+.adoption-table tbody tr {
     border-bottom: 1px solid #f1f5f9;
 }
  
-.users-table tbody tr:hover {
+.adoption-table tbody tr:hover {
     background-color: #f8fafd;
 }
  
-.users-table tbody tr td {
+.adoption-table tbody tr td {
     padding: 16px;
     font-size: 15px;
     color: #334155;
+    vertical-align: middle;
 }
  
-/* =============== USER NAME CELL =============== */
-.user-name-cell {
+/* =============== USER / PET CELLS =============== */
+.user-cell,
+.pet-cell {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
  
-.user-avatar {
-    width: 38px;
-    height: 38px;
+.avatar {
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background-color: #14b8a6;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 17px;
+    font-size: 15px;
+    flex-shrink: 0;
 }
  
-/* =============== STATUS =============== */
-.status-active {
+/* =============== REASON TEXT =============== */
+.reason-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    max-width: 220px;
+    color: #64748b;
+    font-size: 14px;
+}
+ 
+/* =============== STATUS BADGE =============== */
+.status-badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+ 
+.status-pending {
+    background-color: #fef3c7;
+    color: #b45309;
+}
+ 
+.status-approved {
+    background-color: #d1fae5;
     color: #0f766e;
-    font-weight: 600;
 }
  
-.status-inactive {
-    color: #94a3b8;
-    font-weight: 600;
+.status-rejected {
+    background-color: #fee2e2;
+    color: #b91c1c;
 }
  
 /* =============== ACTION BUTTONS =============== */
@@ -175,35 +188,52 @@ body {
     align-items: center;
 }
  
-.btn-activate,
-.btn-deactivate {
-    background-color: #14b8a6;
-    color: white;
+.btn-accept,
+.btn-reject {
     border: none;
-    padding: 8px 18px;
+    padding: 8px 16px;
     border-radius: 10px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 600;
     font-family: 'Nunito', system-ui, sans-serif;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
     transition: all 0.2s;
 }
  
-.btn-activate:hover {
+.btn-accept {
+    background-color: #14b8a6;
+    color: white;
+}
+ 
+.btn-accept:hover {
     background-color: #0f9b8a;
     transform: translateY(-1px);
 }
  
-.btn-deactivate:hover {
+.btn-reject {
+    background-color: #ef4444;
+    color: white;
+}
+ 
+.btn-reject:hover {
     background-color: #dc2626;
     transform: translateY(-1px);
+}
+ 
+.resolved-label {
+    color: #cbd5e1;
+    font-size: 18px;
+    font-weight: 300;
 }
  
 /* =============== ALERTS =============== */
 .alert {
     padding: 15px 22px;
     border-radius: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     font-size: 15px;
 }
  
@@ -219,8 +249,8 @@ body {
     border: 1px solid #fecaca;
 }
  
-/* =============== NO USERS =============== */
-.no-users {
+/* =============== NO DATA =============== */
+.no-data {
     text-align: center;
     padding: 80px 30px;
     color: #94a3b8;
@@ -235,3 +265,9 @@ body {
     }
 }
  
+
+
+
+
+
+

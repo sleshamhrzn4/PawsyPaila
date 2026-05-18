@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
@@ -24,9 +25,8 @@
         <div class="welcome-banner">
             <img src="${pageContext.request.contextPath}/images/adminDashboard/paw.png" 
              alt="pets" style="width: 40px; height: auto;">
-            <h1>Welcome Back, ${sessionScope.userName}!</h1>
-            <img src="${pageContext.request.contextPath}/images/dashboard/paw.png" 
-             alt="pets" style="width: 40px; height: auto;">
+            <h1>Welcome Back, ${sessionScope.userName}!</h1> 
+             
         </div>
 
        
@@ -85,11 +85,11 @@
 
             <div class="right-panel">
 
-                <%-- Manage Pets --%>
+               
                 <div class="manage-card">
                     <div class="manage-header">
                         <h3>Manage Pets</h3>
-                        <a href="${pageContext.request.contextPath}/AdminPets">
+                        <a href="${pageContext.request.contextPath}/adminPets">
                             <button class="btn-add">Add Pet</button>
                         </a>
                     </div>
@@ -112,7 +112,7 @@
                                     <td>${pet.age}</td>
                                     <td>${pet.petStatus}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/EditPet?id=${pet.petId}">
+                                        <a href="${pageContext.request.contextPath}/updatePet?id=${pet.petId}">
                                             <button class="btn-edit">Edit</button>
                                         </a>
                                     </td>
@@ -126,7 +126,7 @@
                 <div class="manage-card">
                     <div class="manage-header">
                         <h3>Manage Products</h3>
-                        <a href="${pageContext.request.contextPath}/AddProduct">
+                        <a href="${pageContext.request.contextPath}/adminProduct">
                             <button class="btn-add">Add Product</button>
                         </a>
                     </div>
@@ -139,7 +139,7 @@
                                     <p class="product-name">${product.productName}</p>
                                     <p class="product-price">Rs.${product.price}</p>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/EditProduct?id=${product.productId}">
+                                <a href="${pageContext.request.contextPath}/updateProduct?id=${product.productId}">
                                     <button class="btn-edit">Edit</button>
                                 </a>
                             </div>

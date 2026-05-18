@@ -1,6 +1,7 @@
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,16 +9,16 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Servlet implementation class AdminItemsServlet
+ * Servlet implementation class userProfile
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/AdminItems" })
-public class AdminItemsServlet extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/userProfile" })
+public class userProfile extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdminItemsServlet() {
+    public userProfile() {
         super();
         // TODO Auto-generated constructor stub
     }

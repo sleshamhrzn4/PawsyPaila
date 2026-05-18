@@ -4,9 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Add Pet - Pawsy Paila</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addPets.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addPets.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,21 +20,24 @@
         <div class="top-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>
-            <a href="${pageContext.request.contextPath}/AdminPets" class="btn-home">Back to Pets</a>
+            <a href="${pageContext.request.contextPath}/adminPets" class="btn-home">Back to Pets</a>
         </div>
 
         <div class="add-pet-card">
             <h2>Add Pet</h2>
 
-            <div class="pet-avatar-upload">
-                <div class="avatar-circle">
-                    <i class="fa-solid fa-paw"></i>
+           
+            <form action="${pageContext.request.contextPath}/addPets" method="post" enctype="multipart/form-data">
+
+                <div class="pet-avatar-upload">
+                    <div class="avatar-circle" onclick="document.getElementById('petImage').click()" style="cursor:pointer;">
+                        <img id="imagePreview" src="" alt=""
+                             style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                        <i class="fa-solid fa-paw" id="imageIcon"></i>
+                    </div>
+                    <input type="file" id="petImage" name="petImage" accept="image/*" hidden>
                 </div>
-            </div>
 
-            <form action="${pageContext.request.contextPath}/AdminPets" method="post">
-
-             
                 <input type="hidden" name="action" value="add"/>
 
                 <div class="form-group">
@@ -41,23 +45,20 @@
                     <input type="text" name="petName" placeholder="Enter pet name" required>
                 </div>
 
-               
                 <div class="form-group">
                     <label>Age</label>
                     <input type="number" name="petAge" placeholder="Enter pet age" min="0" required>
                 </div>
 
-                
                 <div class="form-group">
                     <label>Pet Type</label>
-                    <select name="type" required>
+                    <select name="petType" required>
                         <option value="">Select Pet Type</option>
                         <option value="Dog">Dog</option>
                         <option value="Cat">Cat</option>
                     </select>
                 </div>
 
-               
                 <div class="form-group">
                     <label>Gender</label>
                     <select name="petGender" required>
@@ -73,10 +74,28 @@
                 </div>
 
                 <button type="submit" class="btn-add">Add Pet</button>
+
             </form>
+           
+
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('petImage').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imagePreview').src = e.target.result;
+            document.getElementById('imagePreview').style.display = 'block';
+            document.getElementById('imageIcon').style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 
 </body>
 </html>

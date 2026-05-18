@@ -60,7 +60,7 @@
 
                     <input type="number" name="age" placeholder="Age" required>
                 </div>
-                <input type="text" name="phone" placeholder="Phone Number" required>
+                <input type="text" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit" class="signup-btn">Sign Up</button>

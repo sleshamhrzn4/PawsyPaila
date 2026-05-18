@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>My Profile - Pawsy Paila</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userDashboard.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userProfile.css">
 </head>
 <body>
 

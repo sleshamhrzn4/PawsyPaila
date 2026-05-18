@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import com.pawsypaila.dao.ContactDAO;
+
 /**
  * Servlet implementation class ContactServlet
  */
@@ -36,6 +38,30 @@ public class ContactServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		 String email   = request.getParameter("email");
+	     String message = request.getParameter("message");
+	     
+	     if (email == null || email.trim().isEmpty() ||
+	             message == null || message.trim().isEmpty()) {
+	             request.setAttribute("error", "All fields are required.");
+	             doGet(request, response);
+	             return;
+	         }
+	     
+	        ContactDAO dao = new ContactDAO();
+	        try {
+	            boolean success = dao.insertContact(email.trim(), message.trim());
+
+	            if (success) {
+	                request.setAttribute("success", "Your message has been sent successfully!");
+	            } else {
+	                request.setAttribute("error", "Failed to send message. Please try again.");
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            request.setAttribute("error", "An unexpected error occurred. Please try again later.");
+	        }
 		doGet(request, response);
 	}
 

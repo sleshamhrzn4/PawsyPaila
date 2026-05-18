@@ -12,13 +12,14 @@ public class PetDAO {
 
     public static void addPet(PetModel pet) throws Exception {
         Connection con = DBconfig.getConnection();
-        String sql = "INSERT INTO pet (petName, petAge, petType, petGender, petDesc) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pet (petName, petAge, petType, petGender, petDesc, petImage) VALUES (?, ?, ?, ?, ?,?)";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, pet.getPetName());
         pst.setInt(2, pet.getPetAge());
         pst.setString(3, pet.getPetType());
-        pst.setString(4, pet.getPetGender());  // ✅ fixed index 4
-        pst.setString(5, pet.getPetDesc());    // ✅ fixed index 5
+        pst.setString(4, pet.getPetGender());  
+        pst.setString(5, pet.getPetDesc()); 
+        pst.setString(6,pet.getPetImage());
         pst.executeUpdate();
         pst.close();
         con.close();
@@ -40,6 +41,7 @@ public class PetDAO {
                 pet.setPetType(rs.getString("petType"));
                 pet.setPetGender(rs.getString("petGender")); 
                 pet.setPetDesc(rs.getString("petDesc"));
+                pet.setPetImage(rs.getString("petImage"));
                 petList.add(pet);
             }
         }
@@ -64,6 +66,7 @@ public class PetDAO {
             pet.setPetType(rs.getString("petType"));
             pet.setPetGender(rs.getString("petGender"));
             pet.setPetDesc(rs.getString("petDesc"));
+            pet.setPetImage(rs.getString("petImage"));
         }
 
         rs.close();
@@ -72,23 +75,24 @@ public class PetDAO {
         return pet;
     }
 
-    public int updatePet(int petId, String petName, int petAge, String petType, String petGender, String petDesc) throws Exception {
-        Connection con = DBconfig.getConnection();
-        // ✅ fixed: added petAge=? placeholder
-        String sql = "UPDATE pet SET petName=?, petAge=?, petType=?, petGender=?, petDesc=? WHERE petId=?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setString(1, petName);
-        pst.setInt(2, petAge);     
-        pst.setString(3, petType);
-        pst.setString(4, petGender);
-        pst.setString(5, petDesc);
-        pst.setInt(6, petId);      
-        int rowsAffected = pst.executeUpdate();
-        pst.close();
-        con.close();
-        return rowsAffected;
-    }
+    public int updatePet(PetModel pet) throws Exception {
+        String sql = "UPDATE pet SET petName=?, petAge=?, petType=?, petGender=?, petDesc=?, petImage=? WHERE petId=?";
 
+        try (Connection con = DBconfig.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, pet.getPetName());
+            pst.setInt(2, pet.getPetAge());
+            pst.setString(3, pet.getPetType());
+            pst.setString(4, pet.getPetGender());
+            pst.setString(5, pet.getPetDesc());
+            pst.setString(6,pet.getPetImage());
+            pst.setInt(7, pet.getPetId());
+           
+
+            return pst.executeUpdate();
+        }
+    }
     public void deletePet(int petId) throws Exception {
         Connection con = DBconfig.getConnection();
         String sql = "DELETE FROM pet WHERE petId=?";  
@@ -97,5 +101,72 @@ public class PetDAO {
         pst.executeUpdate();
         pst.close();
         con.close();
+        
+        
+    }
+    
+    
+    public List<PetModel> searchPets(String search) {
+
+        List<PetModel> pets = new ArrayList<>();
+
+        String sql = "SELECT * FROM pet WHERE petName LIKE ?";
+
+        try (Connection con = DBconfig.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, "%" + search + "%");
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+
+                PetModel pet = new PetModel();
+
+                pet.setPetId(rs.getInt("petId"));
+                pet.setPetName(rs.getString("petName"));
+                pet.setPetAge(rs.getInt("petAge"));
+                pet.setPetType(rs.getString("petType"));
+                pet.setPetGender(rs.getString("petGender"));
+                pet.setPetDesc(rs.getString("petDesc"));
+                pet.setPetImage(rs.getString("petImage"));
+                pets.add(pet);
+                
+                
+            }
+            pst.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pets;
+    }
+    
+    
+    public List<PetModel> getPetsByType(String type) throws Exception {
+        List<PetModel> pets = new ArrayList<>();
+        String sql = "SELECT * FROM pet WHERE LOWER(petType) = LOWER(?)";
+
+        try (Connection con = DBconfig.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setString(1, type);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                PetModel pet = new PetModel();
+                pet.setPetId(rs.getInt("petId"));
+                pet.setPetName(rs.getString("petName"));
+                pet.setPetAge(rs.getInt("petAge"));
+                pet.setPetType(rs.getString("petType"));
+                pet.setPetGender(rs.getString("petGender"));
+                pet.setPetDesc(rs.getString("petDesc"));
+                pet.setPetImage(rs.getString("petImage"));
+                pets.add(pet);
+            }
+        }
+        return pets;
     }
 }

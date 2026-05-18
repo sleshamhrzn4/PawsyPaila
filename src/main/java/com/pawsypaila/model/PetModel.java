@@ -7,6 +7,8 @@ public class PetModel {
     private String petType;
     private String petGender;
     private String petDesc;
+    private String petImage;
+
     
 
     public int getPetId() { return petId; }
@@ -16,7 +18,7 @@ public class PetModel {
     public void setPetName(String petName) { this.petName = petName; }
 
     public int getPetAge() { return petAge; }
-    public void setPetAge(int string) { this.petAge = string ; }
+    public void setPetAge(int petAge) { this.petAge = petAge; }
 
     public String getPetType() { return petType; }
     public void setPetType(String petType) { this.petType = petType; }
@@ -27,5 +29,8 @@ public class PetModel {
     public String getPetDesc() { return petDesc; }
     public void setPetDesc(String petDesc) { this.petDesc = petDesc; }
 
+    public String getPetImage() { return petImage; }
+    public void setPetImage(String petImage) { this.petImage = petImage; }
 }
+
 

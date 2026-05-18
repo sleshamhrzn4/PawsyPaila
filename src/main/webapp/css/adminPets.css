@@ -1,61 +1,66 @@
 @charset "UTF-8";
 
 /* =============================================
-   ADMIN PETS DASHBOARD CSS - FIXED GAP ISSUE
+   ADMIN PETS CSS
    ============================================= */
-
+ 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
+ 
 body {
     font-family: 'Nunito', system-ui, sans-serif;
-    background-color: #ffffff;     /* Changed to white */
+    background-color: #FDF8F0;
     height: 100vh;
     overflow: hidden;
     margin: 0;
 }
-
+ 
 /* =============== FLEX LAYOUT =============== */
 .flex {
     display: flex;
     height: 100vh;
     overflow: hidden;
-    background-color: #ffffff;     /* Important: White background */
+    background-color: #FDF8F0;
     width: 100%;
 }
-
+ 
 /* =============== MAIN CONTENT =============== */
 .main-content {
     flex: 1;
-    margin-left: 220px;            
     padding: 30px 35px;
     height: 100vh;
-    overflow: hidden;
-    background-color: #ffffff;     /* Pure white */
+    overflow-y: auto;
+    background-color: #FDF8F0;
+    min-width: 0;
 }
-
-/* =============== PAGE HEADER =============== */
+ 
+/* =============== PAGE HEADER (Welcome Box) =============== */
 .page-header {
     display: flex;
     align-items: center;
     gap: 14px;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 20px 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+    border: 1px solid #e2e8f0;
 }
-
+ 
 .page-header h1 {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 700;
     color: #1e2937;
 }
-
+ 
 .page-header i {
-    font-size: 28px;
+    font-size: 22px;
     color: #14b8a6;
 }
-
+ 
 /* =============== CARD =============== */
 .card {
     background-color: #ffffff;
@@ -63,10 +68,10 @@ body {
     padding: 28px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
     border: 1px solid #e2e8f0;
-    height: calc(100vh - 110px);
-    overflow: hidden;
+    height: calc(100vh - 160px);
+    overflow-y: auto;
 }
-
+ 
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -75,43 +80,72 @@ body {
     padding-bottom: 18px;
     border-bottom: 1px solid #f1f5f9;
 }
-
+ 
 .card-header h2 {
     font-size: 20px;
     font-weight: 700;
     color: #1e2937;
 }
 
-/* =============== BUTTONS =============== */
-.btn-add, .btn-edit {
+.desc-cell {
+    max-width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+ 
+/* =============== ACTION BUTTONS =============== */
+.btn-add,
+.btn-edit {
     background-color: #14b8a6;
     color: white;
     border: none;
-    padding: 10px 22px;
+    padding: 8px 18px;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
+    font-family: 'Nunito', system-ui, sans-serif;
     cursor: pointer;
     text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
     transition: all 0.2s;
 }
-
-.btn-add:hover, .btn-edit:hover {
+ 
+.btn-add:hover,
+.btn-edit:hover {
     background-color: #0f9b8a;
     transform: translateY(-1px);
 }
-
-.btn-edit {
-    padding: 8px 20px;
+ 
+.btn-delete {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 10px;
     font-size: 14px;
+    font-weight: 600;
+    font-family: 'Nunito', system-ui, sans-serif;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
 }
-
+ 
+.btn-delete:hover {
+    background-color: #dc2626;
+    transform: translateY(-1px);
+}
+ 
 /* =============== TABLE =============== */
 .pets-table {
     width: 100%;
     border-collapse: collapse;
 }
-
+ 
 .pets-table thead tr th {
     text-align: left;
     font-size: 13.5px;
@@ -120,59 +154,62 @@ body {
     padding: 0 16px 16px 16px;
     border-bottom: 2px solid #e2e8f0;
 }
-
+ 
 .pets-table tbody tr {
     border-bottom: 1px solid #f1f5f9;
 }
-
+ 
 .pets-table tbody tr:hover {
     background-color: #f8fafd;
 }
-
+ 
 .pets-table tbody tr td {
     padding: 16px;
     font-size: 15px;
     color: #334155;
 }
-
+ 
+/* =============== PET NAME CELL =============== */
 .pet-name-cell {
     display: flex;
     align-items: center;
     gap: 14px;
 }
-
+ 
 .pet-avatar {
-    width: 38px;
-    height: 38px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    overflow: hidden;          /* ← keeps image inside the circle */
     background-color: #14b8a6;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 17px;
+    font-size: 20px;
+    flex-shrink: 0;
 }
-
+ 
 /* =============== ALERTS =============== */
 .alert {
     padding: 15px 22px;
     border-radius: 10px;
-    margin-bottom: 24px;
+    margin-bottom: 20px;
     font-size: 15px;
 }
-
+ 
 .alert-success {
     background-color: #d1fae5;
     color: #0f766e;
     border: 1px solid #a7f3d0;
 }
-
+ 
 .alert-error {
     background-color: #fee2e2;
     color: #b91c1c;
     border: 1px solid #fecaca;
 }
-
+ 
 /* =============== NO PETS =============== */
 .no-pets {
     text-align: center;
@@ -181,10 +218,10 @@ body {
     font-size: 16px;
     font-weight: 500;
 }
-
-/* Responsive */
+ 
+/* =============== RESPONSIVE =============== */
 @media (max-width: 768px) {
     .main-content {
-        margin-left: 0;
+        padding: 20px;
     }
 }

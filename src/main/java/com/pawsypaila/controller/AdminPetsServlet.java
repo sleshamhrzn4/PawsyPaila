@@ -5,86 +5,58 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.util.List;
 
 import com.pawsypaila.dao.PetDAO;
 import com.pawsypaila.model.PetModel;
-import com.pawsypaila.utils.SessionUtil;
 
-@WebServlet("/AdminPets")
+@WebServlet(asyncSupported = true, urlPatterns = { "/adminPets" })
 public class AdminPetsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        String action = request.getParameter("action");
-
-        if ("showAdd".equals(action)) {
-            request.getRequestDispatcher("/WEB-INF/pages/admin/addPets.jsp").forward(request, response);
-            return; 
-        }
-
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	
         try {
+            
+
             PetDAO dao = new PetDAO();
             List<PetModel> pets = dao.getAllPets();
-            request.setAttribute("pets", pets);
+            request.setAttribute("pets", pets); 
+            request.getRequestDispatcher("/WEB-INF/pages/admin/adminPets.jsp").forward(request, response); 
+
         } catch (Exception e) {
             e.printStackTrace();
-            SessionUtil.setAttribute(request, "error", "Error loading pets: " + e.getMessage(), 60);
+            request.getSession().setAttribute("error", "Something went wrong.");
+            response.sendRedirect(request.getContextPath() + "/AdminPets");
+            
         }
-
-        request.getRequestDispatcher("/WEB-INF/pages/admin/adminPets.jsp")
-               .forward(request, response);
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
 
+        
         String action = request.getParameter("action");
-
         try {
-            PetDAO dao = new PetDAO();
+            
 
-            if ("add".equals(action)) {
-                PetModel pet = new PetModel();
-                pet.setPetName(request.getParameter("petName"));
-                pet.setPetAge(Integer.parseInt(request.getParameter("petAge")));
-                pet.setPetType(request.getParameter("type"));
-                pet.setPetGender(request.getParameter("petGender"));
-                pet.setPetDesc(request.getParameter("petDesc"));
-
-                PetDAO.addPet(pet);
-                SessionUtil.setAttribute(request, "message", "Pet added successfully!", 60);
-
-            } else if ("edit".equals(action)) {
-                int    petId  = Integer.parseInt(request.getParameter("petId"));
-                String name   = request.getParameter("petName");
-                int    age    = Integer.parseInt(request.getParameter("petAge"));
-                String type   = request.getParameter("type");
-                String gender = request.getParameter("petGender");
-                String desc   = request.getParameter("petDesc");
-
-                dao.updatePet(petId, name, age, type, gender, desc);
-                SessionUtil.setAttribute(request, "message", "Pet updated successfully!", 60);
-
-            } else if ("delete".equals(action)) {
+            if ("delete".equals(action)) {
                 int petId = Integer.parseInt(request.getParameter("petId"));
+                PetDAO dao = new PetDAO();
                 dao.deletePet(petId);
-                SessionUtil.setAttribute(request, "message", "Pet deleted successfully!", 60);
+                session.setAttribute("message", "Pet deleted successfully!");
             }
 
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            SessionUtil.setAttribute(request, "error", "Invalid number format: " + e.getMessage(), 60);
         } catch (Exception e) {
             e.printStackTrace();
-            SessionUtil.setAttribute(request, "error", "Operation failed: " + e.getMessage(), 60);
+            session.setAttribute("error", "Failed to delete: "); 
         }
 
-        response.sendRedirect(request.getContextPath() + "/AdminPets");
+        response.sendRedirect(request.getContextPath() + "/adminPets");
     }
 }

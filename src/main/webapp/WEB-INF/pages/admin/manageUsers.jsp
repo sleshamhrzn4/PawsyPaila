@@ -6,37 +6,46 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+
 
     <meta charset="UTF-8">
     <title>Admin Dashboard - Pawsy Paila</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminPets.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageUsers.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     
 </head>
-
 <body>
 
 
-<div class="layout">
 
+<div class="flex">
+
+    
     <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <div class="main-content">
+		    <div class="welcome-box">
+		   <img src="${pageContext.request.contextPath}/images/adminDashboard/pet.png" 
+             alt="pets" style="width: 40px; height: auto;">
+		    <h1>Welcome Back, Yunisha!</h1>
+		</div>
 
-        <!-- Welcome Banner -->
-        <div class="welcome-banner">
-            <span class="welcome-paw">🐾</span>
-            <h1>Welcome Back, ${sessionScope.loggedInUser.fullName}!</h1>
-        </div>
+       
 
-        <!-- Manage Users Card -->
+        <!-- Card -->
         <div class="card">
-            <h2 class="section-title">Manage Users</h2>
+        
+         <!-- Page Header -->
+        <div class="page-header">
+            <i class="fas fa-users"></i>
+            <h1>Manage Users</h1>
+        </div>
+            <div class="card-header">
+                <h2>All Users</h2>
+            </div>
 
             <!-- Flash Messages -->
             <c:if test="${not empty successMessage}">
@@ -46,6 +55,7 @@
                 <div class="alert alert-error">${errorMessage}</div>
             </c:if>
 
+            <!-- Table -->
             <table class="users-table">
                 <thead>
                     <tr>
@@ -60,28 +70,30 @@
                         <c:when test="${not empty userList}">
                             <c:forEach var="user" items="${userList}">
                                 <tr>
-                                    <td class="user-name-cell">
-                                        <div class="user-avatar-sm">
-                                            <span class="avatar-icon-sm">👤</span>
-                                        </div>
-                                        <span>${user.fullName}</span>
-                                    </td>
-                                    <td>${user.createdDateFormatted}</td>
                                     <td>
-                                        <span class="status-badge ${user.active ? 'status-active' : 'status-inactive'}">
+                                        <div class="user-name-cell">
+                                            <div class="user-avatar">
+                                                <i class="fas fa-user"></i>
+                                            </div>
+                                            <span>${user.fullName}</span>
+                                        </div>
+                                    </td>
+                                    <td>${user.email}</td>
+                                    <td>
+                                        <span class="${user.active ? 'status-active' : 'status-inactive'}">
                                             ${user.active ? 'Active' : 'Inactive'}
                                         </span>
                                     </td>
                                     <td class="action-cell">
-                                        <form action="${pageContext.request.contextPath}/users" method="post" style="display:inline;">
+                                        <form action="${pageContext.request.contextPath}/manageUsers" method="post" style="display:inline;">
                                             <input type="hidden" name="userId" value="${user.userId}" />
                                             <input type="hidden" name="action" value="activate" />
-                                            <button type="submit" class="btn btn-activate">Activate</button>
+                                            <button type="submit" class="btn-activate">Activate</button>
                                         </form>
-                                        <form action="${pageContext.request.contextPath}/users" method="post" style="display:inline;">
+                                        <form action="${pageContext.request.contextPath}/manageUsers" method="post" style="display:inline;">
                                             <input type="hidden" name="userId" value="${user.userId}" />
                                             <input type="hidden" name="action" value="deactivate" />
-                                            <button type="submit" class="btn btn-deactivate">Deactivate</button>
+                                            <button type="submit" class="btn-deactivate">Deactivate</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -89,15 +101,15 @@
                         </c:when>
                         <c:otherwise>
                             <tr>
-                                <td colspan="4" class="no-data">No users found.</td>
+                                <td colspan="4" class="no-users">No users found.</td>
                             </tr>
                         </c:otherwise>
                     </c:choose>
                 </tbody>
             </table>
-        </div>
 
-    </main>
+        </div>
+    </div>
 </div>
 
 </body>

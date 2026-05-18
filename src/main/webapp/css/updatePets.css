@@ -1,34 +1,32 @@
-
 @charset "UTF-8";
-
+@charset "UTF-8";
+/* ===================== ADD PET PAGE STYLES ===================== */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
- 
+
 body {
     font-family: 'Nunito', system-ui, sans-serif;
     background-color: #FDF8F0;
-  
-    
+    height: 100vh;
+    overflow: hidden;
 }
- 
 
+/* =============== FLEX LAYOUT =============== */
 .flex {
     display: flex;
-     background-color: #FDF8F0;
     height: 100vh;
-    
+    overflow: hidden;
+    background-color: #FDF8F0;
 }
- 
 
+/* =============== MAIN CONTENT =============== */
 .main-content {
     flex: 1;
-    padding: 30px 35px;
+    padding: 25px 50px;
     background-color: #FDF8F0;
-    min-width: 0;
-     overflow-y: auto;
 }
 
 /* Top Header */
@@ -154,7 +152,7 @@ body {
     transform: translateY(-2px);
 }
 
-
+/* Responsive */
 @media (max-width: 768px) {
     .main-content {
         padding: 20px;

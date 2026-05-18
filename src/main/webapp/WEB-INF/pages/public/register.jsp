@@ -47,7 +47,7 @@
                     <input type="file" id="profileImage" name="profileImage" accept="image/*" onchange="previewFile()" hidden>
                 </div>
 
-                <%-- input feilds for user registeration --%>
+                
                 <input type="text" name="fullName" placeholder="Full Name" required>
                 <input type="text" name="address" placeholder="Address" required>
                 <div class="row-group">

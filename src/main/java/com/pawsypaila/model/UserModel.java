@@ -12,12 +12,13 @@ public class UserModel {
     private String  gender;
     private boolean active;
     private String role;
+    private String profileImg;
  
     public UserModel() {}
  
     // ── Full constructor ──
     public UserModel(int userId, String fullName, String phone, String email,
-                     String password, String address, int age, String gender, boolean active,String role) {
+                     String password, String address, int age, String gender, boolean active,String role, String profileImg) {
         this.userId   = userId;
         this.fullName = fullName;
         this.phone    = phone;
@@ -28,6 +29,7 @@ public class UserModel {
         this.gender   = gender;
         this.active   = active;
         this.role     = role;
+        this.profileImg = profileImg;
     }
  
     // ── Getters & Setters ──
@@ -60,8 +62,9 @@ public class UserModel {
     
     public String getRole()               { return role; }
     public void setRole(String role)    { this.role = role; }
+    
+    public String getProfileImg()               { return profileImg; }
+    public void setProfileImg(String profileImg)    { this.profileImg  = profileImg; }
 }
-
-    public String getAddress() { return address; }
-    public void setAddress(String address) { this.address = address; }
+ 
 

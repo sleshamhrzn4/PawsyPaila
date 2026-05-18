@@ -64,6 +64,7 @@ public class UserProfileServlet extends HttpServlet {
 		String address = request.getParameter("userAddress");
 		String gender  = request.getParameter("userGender");
 		String ageStr  = request.getParameter("userAge");
+		
 
 		// Email is read-only — keep from session
 		String email    = currentUser.getEmail();
@@ -84,7 +85,7 @@ public class UserProfileServlet extends HttpServlet {
 			int rows = userDAO.updateUser(
 				currentUser.getUserId(),
 				name, phone, email, password,
-				address, age, gender, active
+				address, age, gender, active, 
 			);
 
 			if (rows > 0) {

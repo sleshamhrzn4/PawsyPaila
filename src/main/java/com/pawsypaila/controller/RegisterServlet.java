@@ -1,6 +1,7 @@
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -42,10 +43,13 @@ public class RegisterServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Get text files
-	    String fullName = request.getParameter("fullName");
-	    String phone    = request.getParameter("phone");
-	    String email    = request.getParameter("email");
-	    String password = request.getParameter("password");
+		String fullName = request.getParameter("fullName");
+		String phone    = request.getParameter("phone");
+		String email    = request.getParameter("email");
+		String password = request.getParameter("password");
+		String address  = request.getParameter("address");
+		String gender   = request.getParameter("gender");
+		int    age      = Integer.parseInt(request.getParameter("age"));
 	    
 	    String hashedPassword = PasswordUtil.getHashPassword(password);
 	    
@@ -73,25 +77,33 @@ public class RegisterServlet extends HttpServlet {
             
             File uploadDir = new File(uploadPath);
             if (!uploadDir.exists()) {
-                uploadDir.mkdirs();  // mkdirs not mkdir — creates parent folders too
+                uploadDir.mkdirs();  
             }
 
             filePart.write(uploadPath + File.separator + fileName);
-            System.out.println("File saved: " + fileName); // confirm in console
+            System.out.println("File saved: " + fileName);
         }
 
-	    	//Save to DB with hashed password
+	    	
             try {
                 UserDAO userDAO = new UserDAO();
-                userDAO.insertUser(fullName, phone, email, hashedPassword );
+                userDAO.insertUser(fullName, phone, email, hashedPassword, address, age, gender, false);
                 System.out.println("User saved with hashed password");
 
-                response.sendRedirect(request.getContextPath() + "/login");
+                
+                request.getRequestDispatcher("/WEB-INF/pages/public/register")
+ 	           .forward(request, response);
+                return;
 
             } catch (Exception e) {
-                e.printStackTrace();
-                response.sendRedirect(request.getContextPath() + "/register.jsp?error=1");
+            	 request.setAttribute("errorMessage", "Registration failed. Please try again.");
+            	 response.sendRedirect(request.getContextPath() + "/login");
+            	    return;
             }
-        }
-		
 	}
+}
+            
+           
+	
+		
+	

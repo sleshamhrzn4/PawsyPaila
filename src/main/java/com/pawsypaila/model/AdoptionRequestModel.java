@@ -1,14 +1,14 @@
 package com.pawsypaila.model;
 
-import java.util.Date;
+
 
 public class AdoptionRequestModel {
 	private int adoptionId;
     private int userId;
     private int petId;
     private String adoptionStatus;
-    private String reason;
-    private Date requestDate;
+    private String fullName;
+    private String petName;
 
     public int getAdoptionId() { return adoptionId; }
     public void setAdoptionId(int adoptionId) { this.adoptionId = adoptionId; }
@@ -22,11 +22,12 @@ public class AdoptionRequestModel {
     public String getAdoptionStatus() { return adoptionStatus; }
     public void setAdoptionStatus(String adoptionStatus) { this.adoptionStatus = adoptionStatus; }
 
-    public String getReason() { return reason; }
-    public void setReason(String reason) { this.reason = reason; }
 
-    public Date getRequestDate() { return requestDate; }
-    public void setRequestDate(Date requestDate) { this.requestDate = requestDate; }
+    public String getFullName() { return fullName; }
+    public void setFullName(String fullName) { this.fullName = fullName; }
+ 
+    public String getPetName() { return petName; }
+    public void setPetName(String petName) { this.petName = petName; }
 }
 
 

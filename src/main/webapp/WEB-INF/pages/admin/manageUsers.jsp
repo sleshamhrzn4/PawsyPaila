@@ -85,12 +85,12 @@
                                         </span>
                                     </td>
                                     <td class="action-cell">
-                                        <form action="${pageContext.request.contextPath}/ManageUsers" method="post" style="display:inline;">
+                                        <form action="${pageContext.request.contextPath}/manageUsers" method="post" style="display:inline;">
                                             <input type="hidden" name="userId" value="${user.userId}" />
                                             <input type="hidden" name="action" value="activate" />
                                             <button type="submit" class="btn-activate">Activate</button>
                                         </form>
-                                        <form action="${pageContext.request.contextPath}/ManageUsers" method="post" style="display:inline;">
+                                        <form action="${pageContext.request.contextPath}/manageUsers" method="post" style="display:inline;">
                                             <input type="hidden" name="userId" value="${user.userId}" />
                                             <input type="hidden" name="action" value="deactivate" />
                                             <button type="submit" class="btn-deactivate">Deactivate</button>

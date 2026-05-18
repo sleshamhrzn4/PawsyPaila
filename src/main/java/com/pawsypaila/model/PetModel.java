@@ -7,6 +7,8 @@ public class PetModel {
     private String petType;
     private String petGender;
     private String petDesc;
+    private String petImage;
+
     
 
     public int getPetId() { return petId; }
@@ -27,5 +29,8 @@ public class PetModel {
     public String getPetDesc() { return petDesc; }
     public void setPetDesc(String petDesc) { this.petDesc = petDesc; }
 
+    public String getPetImage() { return petImage; }
+    public void setPetImage(String petImage) { this.petImage = petImage; }
 }
+
 

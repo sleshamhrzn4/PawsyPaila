@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addPets.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -19,7 +20,7 @@
         <div class="top-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>
-            <a href="${pageContext.request.contextPath}/AdminPets" class="btn-home">Back to Pets</a>
+            <a href="${pageContext.request.contextPath}/adminPets" class="btn-home">Back to Pets</a>
         </div>
 
         <div class="add-pet-card">
@@ -31,9 +32,9 @@
                 </div>
             </div>
 
-            <form action="${pageContext.request.contextPath}/UpdatePets" method="post">
+            <form action="${pageContext.request.contextPath}/updatePets" method="post">
 
-                <%-- Change action to "edit" and pass the pet ID --%>
+                
                 <input type="hidden" name="action" value="edit"/>
                 <input type="hidden" name="petId" value="${pet.petId}"/>
 

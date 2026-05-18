@@ -1,6 +1,7 @@
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -14,7 +15,7 @@ import com.pawsypaila.model.PetModel;
 
 
 
-@WebServlet(asyncSupported = true, urlPatterns = { "/UpdatePets" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/updatePets" })
 public class UpdatePetsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -31,14 +32,14 @@ public class UpdatePetsServlet extends HttpServlet {
                 request.getRequestDispatcher("/WEB-INF/pages/admin/updatePets.jsp").forward(request, response);
             } else {
                 request.getSession().setAttribute("error", "Pet not found.");
-                response.sendRedirect(request.getContextPath() + "/AdminPets");
+                response.sendRedirect(request.getContextPath() + "/adminPets");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             request.getSession().setAttribute("error", "Something went wrong: ");
             
-            response.sendRedirect(request.getContextPath() + "/AdminPets");
+            response.sendRedirect(request.getContextPath() + "/adminPets");
         }
     }
 
@@ -71,6 +72,6 @@ public class UpdatePetsServlet extends HttpServlet {
             session.setAttribute("error", "Failed to update pet. Please try again.");
         }
 
-        response.sendRedirect(request.getContextPath() + "/AdminPets");
+        response.sendRedirect(request.getContextPath() + "/adminPets");
     }
 }

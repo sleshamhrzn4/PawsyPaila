@@ -17,7 +17,7 @@ import com.pawsypaila.model.UserModel;
 /**
  * Servlet implementation class ManageUsersServlet
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/ManageUsers" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/manageUsers" })
 public class ManageUsersServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -65,7 +65,7 @@ public class ManageUsersServlet extends HttpServlet {
  
         if (userIdParam == null || action == null) {
             session.setAttribute("errorMessage", "Invalid request.");
-            response.sendRedirect(request.getContextPath() + "/ManageUsers");
+            response.sendRedirect(request.getContextPath() + "/manageUsers");
             return;
         }
  
@@ -90,7 +90,7 @@ public class ManageUsersServlet extends HttpServlet {
         }
  
        
-        response.sendRedirect(request.getContextPath() + "/ManageUsers");
+        response.sendRedirect(request.getContextPath() + "/manageUsers");
     }
 
 }

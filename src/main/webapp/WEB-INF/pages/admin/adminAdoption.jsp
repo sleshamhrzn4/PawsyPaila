@@ -55,8 +55,6 @@
                             <tr>
                                 <th>User</th>
                                 <th>Pet</th>
-                                <th>Reason</th>
-                                <th>Date</th>
                                 <th>Status</th>
                                 <th>Actions</th>
                             </tr>
@@ -70,7 +68,7 @@
                                             <div class="avatar">
                                                 <i class="fa-solid fa-user"></i>
                                             </div>
-                                            <span>${req.userName}</span>
+                                            <span>${req.fullName}</span>
                                         </div>
                                     </td>
 
@@ -84,16 +82,7 @@
                                         </div>
                                     </td>
 
-                                    <!-- Reason -->
-                                    <td>
-                                        <span class="reason-text">${req.reason}</span>
-                                    </td>
-
-                                    <!-- Date -->
-                                    <td>
-                                        <fmt:formatDate value="${req.requestDate}" pattern="MMM d, yyyy"/>
-                                    </td>
-
+                                    
                                     <!-- Status Badge -->
                                     <td>
                                         <span class="status-badge status-${req.adoptionStatus.toLowerCase()}">
@@ -106,7 +95,7 @@
                                         <c:choose>
                                             <c:when test="${req.adoptionStatus == 'Pending'}">
                                                 <!-- Accept -->
-                                                <form action="${pageContext.request.contextPath}/AdminAdoption"
+                                                <form action="${pageContext.request.contextPath}/adminAdoption"
                                                       method="post" style="display:inline;">
                                                     <input type="hidden" name="adoptionId" value="${req.adoptionId}"/>
                                                     <input type="hidden" name="action" value="accept"/>
@@ -115,7 +104,7 @@
                                                     </button>
                                                 </form>
                                                 <!-- Reject -->
-                                                <form action="${pageContext.request.contextPath}/AdminAdoption"
+                                                <form action="${pageContext.request.contextPath}/adminAdoption"
                                                       method="post" style="display:inline;">
                                                     <input type="hidden" name="adoptionId" value="${req.adoptionId}"/>
                                                     <input type="hidden" name="action" value="reject"/>

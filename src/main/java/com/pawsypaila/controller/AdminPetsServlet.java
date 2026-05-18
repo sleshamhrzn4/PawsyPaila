@@ -13,7 +13,7 @@ import java.util.List;
 import com.pawsypaila.dao.PetDAO;
 import com.pawsypaila.model.PetModel;
 
-@WebServlet(asyncSupported = true, urlPatterns = { "/AdminPets" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/adminPets" })
 public class AdminPetsServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -57,6 +57,6 @@ public class AdminPetsServlet extends HttpServlet {
             session.setAttribute("error", "Failed to delete: "); 
         }
 
-        response.sendRedirect(request.getContextPath() + "/AdminPets");
+        response.sendRedirect(request.getContextPath() + "/adminPets");
     }
 }

@@ -11,12 +11,13 @@ public class UserModel {
     private int     age;
     private String  gender;
     private boolean active;
+    private String role;
  
     public UserModel() {}
  
     // ── Full constructor ──
     public UserModel(int userId, String fullName, String phone, String email,
-                     String password, String address, int age, String gender, boolean active) {
+                     String password, String address, int age, String gender, boolean active,String role) {
         this.userId   = userId;
         this.fullName = fullName;
         this.phone    = phone;
@@ -26,6 +27,7 @@ public class UserModel {
         this.age      = age;
         this.gender   = gender;
         this.active   = active;
+        this.role     = role;
     }
  
     // ── Getters & Setters ──
@@ -55,6 +57,9 @@ public class UserModel {
  
     public boolean isActive()               { return active; }
     public void setActive(boolean active)   { this.active = active; }
+    
+    public String getRole()               { return role; }
+    public void setRole(String role)    { this.role = role; }
 }
 
 

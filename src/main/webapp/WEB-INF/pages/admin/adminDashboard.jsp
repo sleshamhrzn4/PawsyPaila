@@ -85,11 +85,11 @@
 
             <div class="right-panel">
 
-                <%-- Manage Pets --%>
+               
                 <div class="manage-card">
                     <div class="manage-header">
                         <h3>Manage Pets</h3>
-                        <a href="${pageContext.request.contextPath}/AdminPets">
+                        <a href="${pageContext.request.contextPath}/adminPets">
                             <button class="btn-add">Add Pet</button>
                         </a>
                     </div>
@@ -112,7 +112,7 @@
                                     <td>${pet.age}</td>
                                     <td>${pet.petStatus}</td>
                                     <td>
-                                        <a href="${pageContext.request.contextPath}/EditPet?id=${pet.petId}">
+                                        <a href="${pageContext.request.contextPath}/updatePet?id=${pet.petId}">
                                             <button class="btn-edit">Edit</button>
                                         </a>
                                     </td>
@@ -139,7 +139,7 @@
                                     <p class="product-name">${product.productName}</p>
                                     <p class="product-price">Rs.${product.price}</p>
                                 </div>
-                                <a href="${pageContext.request.contextPath}/EditProduct?id=${product.productId}">
+                                <a href="${pageContext.request.contextPath}/updateProduct?id=${product.productId}">
                                     <button class="btn-edit">Edit</button>
                                 </a>
                             </div>

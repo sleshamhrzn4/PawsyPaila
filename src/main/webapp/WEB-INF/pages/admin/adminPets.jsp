@@ -46,7 +46,7 @@
             <div class="card-header">
                 <h2>Manage Pets</h2>
                
-                <a href="${pageContext.request.contextPath}/AddPets" class="btn-add">
+                <a href="${pageContext.request.contextPath}/addPets" class="btn-add">
                     <i class="fa-solid fa-plus"></i> Add Pet
                 </a>
             </div>
@@ -71,13 +71,22 @@
                             <c:forEach var="pet" items="${requestScope.pets}">
                                 <tr>
                                     <td>
-                                        <div class="pet-name-cell">
-                                            <div class="pet-avatar">
-                                                <i class="fa-solid fa-paw"></i>
-                                            </div>
-                                            ${pet.petName}
-                                        </div>
-                                    </td>
+    <div class="pet-name-cell">
+        <div class="pet-avatar">
+            <c:choose>
+                <c:when test="${not empty pet.petImage and pet.petImage != 'default.jpg'}">
+                    <img src="${pageContext.request.contextPath}/getImage?name=${pet.petImage}&type=pet"
+                         alt="${pet.petName}"
+                         style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                </c:when>
+                <c:otherwise>
+                    <i class="fa-solid fa-paw"></i>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        ${pet.petName}
+    </div>
+</td>
                                     <td>${pet.petType}</td>
                                     <td>${pet.petAge}</td>
                                     <td>${pet.petGender}</td>
@@ -87,12 +96,12 @@
                                     <td>
                                         <!-- Edit button -->
                                         
-										<a href="${pageContext.request.contextPath}/UpdatePets?petId=${pet.petId}" class="btn-edit">
+										<a href="${pageContext.request.contextPath}/updatePets?petId=${pet.petId}" class="btn-edit">
 										    <i class="fa-solid fa-pen"></i> Edit
 										</a>
 
                                         <!-- Delete button -->
-                                        <form action="${pageContext.request.contextPath}/AdminPets" 
+                                        <form action="${pageContext.request.contextPath}/adminPets" 
                                               method="post" style="display:inline;"
                                               onsubmit="return confirm('Delete ${pet.petName}?')">
                                             <input type="hidden" name="action" value="delete"/>

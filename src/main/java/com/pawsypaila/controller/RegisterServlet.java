@@ -1,6 +1,7 @@
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
+
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -89,12 +90,20 @@ public class RegisterServlet extends HttpServlet {
                 userDAO.insertUser(fullName, phone, email, hashedPassword, address, age, gender, false);
                 System.out.println("User saved with hashed password");
 
-                response.sendRedirect(request.getContextPath() + "/login");
+                
+                request.getRequestDispatcher("/WEB-INF/pages/public/register")
+ 	           .forward(request, response);
+                return;
 
             } catch (Exception e) {
-                e.printStackTrace();
-                response.sendRedirect(request.getContextPath() + "/register.jsp?error=1");
+            	 request.setAttribute("errorMessage", "Registration failed. Please try again.");
+            	 response.sendRedirect(request.getContextPath() + "/login");
+            	    return;
             }
-        }
-		
 	}
+}
+            
+           
+	
+		
+	

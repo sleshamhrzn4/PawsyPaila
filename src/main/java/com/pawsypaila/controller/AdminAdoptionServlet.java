@@ -16,7 +16,7 @@ import com.pawsypaila.model.AdoptionRequestModel;
 /**
  * Servlet implementation class AdminAdoptionServlet
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/AdminAdoption" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/adminAdoption" })
 public class AdminAdoptionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,7 +29,7 @@ public class AdminAdoptionServlet extends HttpServlet {
     }
     private final AdoptionRequestDAO dao = new AdoptionRequestDAO();
     
-    // ── GET: show all adoption requests ─────────────────────────────────────
+   
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
@@ -41,19 +41,19 @@ public class AdminAdoptionServlet extends HttpServlet {
             req.setAttribute("adoptionList", new java.util.ArrayList<>());
             req.setAttribute("errorMessage", "Failed to load adoption requests: " + e.getMessage());
         }
-        // Always forward — never redirect — so we never loop
+        
         req.getRequestDispatcher("/WEB-INF/pages/admin/adminAdoption.jsp")
            .forward(req, resp);
     }
  
-    // ── POST: accept or reject a request ────────────────────────────────────
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         HttpSession session = req.getSession();
         try {
             int adoptionId = Integer.parseInt(req.getParameter("adoptionId"));
-            String action  = req.getParameter("action"); // "accept" or "reject"
+            String action  = req.getParameter("action"); 
             String newStatus = action.equals("accept") ? "Approved" : "Rejected";
  
             boolean success = dao.updateStatus(adoptionId, newStatus);
@@ -67,7 +67,7 @@ public class AdminAdoptionServlet extends HttpServlet {
             e.printStackTrace();
             session.setAttribute("errorMessage", "Error: " + e.getMessage());
         }
-        // POST always redirects (PRG pattern) — this is fine since doGet no longer loops
-        resp.sendRedirect(req.getContextPath() + "/AdminAdoption");
+
+        resp.sendRedirect(req.getContextPath() + "/adminAdoption");
     }
 }

@@ -177,15 +177,16 @@ body {
 }
  
 .pet-avatar {
-    width: 38px;
-    height: 38px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
+    overflow: hidden;          /* ← keeps image inside the circle */
     background-color: #14b8a6;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 17px;
+    font-size: 20px;
     flex-shrink: 0;
 }
  

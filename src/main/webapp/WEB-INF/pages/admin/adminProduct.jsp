@@ -18,20 +18,11 @@
 
     <div class="main-content">
 
-        <div class="page-header">
+        <div class="welcome-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>
+            <a href="${pageContext.request.contextPath}/AdminDashboard" class="home-btn">Home</a>
         </div>
-
-        <c:if test="${not empty sessionScope.message}">
-            <div class="alert alert-success">${sessionScope.message}</div>
-            <c:remove var="message" scope="session"/>
-        </c:if>
-
-        <c:if test="${not empty sessionScope.error}">
-            <div class="alert alert-error">${sessionScope.error}</div>
-            <c:remove var="error" scope="session"/>
-        </c:if>
 
         <div class="card">
             <div class="card-header">
@@ -41,49 +32,64 @@
                 </a>
             </div>
 
+            <c:if test="${not empty message}">
+                <div class="alert alert-success">${message}</div>
+            </c:if>
+            <c:if test="${not empty error}">
+                <div class="alert alert-error">${error}</div>
+            </c:if>
+
             <c:choose>
                 <c:when test="${empty products}">
-                    <div class="no-pets">No products found. Click "Add Product" to get started.</div>
+                    <div class="no-data">
+                        <h3>No products found</h3>
+                        <p>Click "Add Product" to get started.</p>
+                    </div>
                 </c:when>
                 <c:otherwise>
-                    <table class="pets-table">
-                        <thead>
-                            <tr>
-                                <th>Item Name</th>
-                                <th>Price</th>
-                                <th>Description</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="product" items="${products}">
+                    <!-- Scrollable wrapper -->
+                    <div class="table-wrapper">
+                        <table class="product-table">
+                            <thead>
                                 <tr>
-                                    <td>
-                                        <div class="pet-name-cell">
-                                            <img src="${pageContext.request.contextPath}/images/product/${product.productImage}"
-                                                 alt="${product.productName}"
-                                                 onerror="this.src='${pageContext.request.contextPath}/images/product/default.jpg'"
-                                                 style="width:40px; height:40px; border-radius:8px; object-fit:cover;">
-                                            ${product.productName}
-                                        </div>
-                                    </td>
-                                    <td>Rs. ${product.productPrice}</td>
-                                    <td>${product.productDescription}</td>
-                                    <td>
-                                        <a href="${pageContext.request.contextPath}/editProduct?productId=${product.productId}" class="btn-edit">
-    									<i class="fa-solid fa-pen"></i> Edit
-    									
-										</a>
-										
-										
-                                    </td>
+                                    <th>Item Name</th>
+                                    <th>Price</th>
+                                    <th>Description</th>
+                                    
                                 </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="product" items="${products}">
+                                    <tr>
+                                        <td>
+                                            <div class="name-cell">
+                                                <img class="product-img"
+                                                     src="${pageContext.request.contextPath}/getImage?name=${product.productImage}&type=products"
+                                                     alt="${product.productName}" />
+                                                <span class="product-name">${product.productName}</span>
+                                            </div>
+                                        </td>
+                                        <td class="price-cell">Rs. ${product.productPrice}</td>
+                                        <td class="desc-cell">${product.productDescription}</td>
+                                        <td class="action-cell">
+                                            <a href="${pageContext.request.contextPath}/editProduct?productId=${product.productId}" class="btn-edit">
+                                                <i class="fa-solid fa-pen"></i> Edit
+                                            </a>
+                                            <a href="${pageContext.request.contextPath}/adminProduct?action=delete&productId=${product.productId}"
+											   class="btn-delete"
+											   onclick="return confirm('Delete this product?')">
+											    <i class="fa-solid fa-trash"></i> Delete
+											</a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </c:otherwise>
             </c:choose>
         </div>
+
     </div>
 </div>
 </body>

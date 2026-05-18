@@ -39,7 +39,7 @@ public class CartItemDAO {
             item.setCartItemId(rs.getInt("cartItemId"));
             item.setProductId(rs.getInt("productId"));
             item.setCartId(rs.getInt("cartId"));
-            item.setCartQuantity(rs.getInt("cartQuantity"));
+            item.setCartItemQuantity(rs.getInt("cartQuantity"));
             items.add(item);
         }
 

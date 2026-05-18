@@ -14,84 +14,63 @@ import java.io.IOException;
 import com.pawsypaila.dao.UserDAO;
 import com.pawsypaila.utils.PasswordUtil;
 
-
-
-/**
- * Servlet implementation class RegisterServlet
- */
-@WebServlet( "/register" )
+@WebServlet("/register")
 @MultipartConfig(
-	    fileSizeThreshold = 1024 * 1024 * 2,
-	    maxFileSize = 1024 * 1024 * 10,
-	    maxRequestSize = 1024 * 1024 * 50
-	)
+    fileSizeThreshold = 1024 * 1024 * 2,   // 2 MB buffer in memory before writing to disk
+    maxFileSize       = 1024 * 1024 * 10,  // 10 MB max size
+    maxRequestSize    = 1024 * 1024 * 50   // 50 MB max total request
+)
 public class RegisterServlet extends HttpServlet {
-	
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp").forward(request, response);
-	}
+    private static final String UPLOAD_DIR =
+        System.getProperty("user.home") + File.separator + "webapp_uploads";
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Get text files
-	    String fullName = request.getParameter("fullName");
-	    String phone    = request.getParameter("phone");
-	    String email    = request.getParameter("email");
-	    String password = request.getParameter("password");
-	    
-	    String hashedPassword = PasswordUtil.getHashPassword(password);
-	    
-	    System.out.println("fullName: " + fullName);
-	    System.out.println("phone:    " + phone);
-	    System.out.println("email:    " + email);
-	    System.out.println("password: " + password);
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp").forward(request, response);
+    }
 
-	    Part filePart = request.getPart("profileImage");
-	    
-	    //Handle image upload
-	    if (filePart != null && filePart.getSize() > 0) {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-            // Get original filename e.g. "myphoto.png"
-            String originalFileName = filePart.getSubmittedFileName();
+        // collecting all form fields
+        String fullName = request.getParameter("fullName");
+        String address = request.getParameter("address");
+        String gender = request.getParameter("gender");
+        String ageStr = request.getParameter("age");
+        int age = Integer.parseInt(ageStr);
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
 
-            // Make it unique using username e.g. "john_myphoto.png"
-            String fileName = fullName + "_" + originalFileName;
+        // hash the password with bcrypt
+        String hashedPassword = PasswordUtil.getHashPassword(password);
 
-            // Find the real path of webapp/images/ on the server
-            String uploadPath = "C:\\Users\\Yunisha Basnet\\eclipse-workspace\\"
-                    + "pawsypaila\\src\\main\\webapp\\images";
-
-            System.out.println("Saving to:" + uploadPath);   
-            
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) {
-                uploadDir.mkdirs();  // mkdirs not mkdir — creates parent folders too
-            }
-
-            filePart.write(uploadPath + File.separator + fileName);
-            System.out.println("File saved: " + fileName); // confirm in console
-        }
-
-	    	//Save to DB with hashed password
-            try {
-                UserDAO userDAO = new UserDAO();
-                userDAO.insertUser(fullName, phone, email, hashedPassword );
-                System.out.println("User saved with hashed password");
-
-                response.sendRedirect(request.getContextPath() + "/login");
-
-            } catch (Exception e) {
-                e.printStackTrace();
-                response.sendRedirect(request.getContextPath() + "/register.jsp?error=1");
+        // handle profile image upload by validating img and saving as username.extension adn saving in disk
+        String savedFileName = "default-avatar.png";
+        Part filePart = request.getPart("profileImage");
+        if (filePart != null && filePart.getSize() > 0) {
+            String contentType = filePart.getContentType();
+            if (contentType != null && contentType.startsWith("image/")) {
+                String originalFileName = filePart.getSubmittedFileName();
+                String extension = originalFileName.substring(originalFileName.lastIndexOf("."));
+                String fileName = fullName + extension;
+                File uploadDirFile = new File(UPLOAD_DIR);
+                if (!uploadDirFile.exists()) uploadDirFile.mkdirs();
+                filePart.write(UPLOAD_DIR + File.separator + fileName);
+                savedFileName = fileName;
             }
         }
-		
-	}
+
+        try {
+            UserDAO userDAO = new UserDAO();
+            userDAO.insertUser(fullName, phone, email, hashedPassword, address, age, gender);
+            response.sendRedirect(request.getContextPath() + "/login");
+        } catch (Exception e) { //if any error occures
+            e.printStackTrace();
+            response.sendRedirect(request.getContextPath() + "/register");
+        }
+    }
+}

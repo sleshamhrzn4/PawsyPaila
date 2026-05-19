@@ -12,7 +12,7 @@ import com.pawsypaila.utils.DBconfig;
 
 public class UserDAO {
 
-    // ------------------------------------------------------------------ INSERT
+    //INSERT
     public void insertUser(String fullName, String phone, String email,
                            String password, String address, int age,
                            String gender, boolean active, String profileImg)
@@ -34,7 +34,6 @@ public class UserDAO {
         pst.setBoolean(8, active);
         pst.setString(9, profileImg);
 
-        // FIX: executeUpdate() MUST come before getGeneratedKeys()
         pst.executeUpdate();
         ResultSet rs = pst.getGeneratedKeys();
         if (rs.next()) {
@@ -46,7 +45,7 @@ public class UserDAO {
         con.close();
     }
 
-    // ------------------------------------------------------------------ SELECT ALL
+    //SELECT ALL
     public List<UserModel> getAllUsers() throws Exception {
         List<UserModel> users = new ArrayList<>();
         Connection con = DBconfig.getConnection();
@@ -77,7 +76,7 @@ public class UserDAO {
         return users;
     }
 
-    // ------------------------------------------------------------------ SELECT BY EMAIL
+    //SELECT BY EMAIL
     public UserModel getUserByEmail(String email) throws Exception {
         UserModel user = null;
         Connection con = DBconfig.getConnection();
@@ -107,8 +106,22 @@ public class UserDAO {
         con.close();
         return user;
     }
+    
+    //Check if email already exists
+    public boolean emailExists(String email) throws Exception {
+        Connection con = DBconfig.getConnection();
+        String sql = "SELECT 1 FROM user WHERE email = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, email);
+        ResultSet rs = pst.executeQuery();
+        boolean exists = rs.next();
+        rs.close();
+        pst.close();
+        con.close();
+        return exists;
+    }
 
-    // ------------------------------------------------------------------ ACTIVATE / DEACTIVATE
+    //ACTIVATE / DEACTIVATE
     public boolean setUserStatus(int userId, boolean active) throws Exception {
         Connection con = DBconfig.getConnection();
 
@@ -123,7 +136,7 @@ public class UserDAO {
         return success;
     }
 
-    // ------------------------------------------------------------------ UPDATE
+    //UPDATE
     public int updateUser(int userId, String fullName, String phone, String email,
                           String password, String address, int age, String gender,
                           boolean active, String profileImg) throws Exception {

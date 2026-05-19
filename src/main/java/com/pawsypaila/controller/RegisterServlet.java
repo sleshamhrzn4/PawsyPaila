@@ -43,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
 
         System.out.println("=== doPost called — form submitted ===");
 
-        // --- 1. Read and print all text fields ---
+        // Read and print all text fields
         String fullName = request.getParameter("fullName");
         String phone    = request.getParameter("phone");
         String email    = request.getParameter("email");
@@ -54,7 +54,7 @@ public class RegisterServlet extends HttpServlet {
 
         
 
-        // --- 2. Null check before proceeding ---
+        //Null check before proceeding 
         if (fullName == null || email == null || password == null || ageParam == null) {
            
             request.setAttribute("errorMessage", "All fields are required. Please fill the form completely.");
@@ -63,7 +63,7 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        // --- 3. Parse age safely ---
+        // Parse age safely 
         int age = 0;
         try {
             age = Integer.parseInt(ageParam);
@@ -76,11 +76,11 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
 
-        // --- 4. Hash password ---
+        // Hash password
         String hashedPassword = PasswordUtil.getHashPassword(password);
         System.out.println("Password hashed: " + (hashedPassword != null ? "yes" : "NULL — PasswordUtil failed"));
 
-        // --- 5. Handle profile image ---
+        //Handle profile image
         String imageName = "default.png";
 
         try {
@@ -114,8 +114,24 @@ public class RegisterServlet extends HttpServlet {
         }
 
         System.out.println("Final imageName: " + imageName);
+        
+        
+        //checking if email already exists
+        try {
+            UserDAO checkDAO = new UserDAO();
+            if (checkDAO.emailExists(email)) {
+                request.setAttribute("errorMessage", "An account with this email already exists. Please use a different email or login.");
+                request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp").forward(request, response);
+                return;
+            }
+        } catch (Exception e) {
+            System.out.println("ERROR: Email check failed — " + e.getMessage());
+            request.setAttribute("errorMessage", "Registration failed. Please try again.");
+            request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp").forward(request, response);
+            return;
+        }
 
-        // --- 6. Save user to DB ---
+        //Save user to DB
         try {
             System.out.println("Attempting DB insert...");
             UserDAO userDAO = new UserDAO();

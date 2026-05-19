@@ -85,7 +85,7 @@ public class UserProfileServlet extends HttpServlet {
 			int rows = userDAO.updateUser(
 				currentUser.getUserId(),
 				name, phone, email, password,
-				address, age, gender, active, 
+				address, age, gender, active,
 			);
 
 			if (rows > 0) {

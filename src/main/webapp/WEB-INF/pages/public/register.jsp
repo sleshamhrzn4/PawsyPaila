@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,11 +59,14 @@
                         <option value="other">Other</option>
                     </select>
 
-                    <input type="number" name="age" placeholder="Age" required>
+                    <input type="number" name="age" placeholder="Age" min="16" max="100" required>
                 </div>
                 <input type="text" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
+                <c:if test="${not empty errorMessage}">
+				    <div class="error-msg">${errorMessage}</div>
+				</c:if>
                 <button type="submit" class="signup-btn">Sign Up</button>
             </form>
             <p class="terms">

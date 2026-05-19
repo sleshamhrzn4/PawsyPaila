@@ -153,7 +153,6 @@ input {
 .row-group {
     display: flex;
     gap: 12px;
-    margin-bottom: 24px;
 }
 .row-group select {
     flex: 1;
@@ -163,8 +162,9 @@ input {
     font-size: 15px;
     background: white;
     color: #757575;
+    height: 100%;
+    align-self: stretch;
 }
-
 /* sign up */
 .signup-btn {
     width: 100%;
@@ -177,6 +177,17 @@ input {
     font-weight: bold;
     cursor: pointer;
     margin-top: 10px;
+}
+
+.error-msg {
+    color: #e53935;
+    background: #fdecea;
+    border: 1px solid #e53935;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 

@@ -53,7 +53,7 @@ body {
     <nav class="nav-links">
         <a href="${pageContext.request.contextPath}/pets">Pets</a>
         <a href="${pageContext.request.contextPath}/products">Products</a>
-        <a href="${pageContext.request.contextPath}/about">About</a>
+        <a href="${pageContext.request.contextPath}/aboutus">About</a>
         <a href="${pageContext.request.contextPath}/donate">Donate</a>
         <a href="${pageContext.request.contextPath}/contact">Contact</a>
     </nav>

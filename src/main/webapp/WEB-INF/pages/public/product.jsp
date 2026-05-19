@@ -71,7 +71,7 @@
         </div>
     </div>
 
-   
+   <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
 
 </body>
 </html>

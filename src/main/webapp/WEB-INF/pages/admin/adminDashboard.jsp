@@ -58,7 +58,6 @@
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Date</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -68,9 +67,8 @@
                             <tr>
                                 <td>
                                     <span class="user-icon-sm">👤</span>
-                                    ${ar.userName}
+                                    ${ar.fullName}
                                 </td>
-                                <td>${ar.requestDate}</td>
                                 <td>${ar.adoptionStatus}</td>
                                 <td>
                                     <a href="${pageContext.request.contextPath}/ViewAdoption?id=${ar.adoptionId}">
@@ -109,8 +107,7 @@
                                         <span class="user-icon-sm">👤</span>
                                         ${pet.petName}
                                     </td>
-                                    <td>${pet.age}</td>
-                                    <td>${pet.petStatus}</td>
+                                    <td>${pet.petAge}</td>
                                     <td>
                                         <a href="${pageContext.request.contextPath}/updatePet?id=${pet.petId}">
                                             <button class="btn-edit">Edit</button>

@@ -28,12 +28,16 @@
             <h2>Edit Product</h2>
 
             <div class="pet-avatar-upload">
-                <div class="avatar-circle">
-                    <i class="fa-solid fa-user"></i>
-                </div>
-            </div>
+		    <div class="avatar-circle" onclick="document.getElementById('productImage').click()" style="cursor:pointer;">
+		        <img id="imagePreview"
+		             src="${pageContext.request.contextPath}/getImage?name=${product.productImage}&type=products"
+		             style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
+		        <i class="fa-solid fa-box-open" id="imageIcon" style="display:none;"></i>
+		    </div>
+		    <input type="file" id="productImage" name="productImage" accept="image/*" hidden>
+			</div>
 
-            <form action="${pageContext.request.contextPath}/editProduct" method="post">
+            <form action="${pageContext.request.contextPath}/editProduct" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="productId" value="${product.productId}">
 
                 <div class="form-group">
@@ -64,5 +68,18 @@
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('productImage').addEventListener('change', function() {
+    const file = this.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('imagePreview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 </body>
 </html>

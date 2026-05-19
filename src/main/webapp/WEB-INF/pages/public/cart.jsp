@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
-<%@ page import="com.pawsypaila.controller.CartServlet.CartItem" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,12 +28,12 @@
             <c:when test="${empty cart}">
                 <div class="empty-cart">
                     <p>Your cart is empty.</p>
-                    <a href="${pageContext.request.contextPath}/products" class="btn-shop">Browse Products</a>
+                    <a href="${pageContext.request.contextPath}/products" class="btn-shop">
+                        Browse Products
+                    </a>
                 </div>
             </c:when>
             <c:otherwise>
-
-                <!-- Cart Items -->
                 <div class="cart-items">
                     <c:forEach var="entry" items="${cart}">
                         <div class="cart-item">
@@ -46,12 +45,11 @@
                                 <p class="item-price">Rs. ${entry.value.product.productPrice}</p>
                             </div>
                             <div class="item-actions">
-                                <div class="qty-control">
-                                    <a href="${pageContext.request.contextPath}/cart?action=remove&productId=${entry.key}"
-                                       class="remove-btn" title="Remove">
-                                        <i class="fa-solid fa-trash"></i>
-                                    </a>
-                                </div>
+                                <a href="${pageContext.request.contextPath}/cart?action=remove&productId=${entry.key}"
+                                   class="remove-btn"
+                                   title="Remove">
+                                    <i class="fa-solid fa-trash"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="divider"></div>
@@ -64,18 +62,19 @@
                     <span class="total-amount">Rs. ${total}</span>
                 </div>
 
-                <!-- Checkout Button -->
+                <!-- Checkout -->
                 <div class="cart-footer">
-                    <a href="${pageContext.request.contextPath}/checkout" class="btn-checkout">Checkout</a>
+                    <a href="${pageContext.request.contextPath}/checkout" class="btn-checkout">
+                        Checkout
+                    </a>
                 </div>
-
             </c:otherwise>
         </c:choose>
 
     </div>
 </div>
 
-
+<%@ include file="footer.jsp" %>
 
 </body>
 </html>

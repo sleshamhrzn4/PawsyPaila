@@ -139,5 +139,6 @@ function showToast(msg, isError = false) {
 
 updateCartCount();
 </script>
+
 </body>
 </html>

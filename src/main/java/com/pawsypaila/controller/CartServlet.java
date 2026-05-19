@@ -11,22 +11,30 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import com.pawsypaila.dao.ProductDAO;
 import com.pawsypaila.model.ProductModel;
+import com.pawsypaila.model.UserModel;
 
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Cart stored in session as Map<productId, CartItem>
+    // ── CartItem inner class with proper getters for JSP EL ──
     public static class CartItem {
-        public ProductModel product;
-        public int quantity;
+        private ProductModel product;
+        private int quantity;
 
         public CartItem(ProductModel product, int quantity) {
             this.product = product;
             this.quantity = quantity;
         }
+
+        public ProductModel getProduct() { return product; }
+        public void setProduct(ProductModel product) { this.product = product; }
+
+        public int getQuantity() { return quantity; }
+        public void setQuantity(int quantity) { this.quantity = quantity; }
     }
 
+    // ── Get or create cart from session ──
     @SuppressWarnings("unchecked")
     private Map<Integer, CartItem> getCart(HttpSession session) {
         Map<Integer, CartItem> cart = (Map<Integer, CartItem>) session.getAttribute("cart");
@@ -37,20 +45,27 @@ public class CartServlet extends HttpServlet {
         return cart;
     }
 
+    // ── Get logged in user ──
+    private UserModel getLoggedInUser(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session == null) return null;
+        return (UserModel) session.getAttribute("user");
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         String action = request.getParameter("action");
 
-        // Return cart count as plain text (for badge update)
+        // ── Cart count for badge ──
         if ("count".equals(action)) {
             HttpSession session = request.getSession(false);
             int count = 0;
             if (session != null) {
                 Map<Integer, CartItem> cart = getCart(session);
                 for (CartItem item : cart.values()) {
-                    count += item.quantity;
+                    count += item.getQuantity();
                 }
             }
             response.setContentType("text/plain");
@@ -58,7 +73,7 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // Remove item
+        // ── Remove item ──
         if ("remove".equals(action)) {
             String productIdStr = request.getParameter("productId");
             if (productIdStr != null) {
@@ -70,18 +85,26 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // Show cart page
-        HttpSession session = request.getSession();
-        Map<Integer, CartItem> cart = getCart(session);
+        // ── Show cart — redirect to login if not logged in ──
+        UserModel user = getLoggedInUser(request);
+        if (user == null) {
+            request.getSession().setAttribute("redirectAfterLogin",
+                    request.getContextPath() + "/cart");
+            response.sendRedirect(request.getContextPath() + "/login");
+            return;
+        }
 
+        // ── Build cart and total ──
+        Map<Integer, CartItem> cart = getCart(request.getSession());
         double total = 0;
         for (CartItem item : cart.values()) {
-            total += item.product.getProductPrice() * item.quantity;
+            total += item.getProduct().getProductPrice() * item.getQuantity();
         }
 
         request.setAttribute("cart", cart);
         request.setAttribute("total", total);
-        request.getRequestDispatcher("/WEB-INF/pages/public/cart.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/pages/public/cart.jsp")
+               .forward(request, response);
     }
 
     @Override
@@ -92,7 +115,14 @@ public class CartServlet extends HttpServlet {
         HttpSession session = request.getSession();
         Map<Integer, CartItem> cart = getCart(session);
 
+        // ── Add to cart ──
         if ("add".equals(action)) {
+            UserModel user = getLoggedInUser(request);
+            if (user == null) {
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                return;
+            }
+
             String productIdStr = request.getParameter("productId");
             String quantityStr  = request.getParameter("quantity");
 
@@ -102,10 +132,10 @@ public class CartServlet extends HttpServlet {
                     int quantity  = (quantityStr != null) ? Integer.parseInt(quantityStr) : 1;
 
                     if (cart.containsKey(productId)) {
-                        // Increment quantity if already in cart
-                        cart.get(productId).quantity += quantity;
+                        // Already in cart — increment quantity
+                        cart.get(productId).setQuantity(cart.get(productId).getQuantity() + quantity);
                     } else {
-                        // Fetch product from DB and add
+                        // Fetch product from DB and add to session cart
                         ProductDAO dao = new ProductDAO();
                         ProductModel product = dao.getProductById(productId);
                         if (product != null) {
@@ -121,7 +151,7 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // Update quantity
+        // ── Update quantity ──
         if ("update".equals(action)) {
             String productIdStr = request.getParameter("productId");
             String quantityStr  = request.getParameter("quantity");
@@ -131,7 +161,7 @@ public class CartServlet extends HttpServlet {
                 if (quantity <= 0) {
                     cart.remove(productId);
                 } else if (cart.containsKey(productId)) {
-                    cart.get(productId).quantity = quantity;
+                    cart.get(productId).setQuantity(quantity);
                 }
             }
             response.sendRedirect(request.getContextPath() + "/cart");

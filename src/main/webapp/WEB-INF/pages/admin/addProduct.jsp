@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +26,20 @@
 
         <div class="add-pet-card">
             <h2>Add Product</h2>
+            
+            <!-- success message -->
+             <c:if test="${not empty sessionScope.message}">
+                <div class="alert alert-success">
+                   </i> ${sessionScope.message}
+                </div>
+            </c:if>
+
+            <!-- error message -->
+            <c:if test="${not empty sessionScope.error}">
+                <div class="alert alert-error">
+                    </i> ${sessionScope.error}
+                </div>
+            </c:if>
 
             <form action="${pageContext.request.contextPath}/addProduct" method="post" enctype="multipart/form-data">
 

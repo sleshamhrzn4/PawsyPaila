@@ -6,7 +6,13 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
+
+import com.pawsypaila.dao.DonationDAO;
+import com.pawsypaila.model.UserModel;
+
 
 /**
  * Servlet implementation class DonateServlet
@@ -37,6 +43,53 @@ public class DonateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		 HttpSession session = request.getSession(false);
+	        if (session == null || session.getAttribute("user") == null) {
+	            response.sendRedirect(request.getContextPath() + "/login");
+	            return;
+	        }
+	        
+	     UserModel loggedInUser = (UserModel) session.getAttribute("user");
+	     int userId = loggedInUser.getUserId();
+	     
+	     String amountStr     = request.getParameter("donationAmount");
+	     String donationDate  = request.getParameter("donationDate");
+	     String paymentMethod = request.getParameter("donationPaymentMethod");
+	     
+	     if (amountStr == null || amountStr.trim().isEmpty() ||
+	             donationDate == null || donationDate.trim().isEmpty() ||
+	             paymentMethod == null || paymentMethod.trim().isEmpty()) {
+
+	             request.setAttribute("error", "All fields are required.");
+	             doGet(request, response);
+	             return;
+	         }
+	     
+	     double donationAmount;
+	        try {
+	            donationAmount = Double.parseDouble(amountStr);
+	            if (donationAmount <= 0) throw new NumberFormatException();
+	        } catch (NumberFormatException e) {
+	            request.setAttribute("error", "Please enter a valid donation amount.");
+	            doGet(request, response);
+	            return;
+	        }
+	        
+	        DonationDAO dao = new DonationDAO();
+	        try {
+	            boolean success = dao.insertDonation(userId, donationAmount, donationDate, paymentMethod);
+
+	            if (success) {
+	                request.setAttribute("success", "Thank you! Your donation of Rs. " + donationAmount + " was received.");
+	            } else {
+	                request.setAttribute("error", "Donation failed. Please try again.");
+	            }
+
+	        } catch (Exception e) {
+	            e.printStackTrace();
+	            request.setAttribute("error", "An unexpected error occurred. Please try again later.");
+	        }
 		doGet(request, response);
 	}
 

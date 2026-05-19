@@ -1,8 +1,6 @@
 package com.pawsypaila.dao;
 
 import java.sql.Connection;
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -12,21 +10,18 @@ import java.util.List;
 import com.pawsypaila.model.UserModel;
 import com.pawsypaila.utils.DBconfig;
 
-
-
-
-
-
-
-
 public class UserDAO {
 
-    public void insertUser(String fullName, String phone, String email, String password, String address, int age, String gender, boolean active) throws Exception {
+    // ------------------------------------------------------------------ INSERT
+    public void insertUser(String fullName, String phone, String email,
+                           String password, String address, int age,
+                           String gender, boolean active, String profileImg)
+            throws Exception {
 
         Connection con = DBconfig.getConnection();
 
-        String sql = "INSERT INTO user (fullName, phone, email, password , address, age , gender, active ) "
-                   + "VALUES (?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO user (fullName, phone, email, password, address, age, gender, active, profileImg) "
+                   + "VALUES (?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, fullName);
@@ -34,38 +29,35 @@ public class UserDAO {
         pst.setString(3, email);
         pst.setString(4, password);
         pst.setString(5, address);
-        pst.setInt(6,age);
+        pst.setInt(6, age);
         pst.setString(7, gender);
         pst.setBoolean(8, active);
-        
-        
-        
-        
-      
-        int generatedId = -1;
-        ResultSet rs = pst.getGeneratedKeys();
+        pst.setString(9, profileImg);
+
+        // FIX: executeUpdate() MUST come before getGeneratedKeys()
         pst.executeUpdate();
+        ResultSet rs = pst.getGeneratedKeys();
         if (rs.next()) {
             System.out.println("New user inserted with ID: " + rs.getInt(1));
         }
-        
+        rs.close();
+
         pst.close();
         con.close();
     }
 
-    // select statements
+    // ------------------------------------------------------------------ SELECT ALL
     public List<UserModel> getAllUsers() throws Exception {
         List<UserModel> users = new ArrayList<>();
         Connection con = DBconfig.getConnection();
-        
+
         String sql = "SELECT * FROM user";
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
 
         while (rs.next()) {
             UserModel u = new UserModel();
-            // Mapping student_id
-            u.setUserId(rs.getInt(1));
+            u.setUserId(rs.getInt("userId"));
             u.setFullName(rs.getString("fullName"));
             u.setPhone(rs.getString("phone"));
             u.setEmail(rs.getString("email"));
@@ -75,8 +67,7 @@ public class UserDAO {
             u.setGender(rs.getString("gender"));
             u.setActive(rs.getBoolean("active"));
             u.setRole(rs.getString("role"));
-            
-            
+            u.setProfileImg(rs.getString("profileImg"));
             users.add(u);
         }
 
@@ -86,7 +77,7 @@ public class UserDAO {
         return users;
     }
 
-    // select statement via email
+    // ------------------------------------------------------------------ SELECT BY EMAIL
     public UserModel getUserByEmail(String email) throws Exception {
         UserModel user = null;
         Connection con = DBconfig.getConnection();
@@ -94,7 +85,6 @@ public class UserDAO {
         String sql = "SELECT * FROM user WHERE email = ?";
         PreparedStatement pst = con.prepareStatement(sql);
         pst.setString(1, email);
-
         ResultSet rs = pst.executeQuery();
 
         if (rs.next()) {
@@ -109,6 +99,7 @@ public class UserDAO {
             user.setGender(rs.getString("gender"));
             user.setActive(rs.getBoolean("active"));
             user.setRole(rs.getString("role"));
+            user.setProfileImg(rs.getString("profileImg"));
         }
 
         rs.close();
@@ -116,52 +107,47 @@ public class UserDAO {
         con.close();
         return user;
     }
- 
-    
-    //Activate/Deqactivate User
-    public boolean setUserStatus(int userId, boolean active) throws Exception{
-    	Connection con = DBconfig.getConnection();
-    	
-    	String sql = "UPDATE user SET active = ? WHERE userId = ?";
-    	 PreparedStatement pst = con.prepareStatement(sql);
-    	pst.setBoolean(1,active);
-    	pst.setInt(2, userId);
-    	
-    	boolean success = pst.executeUpdate() ==1;
-    	pst.close();
-    	con.close();
-    	return success;
-    	
-    	
+
+    // ------------------------------------------------------------------ ACTIVATE / DEACTIVATE
+    public boolean setUserStatus(int userId, boolean active) throws Exception {
+        Connection con = DBconfig.getConnection();
+
+        String sql = "UPDATE user SET active = ? WHERE userId = ?";
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setBoolean(1, active);
+        pst.setInt(2, userId);
+
+        boolean success = pst.executeUpdate() == 1;
+        pst.close();
+        con.close();
+        return success;
     }
-    
-    
-    // Update User
+
+    // ------------------------------------------------------------------ UPDATE
     public int updateUser(int userId, String fullName, String phone, String email,
-            String password, String address, int age, String gender,
-            boolean active) throws Exception {
-			
-			Connection con = DBconfig.getConnection();
-			String sql = "UPDATE user SET fullName=?, phone=?, email=?, password=?, "
-			     + "address=?, age=?, gender=?, active=? WHERE userId=?";
-			
-			PreparedStatement pst = con.prepareStatement(sql);
-			pst.setString(1, fullName);
-			pst.setString(2, phone);
-			pst.setString(3, email);
-			pst.setString(4, password);
-			pst.setString(5, address);
-			pst.setInt(6, age);
-			pst.setString(7, gender);
-			pst.setBoolean(8, active);
-			pst.setInt(9, userId);
-			
-			int rowsAffected = pst.executeUpdate();
-			
-			pst.close();
-			con.close();
-			return rowsAffected;
-			}
-    
-       
+                          String password, String address, int age, String gender,
+                          boolean active, String profileImg) throws Exception {
+
+        Connection con = DBconfig.getConnection();
+
+        String sql = "UPDATE user SET fullName=?, phone=?, email=?, password=?, "
+                   + "address=?, age=?, gender=?, active=?, profileImg=? WHERE userId=?";
+
+        PreparedStatement pst = con.prepareStatement(sql);
+        pst.setString(1, fullName);
+        pst.setString(2, phone);
+        pst.setString(3, email);
+        pst.setString(4, password);
+        pst.setString(5, address);
+        pst.setInt(6, age);
+        pst.setString(7, gender);
+        pst.setBoolean(8, active);
+        pst.setString(9, profileImg);
+        pst.setInt(10, userId);
+
+        int rowsAffected = pst.executeUpdate();
+        pst.close();
+        con.close();
+        return rowsAffected;
+    }
 }

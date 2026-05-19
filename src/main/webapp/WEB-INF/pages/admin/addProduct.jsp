@@ -29,13 +29,16 @@
 
                 <div class="pet-avatar-upload">
                     <label for="productImage" style="cursor:pointer;">
-                        <div class="avatar-circle">
-                            <img id="imagePreview" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
-                            <i class="fa-solid fa-image" id="imageIcon"></i>
-                        </div>
+                        <div class="avatar-circle" onclick="document.getElementById('productImage').click()" style="cursor:pointer;">
+                        <img id="imagePreview" src="" alt=""
+                             style="display:none; width:100%; height:100%; object-fit:cover; border-radius:50%;">
+                        <i class="fa-solid fa-box-open" id="imageIcon"></i>
+                    </div>
                     </label>
                     <input type="file" id="productImage" name="productImage" accept="image/*" hidden>
                 </div>
+                
+                 <input type="hidden" name="action" value="add"/>
 
                 <div class="form-group">
                     <label>Name</label>
@@ -43,7 +46,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Price</label>
+                    <label>Price (Rs.)</label>
                     <input type="number" name="price" step="0.01" placeholder="Enter price" required>
                 </div>
 

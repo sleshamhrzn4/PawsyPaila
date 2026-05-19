@@ -64,10 +64,17 @@ public class AddProductServlet extends HttpServlet {
 		            if (FileUploadUtil.isImage(filePart)) {
 		                String extension = FileUploadUtil.getFileExtension(filePart.getSubmittedFileName());
 		                imageName = System.currentTimeMillis() + extension;
-		                String uploadPath = getServletContext().getRealPath("/images/product");
+		                String uploadPath = System.getProperty("user.home") 
+		                	    + File.separator + "pawsypaila_uploads" 
+		                	    + File.separator + "products";
+		                
+		                File uploadDir = new File(uploadPath);
+		                if (!uploadDir.exists()) {
+		                    uploadDir.mkdirs();
+		                    }
 		                FileUploadUtil.saveFile(filePart, uploadPath, imageName);
 		            }
-		        }
+		            	        }
 		        
 		        // Now calling DAO with imageName
 		        ProductDAO dao = new ProductDAO();

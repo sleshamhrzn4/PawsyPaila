@@ -45,7 +45,7 @@ public class ProductDAO {
             ProductModel product = new ProductModel();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
-            product.setproductPrice(rs.getDouble("productPrice"));
+            product.setProductPrice(rs.getDouble("productPrice"));
             product.setProductQuantity(rs.getInt("productQuantity"));
             product.setProductDescription(rs.getString("productDescription"));
             product.setProductImage(rs.getString("productImage"));
@@ -72,7 +72,7 @@ public class ProductDAO {
             product = new ProductModel();
             product.setProductId(rs.getInt("productId"));
             product.setProductName(rs.getString("productName"));
-            product.setproductPrice(rs.getDouble("productPrice"));
+            product.setProductPrice(rs.getDouble("productPrice"));
             product.setProductQuantity(rs.getInt("productQuantity"));
             product.setProductDescription(rs.getString("productDescription"));
             product.setProductImage(rs.getString("productImage"));

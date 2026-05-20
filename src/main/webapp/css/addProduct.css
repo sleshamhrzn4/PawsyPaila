@@ -8,6 +8,7 @@
 body {
     font-family: 'Nunito', system-ui, sans-serif;
     background-color: #FDF8F0;
+  
 }
 
 .flex {
@@ -28,8 +29,14 @@ body {
 .top-header {
     display: flex;
     align-items: center;
-    gap: 4px;
-    margin-bottom: 25px;
+    gap: 14px;
+    margin-bottom: 24px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 16px 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
+    flex-shrink: 0; /* Prevents header from shrinking */
 }
 
 .top-header i {

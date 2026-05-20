@@ -21,7 +21,7 @@
         <div class="welcome-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>
-            <a href="${pageContext.request.contextPath}/AdminDashboard" class="home-btn">Home</a>
+            <a href="${pageContext.request.contextPath}/adminDashboard" class="home-btn">Home</a>
         </div>
 
         <div class="card">

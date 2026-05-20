@@ -38,17 +38,6 @@
                     </select>
                 </div>
 
-                <div class="filter-group">
-                    <h4>Filter By</h4>
-                    <select name="filterBy" onchange="document.getElementById('filterForm').submit()">
-                        <option value="All"       ${filterBy == 'All'       ? 'selected' : ''}>All Products</option>
-                        <option value="Food"      ${filterBy == 'Food'      ? 'selected' : ''}>Food</option>
-                        <option value="Toy"       ${filterBy == 'Toy'       ? 'selected' : ''}>Toys</option>
-                        <option value="Accessory" ${filterBy == 'Accessory' ? 'selected' : ''}>Accessories</option>
-                        <option value="Medicine"  ${filterBy == 'Medicine'  ? 'selected' : ''}>Medicine</option>
-                        <option value="Grooming"  ${filterBy == 'Grooming'  ? 'selected' : ''}>Grooming</option>
-                    </select>
-                </div>
 
                 <div class="filter-group">
                     <h4>Price</h4>

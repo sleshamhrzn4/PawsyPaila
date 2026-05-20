@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label>Price</label>
+                    <label>Price (Rs.)</label>
                     <input type="number" name="price" step="0.01" value="${product.productPrice}" required>
                 </div>
 

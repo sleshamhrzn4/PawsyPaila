@@ -62,6 +62,11 @@ public class AdminDashboardServlet extends HttpServlet {
 	            request.setAttribute("totalPets", 0);
 	            request.setAttribute("totalProducts", 0);
 	            request.setAttribute("totalRequests", 0);
+	            
+	            //remove later
+	            request.setAttribute("petList", new java.util.ArrayList<>());
+	            request.setAttribute("productList", new java.util.ArrayList<>());
+	            request.setAttribute("adoptionList", new java.util.ArrayList<>());
 	           
 	        }
 		request.getRequestDispatcher("WEB-INF/pages/admin/adminDashboard.jsp").forward(request, response);

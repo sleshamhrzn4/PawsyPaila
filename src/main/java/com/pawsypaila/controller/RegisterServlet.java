@@ -9,8 +9,10 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
 import java.io.IOException;
+import java.util.Map;
 
 import com.pawsypaila.dao.UserDAO;
+import com.pawsypaila.service.RegisterService;
 import com.pawsypaila.utils.FileUploadUtil;
 import com.pawsypaila.utils.PasswordUtil;
 import com.pawsypaila.utils.SessionUtil;
@@ -41,9 +43,6 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        System.out.println("=== doPost called — form submitted ===");
-
-        // Read and print all text fields
         String fullName = request.getParameter("fullName");
         String phone    = request.getParameter("phone");
         String email    = request.getParameter("email");
@@ -52,96 +51,54 @@ public class RegisterServlet extends HttpServlet {
         String gender   = request.getParameter("gender");
         String ageParam = request.getParameter("age");
 
-        
+        // Run backend validation
+        RegisterService service = new RegisterService();
+        Map<String, String> errors = service.validate(fullName, phone, email, password, address, gender, ageParam);
 
-        //Null check before proceeding 
-        if (fullName == null || email == null || password == null || ageParam == null) {
-           
-            request.setAttribute("errorMessage", "All fields are required. Please fill the form completely.");
+        if (!errors.isEmpty()) {
+            request.setAttribute("errors", errors);
+            // Send the old values back so user doesn't retype everything
+            request.setAttribute("oldFullName", fullName);
+            request.setAttribute("oldPhone",    phone);
+            request.setAttribute("oldEmail",    email);
+            request.setAttribute("oldAddress",  address);
+            request.setAttribute("oldAge",      ageParam);
+            request.setAttribute("oldGender",   gender);
             request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp")
                    .forward(request, response);
             return;
         }
 
-        // Parse age safely 
-        int age = 0;
-        try {
-            age = Integer.parseInt(ageParam);
-            System.out.println("age (parsed): " + age);
-        } catch (NumberFormatException e) {
-            System.out.println("ERROR: age is not a valid number — value was: " + ageParam);
-            request.setAttribute("errorMessage", "Please enter a valid age.");
-            request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp")
-                   .forward(request, response);
-            return;
-        }
-
-        // Hash password
+        // Parse age (already validated above)
+        int age = Integer.parseInt(ageParam.trim());
         String hashedPassword = PasswordUtil.getHashPassword(password);
-        System.out.println("Password hashed: " + (hashedPassword != null ? "yes" : "NULL — PasswordUtil failed"));
 
-        //Handle profile image
+        // Handle profile image
         String imageName = "default.png";
-
         try {
             Part filePart = request.getPart("profileImage");
-            System.out.println("filePart      : " + filePart);
-            System.out.println("filePart size : " + (filePart != null ? filePart.getSize() : "null"));
-
             if (filePart != null && filePart.getSize() > 0) {
-                System.out.println("Is image: " + FileUploadUtil.isImage(filePart));
                 if (FileUploadUtil.isImage(filePart)) {
                     String extension = FileUploadUtil.getFileExtension(filePart.getSubmittedFileName());
-                    imageName = System.currentTimeMillis()
-                            + fullName.trim().replaceAll("\\s+", "")
-                            + extension;
-                    System.out.println("Saving image as : " + imageName);
-                    System.out.println("Upload dir      : " + UPLOAD_DIR);
+                    imageName = System.currentTimeMillis() + fullName.trim().replaceAll("\\s+", "")+ extension;
                     FileUploadUtil.saveFile(filePart, UPLOAD_DIR, imageName);
-                    System.out.println("Image saved successfully.");
                 } else {
-                    
                     SessionUtil.setAttribute(request, "error", "Only image files are allowed!", 60);
                     response.sendRedirect(request.getContextPath() + "/register");
                     return;
                 }
-            } else {
-                System.out.println("No image uploaded — using default.png");
             }
         } catch (Exception e) {
-            System.out.println("ERROR during file upload: " + e.getMessage());
             e.printStackTrace();
         }
 
-        System.out.println("Final imageName: " + imageName);
-        
-        
-        //checking if email already exists
+        // Save to DB
         try {
-            UserDAO checkDAO = new UserDAO();
-            if (checkDAO.emailExists(email)) {
-                request.setAttribute("errorMessage", "An account with this email already exists. Please use a different email or login.");
-                request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp").forward(request, response);
-                return;
-            }
-        } catch (Exception e) {
-            System.out.println("ERROR: Email check failed — " + e.getMessage());
-            request.setAttribute("errorMessage", "Registration failed. Please try again.");
-            request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp").forward(request, response);
-            return;
-        }
-
-        //Save user to DB
-        try {
-            System.out.println("Attempting DB insert...");
             UserDAO userDAO = new UserDAO();
             userDAO.insertUser(fullName, phone, email, hashedPassword,
                                address, age, gender, false, imageName);
-            System.out.println("=== User inserted successfully! ===");
             response.sendRedirect(request.getContextPath() + "/login");
-
         } catch (Exception e) {
-            System.out.println("ERROR: DB insert failed — " + e.getMessage());
             e.printStackTrace();
             request.setAttribute("errorMessage", "Registration failed. Please try again.");
             request.getRequestDispatcher("/WEB-INF/pages/public/register.jsp")

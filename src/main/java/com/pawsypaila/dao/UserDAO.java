@@ -107,19 +107,6 @@ public class UserDAO {
         return user;
     }
     
-    //Check if email already exists
-    public boolean emailExists(String email) throws Exception {
-        Connection con = DBconfig.getConnection();
-        String sql = "SELECT 1 FROM user WHERE email = ?";
-        PreparedStatement pst = con.prepareStatement(sql);
-        pst.setString(1, email);
-        ResultSet rs = pst.executeQuery();
-        boolean exists = rs.next();
-        rs.close();
-        pst.close();
-        con.close();
-        return exists;
-    }
 
     //ACTIVATE / DEACTIVATE
     public boolean setUserStatus(int userId, boolean active) throws Exception {

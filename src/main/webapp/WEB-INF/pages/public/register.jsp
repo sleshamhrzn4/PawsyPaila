@@ -39,36 +39,58 @@
             <h2>Register to adopt, shop, or connect with our community</h2>
             
             <form action="${pageContext.request.contextPath}/register" method="post" enctype="multipart/form-data">
-
-                <!-- Profile Picture upload -->
-                <div class="profile-upload">
-                    <label for="profileImage" class="profile-circle">
-                        <img id="imagePreview" src="${pageContext.request.contextPath}/images/default-avatar.png" alt="Profile Preview">
-                    </label>
-                    <input type="file" id="profileImage" name="profileImage" accept="image/*" onchange="previewFile()" hidden>
-                </div>
-
-                
-                <input type="text" name="fullName" placeholder="Full Name" required>
-                <input type="text" name="address" placeholder="Address" required>
-                <div class="row-group">
-                    <select name="gender" required>
-                        <option value="" disabled selected>Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-
-                    <input type="number" name="age" placeholder="Age" min="16" max="100" required>
-                </div>
-                <input type="text" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <c:if test="${not empty errorMessage}">
-				    <div class="error-msg">${errorMessage}</div>
-				</c:if>
-                <button type="submit" class="signup-btn">Sign Up</button>
-            </form>
+			
+			    <div class="profile-upload">
+			        <label for="profileImage" class="profile-circle">
+			            <img id="imagePreview" src="${pageContext.request.contextPath}/images/default-avatar.png" alt="Profile Preview">
+			        </label>
+			        <input type="file" id="profileImage" name="profileImage" accept="image/*" onchange="previewFile()" hidden>
+			    </div>
+			
+			    <input type="text" name="fullName" placeholder="Full Name" value="${oldFullName}">
+			    <c:if test="${not empty errors.fullName}">
+			        <span class="error">${errors.fullName}</span>
+			    </c:if>
+			
+			    <input type="text" name="address" placeholder="Address" value="${oldAddress}">
+			    <c:if test="${not empty errors.address}">
+			        <span class="error">${errors.address}</span>
+			    </c:if>
+			
+			    <div class="row-group">
+			        <select name="gender">
+			            <option value="" disabled <c:if test="${empty oldGender}">selected</c:if>>Gender</option>
+			            <option value="male"   <c:if test="${oldGender == 'male'}">selected</c:if>>Male</option>
+			            <option value="female" <c:if test="${oldGender == 'female'}">selected</c:if>>Female</option>
+			            <option value="other"  <c:if test="${oldGender == 'other'}">selected</c:if>>Other</option>
+			        </select>
+			
+			        <input type="number" name="age" placeholder="Age" value="${oldAge}">
+			    </div>
+			    <c:if test="${not empty errors.gender}">
+			        <span class="error">${errors.gender}</span>
+			    </c:if>
+			    <c:if test="${not empty errors.age}">
+			        <span class="error">${errors.age}</span>
+			    </c:if>
+			
+			    <input type="text" name="phone" placeholder="Phone Number" value="${oldPhone}">
+			    <c:if test="${not empty errors.phone}">
+			        <span class="error">${errors.phone}</span>
+			    </c:if>
+			
+			    <input type="text" name="email" placeholder="Email Address" value="${oldEmail}">
+			    <c:if test="${not empty errors.email}">
+			        <span class="error">${errors.email}</span>
+			    </c:if>
+			
+			    <input type="password" name="password" placeholder="Password">
+			    <c:if test="${not empty errors.password}">
+			        <span class="error">${errors.password}</span>
+			    </c:if>
+			
+			    <button type="submit" class="signup-btn">Sign Up</button>
+			</form>
             <p class="terms">
                 By signing up, you agree to our Terms and Privacy Policy
             </p>

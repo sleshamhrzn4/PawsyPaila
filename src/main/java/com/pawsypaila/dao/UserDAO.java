@@ -123,7 +123,7 @@ public class UserDAO {
         return success;
     }
 
-    // ------------------------------------------------------------------ UPDATE
+   
     public int updateUser(int userId, String fullName, String phone, String email,
                           String password, String address, int age, String gender,
                           boolean active, String profileImg) throws Exception {

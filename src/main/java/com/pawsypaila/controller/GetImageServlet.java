@@ -30,7 +30,14 @@ public class GetImageServlet extends HttpServlet {
         }
 
         String baseDir = System.getProperty("user.home") + File.separator + "pawsypaila_uploads";
-        String folder = "products".equalsIgnoreCase(type) ? "products" : "pets";
+        String folder;
+        if ("products".equalsIgnoreCase(type)) {
+            folder = "products";
+        } else if ("userProfile".equalsIgnoreCase(type)) {
+            folder = "userProfile";
+        } else {
+            folder = "pets";
+        }
         
         File imageFile = new File(baseDir + File.separator + folder, imageName);
 

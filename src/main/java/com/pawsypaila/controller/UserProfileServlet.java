@@ -4,110 +4,117 @@ import com.pawsypaila.dao.UserDAO;
 import com.pawsypaila.model.UserModel;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 
 /**
  * __Servlet__ implementation class UserProfileServlet
  */
 @WebServlet(asyncSupported = true, urlPatterns = { "/userprofile" })
+@MultipartConfig(
+    fileSizeThreshold = 1024 * 1024 * 2,
+    maxFileSize       = 1024 * 1024 * 10,
+    maxRequestSize    = 1024 * 1024 * 50
+)
 public class UserProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
 	private UserDAO userDAO = new UserDAO();
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
     public UserProfileServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-
 		HttpSession session = request.getSession(false);
 		if (session == null || session.getAttribute("user") == null) {
 			response.sendRedirect(request.getContextPath() + "/login");
 			return;
 		}
-
 		request.getRequestDispatcher("/WEB-INF/pages/user/userProfile.jsp").forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+	    HttpSession session = request.getSession(false);
+	    if (session == null || session.getAttribute("user") == null) {
+	        response.sendRedirect(request.getContextPath() + "/login");
+	        return;
+	    }
+	    UserModel currentUser = (UserModel) session.getAttribute("user");
 
-		HttpSession session = request.getSession(false);
-		if (session == null || session.getAttribute("user") == null) {
-			response.sendRedirect(request.getContextPath() + "/login");
-			return;
-		}
+	    String name     = request.getParameter("userName");
+	    String phone    = request.getParameter("userPhone");
+	    String address  = request.getParameter("userAddress");
+	    String ageStr   = request.getParameter("userAge");
+	    String gender   = request.getParameter("userGender");
 
-		UserModel currentUser = (UserModel) session.getAttribute("user");
+	    String email      = currentUser.getEmail();
+	    String password   = currentUser.getPassword();
+	    boolean active    = currentUser.isActive();
+	    String profileImg = currentUser.getProfileImg();
 
-		// Read form fields
-		String name    = request.getParameter("userName");
-		String phone   = request.getParameter("userPhone");
-		String address = request.getParameter("userAddress");
-		String gender  = request.getParameter("userGender");
-		String ageStr  = request.getParameter("userAge");
-		
+	    int age = currentUser.getAge();
+	    if (ageStr != null && !ageStr.trim().isEmpty()) {
+	        try {
+	            age = Integer.parseInt(ageStr.trim());
+	        } catch (NumberFormatException e) {
+	            
+	        }
+	    }
 
-		// Email is read-only — keep from session
-		String email    = currentUser.getEmail();
-		String password = currentUser.getPassword();
-		boolean active  = currentUser.isActive();
+	    try {
+	        Part filePart = request.getPart("profileImage");
+	        if (filePart != null && filePart.getSize() > 0) {
+	            String originalFileName = filePart.getSubmittedFileName();
+	            String fileName = currentUser.getUserId() + "_" + originalFileName;
 
-		// Safe age parse — fall back to existing value if blank/invalid
-		int age = currentUser.getAge();
-		if (ageStr != null && !ageStr.trim().isEmpty()) {
-			try {
-				age = Integer.parseInt(ageStr.trim());
-			} catch (NumberFormatException e) {
-				// leave age unchanged
-			}
-		}
+	            
+	            String baseDir = System.getProperty("user.home") + File.separator + "pawsypaila_uploads";
+	            String uploadPath = baseDir + File.separator + "userProfile";
 
-		try {
-			int rows = userDAO.updateUser(
-				currentUser.getUserId(),
-				name, phone, email, password,
-				address, age, gender, active, 
-			);
+	            File uploadDir = new File(uploadPath);
+	            if (!uploadDir.exists()) {
+	                uploadDir.mkdirs();
+	            }
 
-			if (rows > 0) {
-				// Update session so page reflects changes immediately
-				currentUser.setFullName(name);
-				currentUser.setPhone(phone);
-				currentUser.setAddress(address);
-				currentUser.setGender(gender);
-				currentUser.setAge(age);
-				session.setAttribute("user", currentUser);
+	            filePart.write(uploadPath + File.separator + fileName);
+	            profileImg = fileName;
+	            System.out.println("Image saved to: " + uploadPath + File.separator + fileName);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
 
-				request.setAttribute("successMessage", "Profile updated successfully!");
-			} else {
-				request.setAttribute("errorMessage", "No changes were saved. Please try again.");
-			}
+	    try {
+	        int rows = userDAO.updateUser(
+	            currentUser.getUserId(),
+	            name, phone, email, password,
+	            address, age, gender, active,
+	            profileImg
+	        );
+	        if (rows > 0) {
+	            currentUser.setFullName(name);
+	            currentUser.setPhone(phone);
+	            currentUser.setAddress(address);
+	            currentUser.setAge(age);
+	            currentUser.setGender(gender);
+	            currentUser.setProfileImg(profileImg); 
+	            session.setAttribute("user", currentUser);
+	            request.setAttribute("successMessage", "Profile updated successfully!");
+	        } else {
+	            request.setAttribute("errorMessage", "No changes were saved. Please try again.");
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        request.setAttribute("errorMessage", "Something went wrong: " + e.getMessage());
+	    }
 
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("errorMessage", "Something went wrong: " + e.getMessage());
-		}
-
-		doGet(request, response);
+	    doGet(request, response);
 	}
-
 }

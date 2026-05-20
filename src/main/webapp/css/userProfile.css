@@ -1,8 +1,7 @@
 @charset "UTF-8";
-@charset "UTF-8";
 
 body {
-	height: auto !important;
+    height: auto !important;
     overflow-y: auto !important;
     overflow-x: hidden;
     margin: 0;
@@ -14,7 +13,7 @@ body {
 
 .dashboard-layout {
     display: grid;
-    grid-template-columns: 260px 1fr; /* Adjust left track to coordinate with your sidebar component size */
+    grid-template-columns: 260px 1fr;
     min-height: 100vh;
 }
 
@@ -26,7 +25,7 @@ body {
     gap: 30px;
 }
 
-/* Welcome Horizontal Bar Component Layout Rules */
+/* Welcome Bar */
 .welcome-top-bar {
     background-color: #FFFFFF;
     border: 1px solid #EAEAEA;
@@ -61,7 +60,7 @@ body {
     background-color: #006666;
 }
 
-/* User Modification Form Layout Elements */
+/* Profile Card */
 .profile-card-container {
     background-color: #FFFFFF;
     border: 1px solid #EAEAEA;
@@ -91,29 +90,58 @@ body {
     flex-direction: column;
 }
 
+/* Avatar */
 .avatar-view-block {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     padding: 30px 0;
 }
 
 .avatar-circle {
     width: 110px;
     height: 110px;
-    background-color: #008080;
     border-radius: 50%;
+    overflow: hidden;
+    background-color: #008080;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
 }
 
-.default-avatar-svg {
-    width: 70px;
-    height: 70px;
-    fill: #FFFFFF;
+/* ✅ Key rule — makes image fill the circle */
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0;
 }
 
-/* Form Row Input Component Rulesets */
+/* ✅ Hidden preview state */
+.hidden-preview {
+    display: none;
+}
+
+/* ✅ Default user icon */
+.avatar-circle .fa-user {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.change-photo-btn {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #008080;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Form Rows */
 .form-row-entry {
     display: grid;
     grid-template-columns: 150px 1fr;
@@ -128,7 +156,7 @@ body {
     font-size: 1.05rem;
 }
 
-.form-row-entry input, 
+.form-row-entry input,
 .form-row-entry select {
     border: none;
     outline: none;
@@ -150,7 +178,7 @@ body {
     cursor: not-allowed;
 }
 
-/* Footer Interaction Element Styling Area */
+/* Save Button */
 .form-actions-footer {
     padding: 30px 40px;
     display: flex;
@@ -177,6 +205,8 @@ body {
 .save-profile-btn:active {
     transform: scale(0.98);
 }
+
+/* Alerts */
 .alert-success,
 .alert-error {
     margin: 16px 40px 0;

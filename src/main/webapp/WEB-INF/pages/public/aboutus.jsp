@@ -28,7 +28,7 @@
                 </div>
                 <div class="image-col">
                     <div class="blue-backdrop">
-                        <img src="${pageContext.request.contextPath}/images/about-cat.png" alt="Cat" class="pop-out-img cat-fix">
+                        <img src="${pageContext.request.contextPath}/images/about/about-cat.png" alt="Cat" class="pop-out-img cat-fix">
                     </div>
                 </div>
             </div>
@@ -36,7 +36,7 @@
             <div class="story-grid reverse">
                 <div class="image-col">
                     <div class="blue-backdrop">
-                        <img src="${pageContext.request.contextPath}/images/about-dog.png" alt="Dog" class="pop-out-img dog-fix">
+                        <img src="${pageContext.request.contextPath}/images/about/about-dog.png" alt="Dog" class="pop-out-img dog-fix">
                     </div>
                 </div>
                 <div class="text-col">
@@ -55,32 +55,37 @@
             
             <div class="team-grid top-row">
                 <div class="member">
-                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/slesha.png" alt="Slesha"></div>
-                    <h3>Slesha Maharjan</h3>
-                    <p>Head Director</p>
+                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/about/slesha.png" alt="Slesha"></div>
+                    <h2>Slesha Maharjan</h2>
+                    <h3>Head Director</h3>
+                     <p>Leads the overall vision and strategy of the organization, ensuring every project aligns with long-term goals and values.</p>
                 </div>
                 <div class="member">
-                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/yunisha.png" alt="Yunisha"></div>
-                    <h3>Yunisha Basnet</h3>
-                    <p>Head of Product</p>
+                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/about/yunisha.png" alt="Yunisha"></div>
+                    <h2>Yunisha Basnet</h2>       
+                    <h3> Head of Product</h3>
+                    <p>Oversees product development from idea to launch, focusing on user needs, innovation, and seamless experience.</p>
                 </div>
                 <div class="member">
-                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/swornima.png" alt="Swornima"></div>
-                    <h3>Swornima Maharjan</h3>
-                    <p>Managing Director</p>
+                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/about/swornima.png" alt="Swornima"></div>
+                    <h2>Swornima Maharjan</h2>
+                    <h3>Managing Director</h3>
+                    <p>Manages daily operations and decision-making, ensuring the team works efficiently and delivers high-quality results.r</p>
                 </div>
             </div>
 
             <div class="team-grid bottom-row">
                 <div class="member">
-                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/sulove.png" alt="Sulove"></div>
-                    <h3>Sulove Noko Shrestha</h3>
-                    <p>Head of Creative</p>
+                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/about/sulove.png" alt="Sulove"></div>
+                    <h2>Sulove Noko Shrestha</h2>
+                    <h3>Head of Creative</h3>
+                    <p>Drives the creative direction, designing visually engaging and impactful content that represents the brand.</p>
                 </div>
                 <div class="member">
-                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/swoyam.png" alt="Swoyam"></div>
-                    <h3>Swoyam Maharjan</h3>
-                    <p>Director of Sales</p>
+                    <div class="member-img-box"><img src="${pageContext.request.contextPath}/images/about/swoyam.png" alt="Swoyam"></div>
+                    <h2>Swoyam Maharjan</h2>
+                    <h3>Director of Sales</h3>
+                    <p>Leads sales strategy and client relationships, focusing on growth, partnerships, and customer satisfaction.</p>
                 </div>
             </div>
         </section>

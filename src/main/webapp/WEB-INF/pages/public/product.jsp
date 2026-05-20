@@ -4,6 +4,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<%--
+        Page setup, responsive layout rules, and loading 
+        external styles, fonts, and icons.
+    --%>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products - Pawsy Paila</title>
@@ -14,17 +18,20 @@
 </head>
 <body>
 
+<%-- Include the main navigation header at the top --%>
 <%@ include file="headerProduct.jsp" %>
 
   
-
-<!-- ── PAGE ── -->
 <div class="products-page">
     <h1 class="page-title">All Products</h1>
 
     <div class="page-layout">
 
-        <!-- LEFT SIDEBAR FILTERS -->
+        <%-- 
+            Sidebar filters
+            Lets users sort items and filter by price range.
+            Uses standard GET forms so parameters stay in the URL.
+        --%>
         <aside class="sidebar">
             <form method="get" action="${pageContext.request.contextPath}/products" id="filterForm">
 
@@ -38,7 +45,7 @@
                     </select>
                 </div>
 
-
+				<%-- Inputs for min and max price filtering. --%>
                 <div class="filter-group">
                     <h4>Price</h4>
                     <div class="price-range">
@@ -54,10 +61,20 @@
             </form>
         </aside>
 
-        <!-- PRODUCTS GRID -->
+        <%-- 
+            Products layout list
+            Loops through the products array sent from the backend servlet.
+        --%>
         <div class="products-grid">
             <c:forEach var="product" items="${products}">
                 <div class="product-card">
+                
+                <%-- 
+                        Product image placeholder
+                        Tries to load the specific image file. If it fails,
+                        it uses default.png as a backup automatically.
+                    --%>
+                    
                     <div class="product-image">
                         <img src="${pageContext.request.contextPath}/getImage?name=${product.productImage}&type=products"
                              alt="${product.productName}"
@@ -85,10 +102,9 @@
     </div>
 </div>
 
-<<<<<<< HEAD
+
    <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
-=======
->>>>>>> origin/yunisha
+
 
 
 <script>

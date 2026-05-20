@@ -58,7 +58,7 @@ public class CartServlet extends HttpServlet {
 
         String action = request.getParameter("action");
 
-        // ── Cart count for badge ──
+        // Cart count for badge
         if ("count".equals(action)) {
             HttpSession session = request.getSession(false);
             int count = 0;
@@ -103,6 +103,12 @@ public class CartServlet extends HttpServlet {
 
         request.setAttribute("cart", cart);
         request.setAttribute("total", total);
+        
+        if (request.getSession().getAttribute("successMessage") != null) {
+            request.setAttribute("successMessage", request.getSession().getAttribute("successMessage"));
+            request.getSession().removeAttribute("successMessage");
+        }
+
         request.getRequestDispatcher("/WEB-INF/pages/public/cart.jsp")
                .forward(request, response);
     }
@@ -114,8 +120,25 @@ public class CartServlet extends HttpServlet {
         String action = request.getParameter("action");
         HttpSession session = request.getSession();
         Map<Integer, CartItem> cart = getCart(session);
+        
+        if ("checkout".equals(action)) {
+            UserModel user = getLoggedInUser(request);
+            if (user == null) {
+                response.sendRedirect(request.getContextPath() + "/login");
+                return;
+            }
 
-        // ── Add to cart ──
+            if (cart == null || cart.isEmpty()) {
+                response.sendRedirect(request.getContextPath() + "/cart");
+                return;
+            }
+            cart.clear();
+            session.setAttribute("successMessage", "Order is successfully placed!");
+            response.sendRedirect(request.getContextPath() + "/cart");
+            return;
+        }
+
+        // Add to cart
         if ("add".equals(action)) {
             UserModel user = getLoggedInUser(request);
             if (user == null) {

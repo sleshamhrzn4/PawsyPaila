@@ -25,7 +25,7 @@
     <div class="main-content">
 
         <!-- Page Header -->
-        <div class="page-header">
+        <div class="welcome-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>
         </div>
@@ -45,7 +45,6 @@
         <div class="card">
             <div class="card-header">
                 <h2>Manage Pets</h2>
-               
                 <a href="${pageContext.request.contextPath}/addPets" class="btn-add">
                     <i class="fa-solid fa-plus"></i> Add Pet
                 </a>
@@ -53,68 +52,64 @@
 
             <c:choose>
                 <c:when test="${empty requestScope.pets}">
-                    <div class="no-pets">No pets found. Click "Add Pet" to get started.</div>
+                    <div class="no-data">No pets found. Click "Add Pet" to get started.</div>
                 </c:when>
                 <c:otherwise>
-                    <table class="pets-table">
-                        <thead>
-                            <tr>
-                                <th>Pet</th>
-                                <th>Type</th>
-                                <th>Age</th>
-                                <th>Gender</th>
-                                <th>Description</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="pet" items="${requestScope.pets}">
+                    <div class="table-wrapper">
+                        <table class="product-table">
+                            <thead>
                                 <tr>
-                                    <td>
-    <div class="pet-name-cell">
-        <div class="pet-avatar">
-            <c:choose>
-                <c:when test="${not empty pet.petImage and pet.petImage != 'default.jpg'}">
-                    <img src="${pageContext.request.contextPath}/getImage?name=${pet.petImage}&type=pet"
-                         alt="${pet.petName}"
-                         style="width:100%; height:100%; object-fit:cover; border-radius:50%;">
-                </c:when>
-                <c:otherwise>
-                    <i class="fa-solid fa-paw"></i>
-                </c:otherwise>
-            </c:choose>
-        </div>
-        ${pet.petName}
-    </div>
-</td>
-                                    <td>${pet.petType}</td>
-                                    <td>${pet.petAge}</td>
-                                    <td>${pet.petGender}</td>
-                                    <td class="desc-cell" title="${pet.petDesc}">
-									    ${pet.petDesc}
-									</td>
-                                    <td>
-                                        <!-- Edit button -->
-                                        
-										<a href="${pageContext.request.contextPath}/updatePets?petId=${pet.petId}" class="btn-edit">
-										    <i class="fa-solid fa-pen"></i> Edit
-										</a>
-
-                                        <!-- Delete button -->
-                                        <form action="${pageContext.request.contextPath}/adminPets" 
-                                              method="post" style="display:inline;"
-                                              onsubmit="return confirm('Delete ${pet.petName}?')">
-                                            <input type="hidden" name="action" value="delete"/>
-                                            <input type="hidden" name="petId" value="${pet.petId}"/>
-                                            <button type="submit" class="btn-delete">
-                                                <i class="fa-solid fa-trash"></i> Delete
-                                            </button>
-                                        </form>
-                                    </td>
+                                    <th>Pet</th>
+                                    <th>Type</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Description</th>
+                                    <th>Action</th>
                                 </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="pet" items="${requestScope.pets}">
+                                    <tr>
+                                        <td>
+                                            <div class="name-cell">
+                                                <c:choose>
+                                                    <c:when test="${not empty pet.petImage and pet.petImage != 'default.jpg'}">
+                                                        <img src="${pageContext.request.contextPath}/getImage?name=${pet.petImage}&type=pet"
+                                                             alt="${pet.petName}"
+                                                             class="product-img">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <div class="product-img" style="display:flex; align-items:center; justify-content:center; background:#e0f2f1;">
+                                                            <i class="fa-solid fa-paw" style="color:#14b8a6; font-size:18px;"></i>
+                                                        </div>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <span class="product-name">${pet.petName}</span>
+                                            </div>
+                                        </td>
+                                        <td>${pet.petType}</td>
+                                        <td>${pet.petAge}</td>
+                                        <td>${pet.petGender}</td>
+                                        <td class="desc-cell" title="${pet.petDesc}">${pet.petDesc}</td>
+                                        <td class="action-cell">
+                                            <a href="${pageContext.request.contextPath}/updatePets?petId=${pet.petId}" class="btn-edit">
+                                                <i class="fa-solid fa-pen"></i> Edit
+                                            </a>
+                                            <form action="${pageContext.request.contextPath}/adminPets"
+                                                  method="post" style="display:inline;"
+                                                  onsubmit="return confirm('Delete ${pet.petName}?')">
+                                                <input type="hidden" name="action" value="delete"/>
+                                                <input type="hidden" name="petId" value="${pet.petId}"/>
+                                                <button type="submit" class="btn-delete">
+                                                    <i class="fa-solid fa-trash"></i> Delete
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </c:otherwise>
             </c:choose>
         </div>

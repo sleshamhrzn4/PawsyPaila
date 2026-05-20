@@ -20,6 +20,7 @@ body {
     min-height: 100vh;
 }
 
+/* =============== MAIN CONTENT =============== */
 .main-content {
     flex: 1;
     padding: 24px 24px 24px 20px; /* tight — closer to sidebar */
@@ -249,7 +250,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    background: #ef4444;   /* solid red like teal on edit */
+    background: #ef4444;
     color: #fff;
     font-size: 13px;
     font-weight: 700;
@@ -262,10 +263,6 @@ body {
 
 .btn-delete:hover {
     background: #dc2626;
-}
-
-.btn-delete:hover {
-    background: #fecaca;
 }
 
 /* ── ALERTS ── */

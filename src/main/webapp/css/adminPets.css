@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-/* =============================================
-   ADMIN PETS CSS
-   ============================================= */
+
  
 * {
     margin: 0;
@@ -18,7 +16,7 @@ body {
     margin: 0;
 }
  
-/* =============== FLEX LAYOUT =============== */
+
 .flex {
     display: flex;
     height: 100vh;
@@ -94,7 +92,7 @@ body {
     text-overflow: ellipsis;
 }
  
-/* =============== ACTION BUTTONS =============== */
+
 .btn-add,
 .btn-edit {
     background-color: #14b8a6;
@@ -140,7 +138,7 @@ body {
     transform: translateY(-1px);
 }
  
-/* =============== TABLE =============== */
+
 .pets-table {
     width: 100%;
     border-collapse: collapse;

@@ -16,6 +16,7 @@
 	href="${pageContext.request.contextPath}/css/petDetail.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap"
 	rel="stylesheet">
@@ -90,6 +91,6 @@
 
 		</div>
 	</div>
-
+	<%@ include file="/WEB-INF/pages/public/footer.jsp" %>
 </body>
 </html>

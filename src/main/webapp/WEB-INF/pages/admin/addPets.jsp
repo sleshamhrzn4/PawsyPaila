@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +25,17 @@
         </div>
 
         <div class="add-pet-card">
+            <c:if test="${not empty requestScope.error}">
+                <div style="color:red; margin-bottom:10px;">${requestScope.error}</div>
+            </c:if>
+
+    
+            <c:if test="${not empty sessionScope.message}">
+                <div style="color:green; margin-bottom:10px;">${sessionScope.message}</div>
+            </c:if>
+
             <h2>Add Pet</h2>
 
-           
             <form action="${pageContext.request.contextPath}/addPets" method="post" enctype="multipart/form-data">
 
                 <div class="pet-avatar-upload">
@@ -43,20 +51,23 @@
 
                 <div class="form-group">
                     <label>Name</label>
-                    <input type="text" name="petName" placeholder="Enter pet name" required>
+                    <%-- ✅ Retain value after failed submission --%>
+                    <input type="text" name="petName" placeholder="Enter pet name"
+                           value="${param.petName}" required>
                 </div>
 
                 <div class="form-group">
                     <label>Age</label>
-                    <input type="number" name="petAge" placeholder="Enter pet age" min="0" required>
+                    <input type="number" name="petAge" placeholder="Enter pet age"
+                           value="${param.petAge}" min="0" max="20" required>
                 </div>
 
                 <div class="form-group">
                     <label>Pet Type</label>
                     <select name="petType" required>
                         <option value="">Select Pet Type</option>
-                        <option value="Dog">Dog</option>
-                        <option value="Cat">Cat</option>
+                        <option value="Dog" ${param.petType == 'Dog' ? 'selected' : ''}>Dog</option>
+                        <option value="Cat" ${param.petType == 'Cat' ? 'selected' : ''}>Cat</option>
                     </select>
                 </div>
 
@@ -64,20 +75,20 @@
                     <label>Gender</label>
                     <select name="petGender" required>
                         <option value="">Select Pet Gender</option>
-                        <option value="Male">Male</option>
-                        <option value="Female">Female</option>
+                        <option value="Male"   ${param.petGender == 'Male'   ? 'selected' : ''}>Male</option>
+                        <option value="Female" ${param.petGender == 'Female' ? 'selected' : ''}>Female</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea name="petDesc" rows="4" placeholder="Enter pet description" required></textarea>
+                    <textarea name="petDesc" rows="4" placeholder="Enter pet description"
+                              required>${param.petDesc}</textarea>
                 </div>
 
                 <button type="submit" class="btn-add">Add Pet</button>
 
             </form>
-           
 
         </div>
     </div>

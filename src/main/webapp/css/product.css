@@ -361,6 +361,28 @@ body {
 @media (max-width: 960px) {
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
+<<<<<<< HEAD
+    }
+}
+
+@media (max-width: 640px) {
+    .page-layout {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .navbar {
+        padding: 12px 20px;
+=======
+>>>>>>> origin/yunisha
     }
 }
 

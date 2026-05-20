@@ -42,8 +42,9 @@
                     <button type="submit" class="send-btn">Send</button>
                 </form>
             </section>
-            <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
+            
         </div>
     </main>
+    <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
 </body>
 </html>

@@ -54,12 +54,20 @@
     font-weight: 700;
 }
 
+/* ✅ Now an <a> tag — remove default link styles */
 .sidebar-footer {
     padding: 16px 20px;
     border-top: 1px solid #d0e0f0;
     display: flex;
     align-items: center;
     gap: 12px;
+    text-decoration: none;        /* ✅ remove underline */
+    cursor: pointer;
+    transition: background-color 0.18s ease;
+}
+
+.sidebar-footer:hover {
+    background-color: #d1f0eb;    /* ✅ hover highlight */
 }
 
 .sidebar-avatar {
@@ -86,7 +94,7 @@
     font-family: 'Quicksand', sans-serif;
     font-size: 0.9rem;
     font-weight: 700;
-    color: #222;
+    color: #222;                  /* ✅ keep dark, not blue link color */
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

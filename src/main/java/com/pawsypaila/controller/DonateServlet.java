@@ -2,6 +2,7 @@ package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
 
+
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -58,20 +59,47 @@ public class DonateServlet extends HttpServlet {
 	     String paymentMethod = request.getParameter("donationPaymentMethod");
 	     
 	     if (amountStr == null || amountStr.trim().isEmpty() ||
-	             donationDate == null || donationDate.trim().isEmpty() ||
-	             paymentMethod == null || paymentMethod.trim().isEmpty()) {
+	    	 donationDate == null || donationDate.trim().isEmpty() ||
+	         paymentMethod == null || paymentMethod.trim().isEmpty()) {
 
-	             request.setAttribute("error", "All fields are required.");
-	             doGet(request, response);
-	             return;
+	         request.setAttribute("error", "All fields are required.");
+	         doGet(request, response);
+	         return;
 	         }
 	     
 	     double donationAmount;
 	        try {
 	            donationAmount = Double.parseDouble(amountStr);
-	            if (donationAmount <= 0) throw new NumberFormatException();
+	            if (donationAmount <= 499) throw new NumberFormatException();
 	        } catch (NumberFormatException e) {
 	            request.setAttribute("error", "Please enter a valid donation amount.");
+	            doGet(request, response);
+	            return;
+	        }
+	        
+	        java.time.LocalDate selectedDate;
+	        try {
+	            selectedDate = java.time.LocalDate.parse(donationDate);
+	            if (selectedDate.isAfter(java.time.LocalDate.now())) {
+	                request.setAttribute("error", "Donation date invalid");
+	                doGet(request, response);
+	                return;
+	            }
+	        } catch (Exception e) {
+	            request.setAttribute("error", "Please enter a valid date.");
+	            doGet(request, response);
+	            return;
+	        }
+	        
+	        try {
+	            selectedDate = java.time.LocalDate.parse(donationDate);
+	            if (selectedDate.isBefore(java.time.LocalDate.now())) {
+	                request.setAttribute("error", "Donation date invalid");
+	                doGet(request, response);
+	                return;
+	            }
+	        } catch (Exception e) {
+	            request.setAttribute("error", "Please enter a valid date.");
 	            doGet(request, response);
 	            return;
 	        }

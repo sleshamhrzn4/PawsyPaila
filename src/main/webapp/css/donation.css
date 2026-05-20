@@ -3,7 +3,7 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background-color: #fdf8f4;
+    background-color:#FDF8F0;
     font-family: "Poppins", sans-serif;
 }
 
@@ -102,7 +102,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 100px);
+    min-height: calc(100vh - 200px);
     padding: 40px 20px;
 }
 
@@ -124,4 +124,11 @@ p {
     border-radius: 6px;
     margin-bottom: 12px;
     text-align: center;
+}
+
+select.form-control {
+    appearance: none;
+    background-color: white;
+    cursor: pointer;
+    color: #555;
 }

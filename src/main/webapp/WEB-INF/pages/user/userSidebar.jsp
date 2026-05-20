@@ -4,15 +4,16 @@
 
 <aside class="sidebar">
     <div class="logo">
-        <img src="${pageContext.request.contextPath}/images/adminDashboard/logo.png" 
+        <img src="${pageContext.request.contextPath}/images/adminDashboard/logo.png"
              class="logo" alt="logo" style="width:150px; height:auto;">
     </div>
     <nav class="sidebar-nav">
 
-        <a href="${pageContext.request.contextPath}/userprofile" class="nav-item">
-            <img src="${pageContext.request.contextPath}/images/adminDashboard/application.png"
-                 alt="profile" style="width: 30px; height: auto;">
-            My Profile
+        <%-- ✅ Changed from My Profile to Dashboard --%>
+        <a href="${pageContext.request.contextPath}/userdashboard" class="nav-item">
+            <img src="${pageContext.request.contextPath}/images/adminDashboard/dash.png"
+                 alt="dashboard" style="width: 30px; height: auto;">
+            Dashboard
         </a>
 
         <a href="${pageContext.request.contextPath}/logout" class="nav-item">
@@ -21,13 +22,16 @@
         </a>
 
     </nav>
-    <div class="sidebar-footer">
-        <div class="sidebar-avatar">
-            ${sessionScope.user.fullName.substring(0,1).toUpperCase()}
-        </div>
-        <div class="sidebar-user-info">
-            <span class="sidebar-user-name">${sessionScope.user.fullName}</span>
-            <span class="sidebar-user-role">Member</span>
-        </div>
-    </div>
+
+    <%-- ✅ Made footer clickable — redirects to edit profile --%>
+<a href="${pageContext.request.contextPath}/userprofile" class="sidebar-footer">
+    <span class="sidebar-avatar">
+        ${sessionScope.user.fullName.substring(0,1).toUpperCase()}
+    </span>
+    <span class="sidebar-user-info">
+        <span class="sidebar-user-name">${sessionScope.user.fullName}</span>
+        <span class="sidebar-user-role">Member</span>
+    </span>
+</a>
+
 </aside>

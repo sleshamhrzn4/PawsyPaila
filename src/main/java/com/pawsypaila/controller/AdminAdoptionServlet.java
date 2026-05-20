@@ -46,28 +46,37 @@ public class AdminAdoptionServlet extends HttpServlet {
            .forward(req, resp);
     }
  
-    
+   
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         HttpSession session = req.getSession();
         try {
             int adoptionId = Integer.parseInt(req.getParameter("adoptionId"));
-            String action  = req.getParameter("action"); 
-            String newStatus = action.equals("accept") ? "Approved" : "Rejected";
- 
-            boolean success = dao.updateStatus(adoptionId, newStatus);
-            if (success) {
-                session.setAttribute("message",
-                    "Request #" + adoptionId + " has been " + newStatus.toLowerCase() + ".");
+            String action  = req.getParameter("action");
+
+            if (action.equals("delete")) {
+                boolean success = dao.deleteRequest(adoptionId);
+                if (success) {
+                    session.setAttribute("message", "Request #" + adoptionId + " has been deleted.");
+                } else {
+                    session.setAttribute("error", "Could not delete request #" + adoptionId + ".");
+                }
             } else {
-                session.setAttribute("errorMessage", "Could not update request #" + adoptionId + ".");
+                String newStatus = action.equals("accept") ? "Approved" : "Rejected";
+                boolean success = dao.updateStatus(adoptionId, newStatus);
+                if (success) {
+                    session.setAttribute("message",
+                        "Request #" + adoptionId + " has been " + newStatus.toLowerCase() + ".");
+                } else {
+                    session.setAttribute("error", "Could not update request #" + adoptionId + ".");
+                }
             }
+
         } catch (Exception e) {
             e.printStackTrace();
-            session.setAttribute("errorMessage", "Error: " + e.getMessage());
+            session.setAttribute("error", "Error: " + e.getMessage());
         }
-
         resp.sendRedirect(req.getContextPath() + "/adminAdoption");
     }
 }

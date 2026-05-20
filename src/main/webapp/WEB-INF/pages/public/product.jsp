@@ -96,6 +96,10 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+   <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
+=======
+>>>>>>> origin/yunisha
 
 
 <script>

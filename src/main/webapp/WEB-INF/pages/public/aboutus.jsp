@@ -7,6 +7,7 @@
     <title>About Us - Pawsy Paila</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/aboutus.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/footer.css">
 </head>
 <body>
 
@@ -84,7 +85,7 @@
                 </div>
             </div>
         </section>
-
+		<%@ include file="/WEB-INF/pages/public/footer.jsp" %>
     </main>
 </body>
 </html>

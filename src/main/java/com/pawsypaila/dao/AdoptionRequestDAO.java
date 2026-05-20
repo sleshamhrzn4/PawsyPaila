@@ -86,5 +86,14 @@ public class AdoptionRequestDAO {
         con.close();
         return success;
     }
+    
+    public boolean deleteRequest(int adoptionId) throws Exception {
+        String sql = "DELETE FROM adoptionrequest WHERE adoptionId = ?";
+        try (Connection con = DBconfig.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+            pst.setInt(1, adoptionId);
+            return pst.executeUpdate() > 0;
+        }
+    }
 }
 

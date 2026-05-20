@@ -58,7 +58,7 @@ body {
         <a href="${pageContext.request.contextPath}/contact">Contact</a>
     </nav>
     <div class="profile-icon">
-        <a href="${pageContext.request.contextPath}/profile">
+        <a href="${pageContext.request.contextPath}/userprofile">
             <img src="${pageContext.request.contextPath}/images/nav/profile.png" alt="Pfp" class="profile-icon">
         </a>
     </div>

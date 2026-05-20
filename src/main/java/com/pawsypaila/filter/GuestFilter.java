@@ -16,7 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class AuthenticationFilter
  */
-@WebFilter(urlPatterns = {"/login", "/register", "/home", ""})
+@WebFilter(urlPatterns = {"/login", "/register", ""})
 public class GuestFilter extends HttpFilter {
     
     private static final long serialVersionUID = 1L;
@@ -34,9 +34,8 @@ public class GuestFilter extends HttpFilter {
 		boolean isLoggedIn = SessionUtil.getAttribute(httpRequest, "user") != null;
 
         if (isLoggedIn) {
-            // User is already logged in, redirect them to the dashboard
-            // We use getContextPath() to ensure the URL is absolute to the app root
-            httpResponse.sendRedirect(httpRequest.getContextPath() + "/dashboard");
+            
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/home");
         } else {
             // User is a guest, let them proceed to login/register/home
             chain.doFilter(request, response);

@@ -28,8 +28,5 @@
                 <i class="fa-solid fa-heart nav-icon" style="font-size: 20px; width: 30px;"></i>Donation
             </a>
         </nav>
-        <div class="sidebar-user">
-            <span class="user-icon"><i class="fa-solid fa-circle-user" style="font-size: 24px; color: #17a99e;"></i></span>
-            <span>${sessionScope.userName}</span>
-        </div>
+        
     </aside>

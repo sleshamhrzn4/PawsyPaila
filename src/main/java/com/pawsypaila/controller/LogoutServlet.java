@@ -1,29 +1,33 @@
 package com.pawsypaila.controller;
 
+<<<<<<< HEAD:src/main/java/com/pawsypaila/controller/HomeServlet.java
 import com.pawsypaila.dao.PetDAO;
 import com.pawsypaila.dao.ProductDAO;
 import com.pawsypaila.model.PetModel;
 import com.pawsypaila.model.ProductModel;
 
+=======
+>>>>>>> origin/swornima:src/main/java/com/pawsypaila/controller/LogoutServlet.java
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
 /**
- * Servlet implementation class HomeServlet
+ * Servlet implementation class LogoutServlet
  */
-@WebServlet(asyncSupported = true, urlPatterns = { "/home" })
-public class HomeServlet extends HttpServlet {
+@WebServlet(asyncSupported = true, urlPatterns = { "/logout" })
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public HomeServlet() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,6 +37,7 @@ public class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+<<<<<<< HEAD:src/main/java/com/pawsypaila/controller/HomeServlet.java
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
 
 		try {
@@ -49,6 +54,13 @@ public class HomeServlet extends HttpServlet {
 		}
 
 		request.getRequestDispatcher("/WEB-INF/pages/public/home.jsp").forward(request, response);
+=======
+		HttpSession session = request.getSession(false);
+		if (session != null) {
+		    session.invalidate(); 
+		}
+		response.sendRedirect(request.getContextPath() + "/WEB-INF/pages/public/login.jsp"); 
+>>>>>>> origin/swornima:src/main/java/com/pawsypaila/controller/LogoutServlet.java
 	}
 
 	/**
@@ -58,4 +70,8 @@ public class HomeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+<<<<<<< HEAD:src/main/java/com/pawsypaila/controller/HomeServlet.java
+=======
+
+>>>>>>> origin/swornima:src/main/java/com/pawsypaila/controller/LogoutServlet.java
 }

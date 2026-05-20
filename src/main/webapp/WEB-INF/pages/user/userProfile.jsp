@@ -6,12 +6,48 @@
     <meta charset="UTF-8">
     <title>My Profile - Pawsy Paila</title>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/userProfile.css">
+    <style>
+    .alert-success {
+        animation: fadeOut 0.5s ease 3s forwards;
+    }
+    @keyframes fadeOut {
+        to { opacity: 0; visibility: hidden; }
+    }
+
+    
+    .avatar-circle {
+        width: 110px !important;
+        height: 110px !important;
+        border-radius: 50% !important;
+        overflow: hidden !important;
+        background-color: #008080 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        flex-shrink: 0 !important;
+        cursor: pointer !important;
+        position: relative !important;
+    }
+
+    .avatar-circle img {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 110px !important;
+        height: 110px !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        border-radius: 50% !important;
+        display: block !important;
+    }
+</style>
 </head>
 <body>
 
     <div class="dashboard-layout">
-      <%-- <jsp:include page="sidebar.jsp" /> --%>  
+    <jsp:include page="userSidebar.jsp" /> 
         <main class="profile-main-content">
             
             <div class="welcome-top-bar">
@@ -34,14 +70,27 @@
                     <div class="alert-error"><c:out value="${errorMessage}"/></div>
                 </c:if>
 
-                <form action="${pageContext.request.contextPath}/userprofile" method="POST" class="profile-form">
+                <form action="${pageContext.request.contextPath}/userprofile" method="POST"
+                      enctype="multipart/form-data" class="profile-form">
                     
                     <div class="avatar-view-block">
-                        <div class="avatar-circle">
-                            <svg viewBox="0 0 24 24" class="default-avatar-svg">
-                                <path d="M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C14.67,14 20,15.33 20,18V20H4V18C4,15.33 9.33,14 12,14Z" />
-                            </svg>
+                        <div class="avatar-circle" onclick="document.getElementById('profileImage').click()">
+                            <c:choose>
+                                <c:when test="${not empty sessionScope.user.profileImg}">
+                                    <%-- ✅ No inline styles — CSS handles sizing --%>
+                                       <img id="imagePreview"
+                                         src="${pageContext.request.contextPath}/getImage?name=${sessionScope.user.profileImg}&type=userProfile"
+                                         alt="Profile Picture"/>
+                                    <i class="fa-solid fa-user" id="imageIcon" style="display:none;"></i>
+                                </c:when>
+                                <c:otherwise>
+                                    <img id="imagePreview" src="" alt="" class="hidden-preview"/>
+                                    <i class="fa-solid fa-user" id="imageIcon"></i>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
+                        <label for="profileImage" class="change-photo-btn">Change Photo</label>
+                        <input type="file" id="profileImage" name="profileImage" accept="image/*" style="display:none;"/>
                     </div>
 
                     <div class="form-row-entry">
@@ -85,6 +134,30 @@
             </div>
         </main>
     </div>
+
+    <script>
+        document.getElementById('profileImage').addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('imagePreview').src = e.target.result;
+                    document.getElementById('imagePreview').style.display = 'block';
+                    document.getElementById('imageIcon').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        const successMsg = document.querySelector('.alert-success');
+        if (successMsg) {
+            setTimeout(() => {
+                successMsg.style.transition = 'opacity 0.5s ease';
+                successMsg.style.opacity = '0';
+                setTimeout(() => successMsg.style.display = 'none', 500);
+            }, 3000);
+        }
+    </script>
 
 </body>
 </html>

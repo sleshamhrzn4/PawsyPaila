@@ -1,23 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false"%>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Navbar</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
 body {
     margin: 0;
     font-family: Poppins, sans-serif;
+    background-color: #FDF8F0;
 }
 
-/* Navbar */
 .navbar {
     display: flex;
     align-items: center;
@@ -27,50 +17,49 @@ body {
     background-color: transparent;
     padding: 12px 24px;
     position: relative;
+    border-bottom: none;
 }
 
-/* Logo */
 .logo {
     height: 80px;
     width: 110px;
 }
 
-/* Navigation links */
 .nav-links {
     display: flex;
     gap: 20px;
 }
 
 .nav-links a {
-    color: #222222;
+    color:  #222222;
     text-decoration: none;
     font-size: 20px;
     padding: 8px 12px;
     transition: font-weight 0.2s;
 }
 
-/* Hover effect */
 .nav-links a:hover {
     font-weight: bold;
+       color:  #222222;
 }
 
-.profile-icon {
-    width: 54px;
-    height: 54px;
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
-/* Cart icon */
 .cart-link {
     position: relative;
-    color: #222;
+    color: #222222;
     font-size: 22px;
     text-decoration: none;
-    margin-right: 16px;
     transition: color 0.2s;
 }
 
 .cart-link:hover {
-    color: #14b8a6;
+    font-weight: bold;
+    color: #222222;
 }
 
 .cart-badge {
@@ -89,32 +78,32 @@ body {
     justify-content: center;
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
+.profile-icon {
+    width: 54px;
+    height: 54px;
+}
+
+.profile-icon img {
+    width: 54px;
+    height: 54px;
 }
 </style>
-</head>
-<body>
 <header class="navbar">
     <a href="${pageContext.request.contextPath}/home" class="logo">
         <img src="${pageContext.request.contextPath}/images/nav/logo_teal.png" alt="Logo" class="logo">
     </a>
-    <!-- nav bar links -->
     <nav class="nav-links">
         <a href="${pageContext.request.contextPath}/pets">Pets</a>
         <a href="${pageContext.request.contextPath}/products">Products</a>
-        <a href="${pageContext.request.contextPath}/about">About</a>
+        <a href="${pageContext.request.contextPath}/aboutus">About</a>
         <a href="${pageContext.request.contextPath}/donate">Donate</a>
         <a href="${pageContext.request.contextPath}/contact">Contact</a>
     </nav>
-    <div class="nav-right">
-        <!-- Cart icon -->
+     <div class="nav-right">
         <a href="${pageContext.request.contextPath}/cart" class="cart-link">
             <i class="fa-solid fa-cart-shopping"></i>
             <span class="cart-badge" id="cart-count">0</span>
         </a>
-        <!-- Profile -->
         <div class="profile-icon">
             <a href="${pageContext.request.contextPath}/profile">
                 <img src="${pageContext.request.contextPath}/images/nav/profile.png" alt="Pfp" class="profile-icon">
@@ -122,5 +111,3 @@ body {
         </div>
     </div>
 </header>
-</body>
-</html>

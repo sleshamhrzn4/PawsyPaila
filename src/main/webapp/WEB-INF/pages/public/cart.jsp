@@ -18,6 +18,12 @@
 
 <div class="cart-page">
     <div class="cart-card">
+    
+    <c:if test="${not empty successMessage}">
+            <div class="alert-success" style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 500; border: 1px solid #c3e6cb;">
+                <i class="fa-solid fa-circle-check" style="margin-right: 5px;"></i> ${successMessage}
+            </div>
+        </c:if>
 
         <!-- Cart Icon -->
         <div class="cart-header">
@@ -64,9 +70,12 @@
 
                 <!-- Checkout -->
                 <div class="cart-footer">
-                    <a href="${pageContext.request.contextPath}/checkout" class="btn-checkout">
-                        Checkout
-                    </a>
+                    <form action="${pageContext.request.contextPath}/cart" method="POST" style="width: 100%;">
+                        <input type="hidden" name="action" value="checkout">
+                        <button type="submit" class="btn-checkout" style="width: 100%; display: block; text-align: center; border: none; cursor: pointer; text-decoration: none;">
+                            Checkout
+                        </button>
+                    </form>
                 </div>
             </c:otherwise>
         </c:choose>

@@ -95,5 +95,44 @@ public class AdoptionRequestDAO {
             return pst.executeUpdate() > 0;
         }
     }
+
+    public List<AdoptionRequestModel> getRequestsByUserId(int userId) {
+        List<AdoptionRequestModel> requests = new ArrayList<>();
+        Connection con = null;
+        
+        try {
+            con = DBconfig.getConnection();
+
+            String sql = "SELECT ar.adoptionId, ar.petId, ar.AdoptionStatus, p.petName " +
+                         "FROM adoptionrequest ar " +
+                         "JOIN pets p ON ar.petId = p.petId " +
+                         "WHERE ar.userId = ?";
+
+            PreparedStatement pst = con.prepareStatement(sql);
+            pst.setInt(1, userId);
+
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                AdoptionRequestModel req = new AdoptionRequestModel();
+                req.setAdoptionId(rs.getInt("adoptionId"));
+                req.setPetId(rs.getInt("petId"));
+                req.setPetName(rs.getString("petName"));
+                req.setAdoptionStatus(rs.getString("AdoptionStatus"));
+                requests.add(req);
+            }
+
+            rs.close();
+            pst.close();
+            con.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return requests;
+    }
+
+    
 }
 

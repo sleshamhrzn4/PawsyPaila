@@ -39,8 +39,10 @@ public class HomeServlet extends HttpServlet {
 		    PetDAO petDAO = new PetDAO();
 		    ProductDAO productDAO = new ProductDAO();
 
-		    List<PetModel> petList = petDAO.getAllPets();
-		    List<ProductModel> productList = productDAO.getAllProducts();
+		    
+		    
+		    List<PetModel> petList = petDAO.getLatestPets(3);
+	        List<ProductModel> productList = productDAO.getLatestProducts(6);
 
 		    request.setAttribute("petList", petList);
 		    request.setAttribute("itemList", productList);

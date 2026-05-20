@@ -151,4 +151,31 @@ public class PetDAO {
         pet.setPetImage(rs.getString("petImage"));
         return pet;
     }
+    
+    // getting pets from database to home page
+    public List<PetModel> getLatestPets(int limit) throws Exception {
+        List<PetModel> petList = new ArrayList<>();
+        String sql = "SELECT * FROM pet LIMIT ?";
+
+        try (Connection con = DBconfig.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setInt(1, limit);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                PetModel pet = new PetModel();
+                pet.setPetId(rs.getInt("petId"));
+                pet.setPetName(rs.getString("petName"));
+                pet.setPetAge(rs.getInt("petAge"));
+                pet.setPetType(rs.getString("petType"));
+                pet.setPetGender(rs.getString("petGender"));
+                pet.setPetDesc(rs.getString("petDesc"));
+                pet.setPetImage(rs.getString("petImage"));
+                petList.add(pet);
+            }
+        }
+        return petList;
+    }
+    
 }

@@ -115,4 +115,30 @@ public class ProductDAO {
         pst.close();
         con.close();
     }
+    
+    // getting products from database to home page
+    public List<ProductModel> getLatestProducts(int limit) throws Exception {
+        List<ProductModel> productList = new ArrayList<>();
+        String sql = "SELECT * FROM product LIMIT ?";
+
+        try (Connection con = DBconfig.getConnection();
+             PreparedStatement pst = con.prepareStatement(sql)) {
+
+            pst.setInt(1, limit);
+            ResultSet rs = pst.executeQuery();
+
+            while (rs.next()) {
+                ProductModel product = new ProductModel();
+                product.setProductId(rs.getInt("productId"));
+                product.setProductName(rs.getString("productName"));
+                product.setProductPrice(rs.getDouble("productPrice"));
+                product.setProductQuantity(rs.getInt("productQuantity"));
+                product.setProductDescription(rs.getString("productDescription"));
+                product.setProductImage(rs.getString("productImage"));
+                productList.add(product);
+            }
+        }
+        return productList;
+    }
+    
 }

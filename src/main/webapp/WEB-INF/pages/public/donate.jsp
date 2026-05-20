@@ -42,7 +42,9 @@
 			</select>
 			<button type="submit" class="Donate-button">Donate</button>
 		</form>
+		
 		</div>
 	</div>
+	<%@ include file="/WEB-INF/pages/public/footer.jsp" %>
 </body>
 </html>

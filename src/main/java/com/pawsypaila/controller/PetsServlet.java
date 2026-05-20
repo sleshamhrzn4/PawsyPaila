@@ -1,7 +1,6 @@
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -12,53 +11,53 @@ import java.util.List;
 import com.pawsypaila.dao.PetDAO;
 import com.pawsypaila.model.PetModel;
 
-
 @WebServlet("/pets")
 public class PetsServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-      
-	
-		    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-		            throws ServletException, IOException {
-		 
-		    	String search = request.getParameter("search");
-		    	String filter = request.getParameter("filter");
-		    	 
+    private static final long serialVersionUID = 1L;
 
-		    	if (search == null) {search = "";
-		    	 if (filter == null) filter = "";
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
 
-		    	PetDAO petDAO = new PetDAO();
-		    	List<PetModel> pets = new ArrayList<>(); 
-	           
+        String search = request.getParameter("search");
+        String filter = request.getParameter("filter");
 
-		        try {
-		            if (!search.isEmpty()) {
-		                // search by name
-		                pets = petDAO.searchPets(search);
-		            } else if (!filter.isEmpty()) {
-		                
-		                pets = petDAO.getPetsByType(filter);
-		            } else {
-		                // show all
-		                pets = petDAO.getAllPets();
-		            }
-		        } catch (Exception e) {
-		            e.printStackTrace();
-		        }
-		        
-		        request.setAttribute("pets", pets);
-		        request.setAttribute("search", search);
-		        request.setAttribute("filter", filter);
+        // Null-safe defaults
+        if (search == null) search = "";
+        if (filter == null) filter = "";
 
-		        request.getRequestDispatcher("/WEB-INF/pages/public/pets.jsp")
-		               .forward(request, response);
-		    	}
-		    }
+        PetDAO petDAO = new PetDAO();
+        List<PetModel> pets = new ArrayList<>();
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+        try {
+            if (!search.isEmpty()) {
+                if (search.trim().length() == 1) {
+                   
+                    pets = petDAO.getPetsByLetter(search.trim());
+                } else {
+                  
+                    pets = petDAO.searchPets(search.trim());
+                }
+            } else if (!filter.isEmpty()) {
+              
+                pets = petDAO.getPetsByType(filter);
+            } else {
+              
+                pets = petDAO.getAllPets();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
+        request.setAttribute("pets", pets);
+        request.setAttribute("search", search);
+        request.setAttribute("filter", filter);
+
+        request.getRequestDispatcher("/WEB-INF/pages/public/pets.jsp")
+               .forward(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doGet(request, response);
+    }
 }

@@ -59,7 +59,7 @@ public class LoginServlet extends HttpServlet {
             UserModel user = userDAO.getUserByEmail(email);
 
             if (user == null) {
-                // No user found with that email
+                
                 System.out.println("User not found!");
                 response.sendRedirect(request.getContextPath() + "/login?error=1");
                 return;

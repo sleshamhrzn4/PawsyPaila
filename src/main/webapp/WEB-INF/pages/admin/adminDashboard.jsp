@@ -9,7 +9,7 @@
 <meta charset="UTF-8">
 
     <title>Admin Dashboard - Pawsy Paila</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
+     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminDashboard.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css">
      <link rel="stylesheet" href="${pageContext.request.contextPath}/css/adminSidebar.css">
     <link href="https://fonts.googleapis.com/css2?family=Abhaya+Libre:wght@400;600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
@@ -20,16 +20,16 @@
 <div class="dashboard-wrapper">
 
     <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
+
     
-    <main class="main-content">
-        <div class="welcome-banner">
-            <img src="${pageContext.request.contextPath}/images/adminDashboard/paw.png" 
-             alt="pets" style="width: 40px; height: auto;">
-            <h1>Welcome Back, ${sessionScope.userName}!</h1> 
-             
+   <main class="main-content">
+        <%-- Welcome Banner --%>
+        <div class="welcome-header">
+            <i class="fa-solid fa-paw"></i>
+            <h1>Welcome Back, ${sessionScope.username}!</h1>
         </div>
 
-       
+        <%-- Stats --%>
         <div class="stats-grid">
             <div class="stat-card">
                 <p class="stat-label">Pets Listed</p>
@@ -43,37 +43,32 @@
                 <p class="stat-label">Products Listed</p>
                 <p class="stat-value">${totalProducts}</p>
             </div>
-            <div class="stat-card">
-                <p class="stat-label">Revenue</p>
-                <p class="stat-value">Rs. <fmt:formatNumber value="${totalRevenue}" pattern="#,##,##0"/></p>
-            </div>
-        </div>
+          </div>
 
-        <div class="bottom-grid">
+        <%-- Top Row: Adoption + Manage Pets side by side --%>
+        <div class="top-row">
 
-            <%-- Adoption Requests table --%>
+            <%-- Adoption Requests --%>
             <div class="table-card">
+            
                 <h3>Adoption Requests</h3>
+                <a href="${pageContext.request.contextPath}/adminAdoption">
+                    </a>
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
-                            <th>Date</th>
                             <th>Status</th>
-                            <th></th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach var="ar" items="${adoptionList}">
                             <tr>
-                                <td>
-                                    <span class="user-icon-sm">👤</span>
-                                    ${ar.userName}
-                                </td>
-                                <td>${ar.requestDate}</td>
+                                <td><span class="user-icon-sm">👤</span>${ar.fullName}</td>
                                 <td>${ar.adoptionStatus}</td>
                                 <td>
-                                    <a href="${pageContext.request.contextPath}/ViewAdoption?id=${ar.adoptionId}">
+                                    <a href="${pageContext.request.contextPath}/adminAdoption">
                                         <button class="btn-view">View</button>
                                     </a>
                                 </td>
@@ -83,71 +78,81 @@
                 </table>
             </div>
 
-            <div class="right-panel">
-
-               
-                <div class="manage-card">
-                    <div class="manage-header">
-                        <h3>Manage Pets</h3>
-                        <a href="${pageContext.request.contextPath}/adminPets">
-                            <button class="btn-add">Add Pet</button>
-                        </a>
-                    </div>
-                    <table>
-                        <thead>
+            <%-- Manage Pets --%>
+            <div class="table-card">
+                <div class="manage-header">
+                    <h3>Manage Pets</h3>
+                    <a href="${pageContext.request.contextPath}/adminPets">
+                        <button class="btn-add">Add Pet</button>
+                    </a>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Pet</th>
+                            <th>Age</th>
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="pet" items="${petList}">
                             <tr>
-                                <th>Pet</th>
-                                <th>Age</th>
-                                <th>Status</th>
-                                <th></th>
+                                <td><span class="user-icon-sm">👤</span>${pet.petName}</td>
+                                <td>${pet.petAge}</td>
+                                <td>
+                                    <a href="${pageContext.request.contextPath}/updatePet?id=${pet.petId}">
+                                        <button class="btn-edit">Edit</button>
+                                    </a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach var="pet" items="${petList}">
-                                <tr>
-                                    <td>
-                                        <span class="user-icon-sm">👤</span>
-                                        ${pet.petName}
-                                    </td>
-                                    <td>${pet.age}</td>
-                                    <td>${pet.petStatus}</td>
-                                    <td>
-                                        <a href="${pageContext.request.contextPath}/updatePet?id=${pet.petId}">
-                                            <button class="btn-edit">Edit</button>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
-
-                <%-- Manage Products --%>
-                <div class="manage-card">
-                    <div class="manage-header">
-                        <h3>Manage Products</h3>
-                        <a href="${pageContext.request.contextPath}/adminProduct">
-                            <button class="btn-add">Add Product</button>
-                        </a>
-                    </div>
-                    <div class="products-grid">
-                        <c:forEach var="product" items="${productList}">
-                            <div class="product-item">
-                                <img src="${pageContext.request.contextPath}/images/products/${product.productId}.jpg"
-                                     alt="${product.productName}">
-                                <div class="product-info">
-                                    <p class="product-name">${product.productName}</p>
-                                    <p class="product-price">Rs.${product.price}</p>
-                                </div>
-                                <a href="${pageContext.request.contextPath}/updateProduct?id=${product.productId}">
-                                    <button class="btn-edit">Edit</button>
-                                </a>
-                            </div>
                         </c:forEach>
-                    </div>
-                </div>
-
+                    </tbody>
+                </table>
             </div>
+
+        </div>
+        
+
+        <%-- Bottom Row: Manage Products full width --%>
+        <div class="table-card">
+            <div class="manage-header">
+                <h3>Manage Products</h3>
+                <a href="${pageContext.request.contextPath}/adminProduct">
+                    <button class="btn-add">Add Product</button>
+                </a>
+            </div>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Price</th>
+                        <th>Description</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                    <c:forEach var="product" items="${productList}">
+                        <tr>
+                            <td>
+                                <div class="name-cell">
+                                    <img class="product-thumb"
+                                        src="${pageContext.request.contextPath}/getImage?name=${product.productImage}&type=products"
+                                                     alt="${product.productName}" />
+                                                <span class="product-name">${product.productName}</span>
+                                            </div>
+                            </td>
+                            </td>
+                                        <td class="price-cell">Rs. ${product.productPrice}</td>
+                                        <td class="desc-cell">${product.productDescription}</td>
+                                        <td class="action-cell">
+                                            <a href="${pageContext.request.contextPath}/editProduct?productId=${product.productId}" class="btn-edit">
+                                                <i class="fa-solid fa-pen"></i> Edit
+                                            </a>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                </tbody>
+            </table>
         </div>
 
     </main>

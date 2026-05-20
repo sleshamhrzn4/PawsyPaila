@@ -25,23 +25,22 @@
 <!-- Search + Filter controls -->
 <div class="pets-controls">
 
-		    <form class="pets-search" method="get" action="${pageContext.request.contextPath}/pets" id="searchForm">
-    <label for="searchInput">Search:</label>
-    <input
-        id="searchInput"
-        type="text"
-        name="search"
-        placeholder="Search by name"
-        value="${fn:escapeXml(search)}"
-        oninput="document.getElementById('searchForm').submit()">
-</form>
-		
+    <form class="pets-search" method="get" action="${pageContext.request.contextPath}/pets" id="searchForm">
+        <label for="searchInput">Search:</label>
+        <input
+            id="searchInput"
+            type="text"
+            name="search"
+            placeholder="Search by name"
+            value="${fn:escapeXml(search)}"
+            oninput="document.getElementById('searchForm').submit()">
+    </form>
 
     <div class="pets-filter">
         <span class="filter-label">Filter By:</span>
         <div class="filter-options">
             <a href="${pageContext.request.contextPath}/pets"
-               class="filter-btn ${empty filter ? 'active' : ''}">
+               class="filter-btn ${empty filter && empty letter ? 'active' : ''}">
                 <span class="filter-dot"></span> All
             </a>
             <a href="${pageContext.request.contextPath}/pets?filter=dog"
@@ -55,6 +54,8 @@
         </div>
     </div>
 
+   
+   
 </div>
 
 <!-- Pet listing -->
@@ -69,6 +70,9 @@
                     <c:when test="${not empty search}">
                         No pets match "${fn:escapeXml(search)}". Try a different name!
                     </c:when>
+                    <c:when test="${not empty letter}">
+                        No pets found with names starting with "${fn:escapeXml(letter)}". Try another letter!
+                    </c:when>
                     <c:otherwise>
                         No pets listed right now. Check back soon!
                     </c:otherwise>
@@ -79,56 +83,50 @@
     </c:when>
 
     <c:otherwise>
-      
-<div class="pets-grid">
-    <c:forEach var="pet" items="${pets}">
-        <a href="${pageContext.request.contextPath}/petDetail?petId=${pet.petId}" class="pet-card-link">
-            <div class="pet-card">
-            <div class="pet-card__img-wrap">
-                <c:choose>
-                    <c:when test="${not empty pet.petImage}">
-                  
-						<img src="${pageContext.request.contextPath}/getImage?name=${fn:escapeXml(pet.petImage)}&amp;type=pet"
-						     alt="${fn:escapeXml(pet.petName)}">
-                    </c:when>
-                    <c:otherwise>
-                        <span class="pet-placeholder">
+        <div class="pets-grid">
+            <c:forEach var="pet" items="${pets}">
+                <a href="${pageContext.request.contextPath}/petDetail?petId=${pet.petId}" class="pet-card-link">
+                    <div class="pet-card">
+                        <div class="pet-card__img-wrap">
                             <c:choose>
-                                <c:when test="${fn:toLowerCase(pet.petType) == 'cat'}"></c:when>
-                                <c:otherwise></c:otherwise>
+                                <c:when test="${not empty pet.petImage}">
+                                    <img src="${pageContext.request.contextPath}/getImage?name=${fn:escapeXml(pet.petImage)}&amp;type=pet"
+                                         alt="${fn:escapeXml(pet.petName)}">
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="pet-placeholder">
+                                        <c:choose>
+                                            <c:when test="${fn:toLowerCase(pet.petType) == 'cat'}"></c:when>
+                                            <c:otherwise></c:otherwise>
+                                        </c:choose>
+                                    </span>
+                                </c:otherwise>
                             </c:choose>
-                        </span>
-                    </c:otherwise>
-                </c:choose>
-                <span class="pet-badge">${fn:escapeXml(pet.petType)}</span>
-            </div>
+                            <span class="pet-badge">${fn:escapeXml(pet.petType)}</span>
+                        </div>
 
-            <div class="pet-card__body">
-                <h2 class="pet-card__name">${fn:escapeXml(pet.petName)}</h2>
-                <p class="pet-card__desc">
-    <c:choose>
-        <c:when test="${not empty pet.petDesc}">
-            ${fn:substring(pet.petDesc, 0, 80)}${fn:length(pet.petDesc) > 80 ? '...' : ''}
-        </c:when>
-        <c:otherwise>
-            Hey there, I'm ${fn:escapeXml(pet.petName)} and I'm looking for a loving home!
-        </c:otherwise>
-    </c:choose>
-</p>
-            </div>
-
+                        <div class="pet-card__body">
+                            <h2 class="pet-card__name">${fn:escapeXml(pet.petName)}</h2>
+                            <p class="pet-card__desc">
+                                <c:choose>
+                                    <c:when test="${not empty pet.petDesc}">
+                                        ${fn:substring(pet.petDesc, 0, 80)}${fn:length(pet.petDesc) > 80 ? '...' : ''}
+                                    </c:when>
+                                    <c:otherwise>
+                                        Hey there, I'm ${fn:escapeXml(pet.petName)} and I'm looking for a loving home!
+                                    </c:otherwise>
+                                </c:choose>
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </c:forEach>
         </div>
-        </a>
-    </c:forEach>
-</div>
     </c:otherwise>
 
 </c:choose>
+
 <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
 
-
-
 </body>
-
-
 </html>

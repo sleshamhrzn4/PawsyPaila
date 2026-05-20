@@ -150,15 +150,9 @@ input {
     background: white;
 }
 
-input:focus {
-    outline: none;
-    border-color: #008080;
-    box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.1);
-}
 .row-group {
     display: flex;
     gap: 12px;
-    margin-bottom: 24px;
 }
 .row-group select {
     flex: 1;
@@ -168,13 +162,10 @@ input:focus {
     font-size: 15px;
     background: white;
     color: #757575;
+    height: 100%;
+    align-self: stretch;
 }
-
-.row-group input[type="number"] {
-    flex: 1;
-    margin-bottom: 0;
-}
-/* sugn up */
+/* sign up */
 .signup-btn {
     width: 100%;
     padding: 14px;
@@ -188,9 +179,26 @@ input:focus {
     margin-top: 10px;
 }
 
-.signup-btn:hover {
-    background: #008080;
+.error {
+    color: #e53935;
+    font-size: 0.8rem;
+    display: block;
+    margin-top: -8px;
+    margin-bottom: 8px;
+    text-align: left;
 }
+
+.error-msg {
+    color: #e53935;
+    background: #fdecea;
+    border: 1px solid #e53935;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 0.875rem;
+    width: 100%;
+    box-sizing: border-box;
+}
+
 
 /* tnc */
 .terms {

@@ -1,0 +1,230 @@
+@charset "UTF-8";
+
+body {
+    height: auto !important;
+    overflow-y: auto !important;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    background-color: #FDF8F0;
+    font-family: 'Quicksand', sans-serif;
+    color: #222222;
+}
+
+.dashboard-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+.profile-main-content {
+    padding: 30px;
+    background-color: #FDF8F0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Welcome Bar */
+.welcome-top-bar {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+}
+
+.welcome-text {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #222222;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.home-nav-btn {
+    background-color: #008080;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.home-nav-btn:hover {
+    background-color: #006666;
+}
+
+/* Profile Card */
+.profile-card-container {
+    background-color: #FFFFFF;
+    border: 1px solid #EAEAEA;
+    border-radius: 12px;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+}
+
+.profile-card-header {
+    border-bottom: 1px solid #EAEAEA;
+    padding: 20px;
+    text-align: center;
+}
+
+.profile-card-header h2 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #666666;
+    font-weight: 600;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Avatar */
+.avatar-view-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.avatar-circle {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    overflow: hidden;
+    background-color: #008080;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+/* ✅ Key rule — makes image fill the circle */
+.avatar-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    border-radius: 0;
+}
+
+/* ✅ Hidden preview state */
+.hidden-preview {
+    display: none;
+}
+
+/* ✅ Default user icon */
+.avatar-circle .fa-user {
+    font-size: 2.5rem;
+    color: #ffffff;
+}
+
+.change-photo-btn {
+    margin-top: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #008080;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* Form Rows */
+.form-row-entry {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    align-items: center;
+    padding: 15px 40px;
+    border-bottom: 1px solid #F9F9F9;
+}
+
+.form-row-entry label {
+    font-weight: 600;
+    color: #888888;
+    font-size: 1.05rem;
+}
+
+.form-row-entry input,
+.form-row-entry select {
+    border: none;
+    outline: none;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.05rem;
+    color: #222222;
+    font-weight: 600;
+    padding: 4px 0;
+    width: 100%;
+}
+
+.form-row-entry input:focus,
+.form-row-entry select:focus {
+    border-bottom: 1px solid #008080;
+}
+
+.readonly-field {
+    color: #aaaaaa !important;
+    cursor: not-allowed;
+}
+
+/* Save Button */
+.form-actions-footer {
+    padding: 30px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.save-profile-btn {
+    background-color: #008080;
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 40px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.save-profile-btn:hover {
+    background-color: #006666;
+}
+
+.save-profile-btn:active {
+    transform: scale(0.98);
+}
+
+/* Alerts */
+.alert-success,
+.alert-error {
+    margin: 16px 40px 0;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.alert-success {
+    background-color: #e6f4f1;
+    color: #006666;
+    border: 1px solid #b2d8d8;
+}
+
+.alert-error {
+    background-color: #fdf0f0;
+    color: #cc3333;
+    border: 1px solid #f5b8b8;
+}

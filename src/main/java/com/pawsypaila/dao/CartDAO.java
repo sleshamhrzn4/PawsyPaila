@@ -31,15 +31,15 @@ public class CartDAO {
 	        CartModel cart = null;
 	        Connection con = DBconfig.getConnection();
 
-	        String sql = "SELECT * FROM Cart WHERE UserId = ?";
+	        String sql = "SELECT * FROM Cart WHERE userId = ?";
 	        PreparedStatement pst = con.prepareStatement(sql);
 	        pst.setInt(1, userId);
 	        ResultSet rs = pst.executeQuery();
 
 	        if (rs.next()) {
 	            cart = new CartModel();
-	            cart.setCartId(rs.getInt("CartId"));
-	            cart.setUserId(rs.getInt("UserId"));
+	            cart.setCartId(rs.getInt("cartId"));
+	            cart.setUserId(rs.getInt("userId"));
 	        }
 
 	        rs.close();

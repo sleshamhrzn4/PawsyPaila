@@ -53,12 +53,12 @@ body {
     <nav class="nav-links">
         <a href="${pageContext.request.contextPath}/pets">Pets</a>
         <a href="${pageContext.request.contextPath}/products">Products</a>
-        <a href="${pageContext.request.contextPath}/about">About</a>
+        <a href="${pageContext.request.contextPath}/aboutus">About</a>
         <a href="${pageContext.request.contextPath}/donate">Donate</a>
         <a href="${pageContext.request.contextPath}/contact">Contact</a>
     </nav>
     <div class="profile-icon">
-        <a href="${pageContext.request.contextPath}/profile">
+        <a href="${pageContext.request.contextPath}/userprofile">
             <img src="${pageContext.request.contextPath}/images/nav/profile.png" alt="Pfp" class="profile-icon">
         </a>
     </div>

@@ -44,26 +44,21 @@
 		<div class="right">
 
 			<div class="top-bar">
-				<span>Do Not Have an Account?</span> <a
-					href="${pageContext.request.contextPath}/register">
+			
+				<span>Do Not Have an Account?</span> 
+					<a href="${pageContext.request.contextPath}/register">
 					<button class="login-btn"
 						onclick="location.href='${pageContext.request.contextPath}/register'">Sign
 						Up</button>
 				</a>
-
 			</div>
+
 			<div class="form-container">
 				<h4>Log In to adopt, shop, or connect with our community</h4>
 
-				<c:if test="${param.error == 1}">
-					<div class="error-msg">No account found with that email.</div>
-				</c:if>
-				<c:if test="${param.error == 2}">
-					<div class="error-msg">Wrong password. Please try again.</div>
-				</c:if>
-				<c:if test="${param.error == 3}">
-					<div class="error-msg">Something went wrong. Please try
-						again.</div>
+				
+				<c:if test="${not empty errorMessage}">
+					<div class="error-msg">${errorMessage}</div>
 				</c:if>
 
 				<form action="${pageContext.request.contextPath}/login"

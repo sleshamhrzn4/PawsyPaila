@@ -179,6 +179,41 @@ body {
     background: #0f9b8a;
 }
 
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 16px;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 1.5px solid #14b8a6;
+    color: #14b8a6;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.2s;
+}
+
+.qty-btn:hover {
+    background: #14b8a6;
+    color: #fff;
+}
+
+.qty-num {
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 20px;
+    text-align: center;
+    color: #1a2332;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 480px) {
     .cart-card {

@@ -1,74 +1,62 @@
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
-
-
-
-
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-
 import java.io.IOException;
-
 import com.pawsypaila.dao.UserDAO;
 import com.pawsypaila.model.UserModel;
 import com.pawsypaila.utils.PasswordUtil;
 
-/**
- * Servlet implementation class LoginServlet
- */
-@WebServlet (asyncSupported = true, urlPatterns = { "/login" })
+@WebServlet(asyncSupported = true, urlPatterns = { "/login" })
 public class LoginServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private static final long serialVersionUID = 1L;
+
     public LoginServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    /**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
     @Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-    	request.getRequestDispatcher("/WEB-INF/pages/public/login.jsp").forward(request, response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/pages/public/login.jsp").forward(request, response);
+    }
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
     @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-    	
-    	String email    = request.getParameter("email");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String email    = request.getParameter("email");
         String password = request.getParameter("password");
-        
+
         try {
             UserDAO userDAO = new UserDAO();
 
-            // 2. Fetch user from DB by email
+            // 1. Fetch user from DB by email
             UserModel user = userDAO.getUserByEmail(email);
 
+            // 2. Check if user exists
             if (user == null) {
-                
                 System.out.println("User not found!");
-                response.sendRedirect(request.getContextPath() + "/login?error=1");
+                request.setAttribute("errorMessage", "No account found with that email.");
+                request.getRequestDispatcher("/WEB-INF/pages/public/login.jsp").forward(request, response);
                 return;
             }
 
-            // 3. Check password using PasswordUtil
+            // 3. Check if account is active
+            if (!user.isActive()) {
+                System.out.println("Account is deactivated!");
+                request.setAttribute("errorMessage", "Your account is not yet activated. Please wait for the admin to activate your account.");
+                request.getRequestDispatcher("/WEB-INF/pages/public/login.jsp").forward(request, response);
+                return;
+            }
+
+            // 4. Check password
             boolean passwordMatch = PasswordUtil.checkPassword(password, user.getPassword());
 
-            
             if (passwordMatch) {
                 System.out.println("Login successful!");
                 HttpSession session = request.getSession();
@@ -84,18 +72,18 @@ public class LoginServlet extends HttpServlet {
                 } else {
                     response.sendRedirect(request.getContextPath() + "/home");
                 }
+
             } else {
-                // Wrong password — only runs if passwordMatch is false
                 System.out.println("Wrong password!!!");
-                response.sendRedirect(request.getContextPath() + "/login?error=2");
+                request.setAttribute("errorMessage", "Incorrect password. Please try again.");
+                request.getRequestDispatcher("/WEB-INF/pages/public/login.jsp").forward(request, response);
             }
-            
 
         } catch (Exception e) {
             System.out.println("Error: " + e.getMessage());
             e.printStackTrace();
-            response.sendRedirect(request.getContextPath() + "/login?error=3");
+            request.setAttribute("errorMessage", "Something went wrong. Please try again later.");
+            request.getRequestDispatcher("/WEB-INF/pages/public/login.jsp").forward(request, response);
         }
     }
-		
 }

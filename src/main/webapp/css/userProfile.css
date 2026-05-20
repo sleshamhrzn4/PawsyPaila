@@ -1,9 +1,7 @@
 @charset "UTF-8";
 
 body {
-    height: auto !important;
-    overflow-y: auto !important;
-    overflow-x: hidden;
+    
     margin: 0;
     padding: 0;
     background-color: #FDF8F0;

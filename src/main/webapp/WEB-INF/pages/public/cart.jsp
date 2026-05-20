@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
@@ -49,6 +50,14 @@
                                 <p class="item-name">${entry.value.product.productName}</p>
                                 <p class="item-price">Rs. ${entry.value.product.productPrice}</p>
                             </div>
+                            <div class="quantity-control">
+                                <a href="${pageContext.request.contextPath}/cart?action=decrease&productId=${entry.key}"
+                                   class="qty-btn">−</a>
+                                <span class="qty-num">${entry.value.quantity}</span>
+                                <a href="${pageContext.request.contextPath}/cart?action=increase&productId=${entry.key}"
+                                   class="qty-btn">+</a>
+                            </div>
+                            
                             <div class="item-actions">
                                 <a href="${pageContext.request.contextPath}/cart?action=remove&productId=${entry.key}"
                                    class="remove-btn"

@@ -80,7 +80,7 @@
         <div class="shop-layout">
             <div class="shop-sidebar">
                 <h2>ITEM SHOP</h2>
-                <a href="${pageContext.request.contextPath}/shop" class="btn-shop">Shop Now</a>
+                <a href="${pageContext.request.contextPath}/products" class="btn-shop">Shop Now</a>
             </div>
             <div class="items-grid">
                 <c:choose>

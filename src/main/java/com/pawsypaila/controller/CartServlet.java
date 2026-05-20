@@ -17,7 +17,7 @@ import com.pawsypaila.model.UserModel;
 public class CartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // ── CartItem inner class with proper getters for JSP EL ──
+    
     public static class CartItem {
         private ProductModel product;
         private int quantity;
@@ -80,6 +80,38 @@ public class CartServlet extends HttpServlet {
                 int productId = Integer.parseInt(productIdStr);
                 Map<Integer, CartItem> cart = getCart(request.getSession());
                 cart.remove(productId);
+            }
+            response.sendRedirect(request.getContextPath() + "/cart");
+            return;
+        }
+     // ── Increase quantity ──
+        if ("increase".equals(action)) {
+            String productIdStr = request.getParameter("productId");
+            if (productIdStr != null) {
+                int productId = Integer.parseInt(productIdStr);
+                Map<Integer, CartItem> cart = getCart(request.getSession());
+                if (cart.containsKey(productId)) {
+                    cart.get(productId).setQuantity(cart.get(productId).getQuantity() + 1);
+                }
+            }
+            response.sendRedirect(request.getContextPath() + "/cart");
+            return;
+        }
+
+        // ── Decrease quantity ──
+        if ("decrease".equals(action)) {
+            String productIdStr = request.getParameter("productId");
+            if (productIdStr != null) {
+                int productId = Integer.parseInt(productIdStr);
+                Map<Integer, CartItem> cart = getCart(request.getSession());
+                if (cart.containsKey(productId)) {
+                    int currentQty = cart.get(productId).getQuantity();
+                    if (currentQty > 1) {
+                        cart.get(productId).setQuantity(currentQty - 1);
+                    } else {
+                        cart.remove(productId); // remove if qty reaches 0
+                    }
+                }
             }
             response.sendRedirect(request.getContextPath() + "/cart");
             return;

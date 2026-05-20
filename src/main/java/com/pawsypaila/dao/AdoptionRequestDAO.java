@@ -30,7 +30,7 @@ public class AdoptionRequestDAO {
 
 	    ResultSet rs = pst.getGeneratedKeys();
 	    if (rs.next()) {
-	        model.setAdoptionId(rs.getInt(1)); // set generated ID back on model
+	        model.setAdoptionId(rs.getInt(1)); 
 	    }
 
 	    rs.close();
@@ -38,7 +38,7 @@ public class AdoptionRequestDAO {
 	    con.close();
 	}
  
-    // ── GET ALL REQUESTS ─────────────────────────────────────────────────────
+  
     public List<AdoptionRequestModel> getAllRequests() throws Exception {
         List<AdoptionRequestModel> requests = new ArrayList<>();
 
@@ -105,7 +105,7 @@ public class AdoptionRequestDAO {
 
             String sql = "SELECT ar.adoptionId, ar.petId, ar.AdoptionStatus, p.petName " +
                          "FROM adoptionrequest ar " +
-                         "JOIN pets p ON ar.petId = p.petId " +
+                         "JOIN pet p ON ar.petId = p.petId " +
                          "WHERE ar.userId = ?";
 
             PreparedStatement pst = con.prepareStatement(sql);

@@ -92,6 +92,7 @@ body {
     text-decoration: none;
     width: fit-content;
     transition: background 0.2s, transform 0.2s;
+    border: none; 
 }
 
 .btn-adopt:hover {

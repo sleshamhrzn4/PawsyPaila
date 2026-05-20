@@ -1,231 +1,214 @@
 @charset "UTF-8";
 
-
- 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
- 
+
 body {
     font-family: 'Nunito', system-ui, sans-serif;
     background-color: #FDF8F0;
-    height: 100vh;
-    overflow: hidden;
-    margin: 0;
 }
- 
 
 .flex {
     display: flex;
-    height: 100vh;
-    overflow: hidden;
     background-color: #FDF8F0;
-    width: 100%;
+    height: 100vh;
 }
- 
-/* =============== MAIN CONTENT =============== */
+
 .main-content {
     flex: 1;
     padding: 30px 35px;
-    height: 100vh;
-    overflow-y: auto;
     background-color: #FDF8F0;
     min-width: 0;
-}
- 
-/* =============== PAGE HEADER (Welcome Box) =============== */
-.page-header {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    margin-bottom: 20px;
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 20px 28px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-    border: 1px solid #e2e8f0;
-}
- 
-.page-header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    color: #1e2937;
-}
- 
-.page-header i {
-    font-size: 22px;
-    color: #14b8a6;
-}
- 
-/* =============== CARD =============== */
-.card {
-    background-color: #ffffff;
-    border-radius: 16px;
-    padding: 28px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
-    border: 1px solid #e2e8f0;
-    height: calc(100vh - 160px);
     overflow-y: auto;
 }
- 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 26px;
-    padding-bottom: 18px;
-    border-bottom: 1px solid #f1f5f9;
-}
- 
-.card-header h2 {
-    font-size: 20px;
-    font-weight: 700;
-    color: #1e2937;
-}
 
-.desc-cell {
-    max-width: 100px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
- 
-
-.btn-add,
-.btn-edit {
-    background-color: #14b8a6;
-    color: white;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Nunito', system-ui, sans-serif;
-    cursor: pointer;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-}
- 
-.btn-add:hover,
-.btn-edit:hover {
-    background-color: #0f9b8a;
-    transform: translateY(-1px);
-}
- 
-.btn-delete {
-    background-color: #ef4444;
-    color: white;
-    border: none;
-    padding: 8px 18px;
-    border-radius: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: 'Nunito', system-ui, sans-serif;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-}
- 
-.btn-delete:hover {
-    background-color: #dc2626;
-    transform: translateY(-1px);
-}
- 
-
-.pets-table {
-    width: 100%;
-    border-collapse: collapse;
-}
- 
-.pets-table thead tr th {
-    text-align: left;
-    font-size: 13.5px;
-    font-weight: 600;
-    color: #64748b;
-    padding: 0 16px 16px 16px;
-    border-bottom: 2px solid #e2e8f0;
-}
- 
-.pets-table tbody tr {
-    border-bottom: 1px solid #f1f5f9;
-}
- 
-.pets-table tbody tr:hover {
-    background-color: #f8fafd;
-}
- 
-.pets-table tbody tr td {
-    padding: 16px;
-    font-size: 15px;
-    color: #334155;
-}
- 
-/* =============== PET NAME CELL =============== */
-.pet-name-cell {
+/* Top Header */
+.top-header {
     display: flex;
     align-items: center;
     gap: 14px;
-}
- 
-.pet-avatar {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    overflow: hidden;          /* ← keeps image inside the circle */
-    background-color: #14b8a6;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
+    margin-bottom: 24px;
+    background-color: #ffffff;
+    border-radius: 16px;
+    padding: 16px 28px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e2e8f0;
     flex-shrink: 0;
 }
 
-.pet-avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.top-header i {
+    color: #14b8a6;
+    font-size: 22px;
+    margin-right: 8px;
 }
- 
-/* =============== ALERTS =============== */
-.alert {
-    padding: 15px 22px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+
+.top-header h1 {
+    flex: 1;
+    font-size: 22px;
+    font-weight: 700;
+    color: #1e2937;
+}
+
+.btn-home {
+    background-color: #14b8a6;
+    color: white;
+    padding: 9px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
     font-size: 15px;
+    transition: background-color 0.2s ease;
 }
- 
+
+.btn-home:hover {
+    background-color: #0f9b8a;
+}
+
+/* Add Pet Card */
+.add-pet-card {
+    background: white;
+    width: 100%;
+    max-width: 550px;
+    margin: 0 auto;
+    padding: 40px 55px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.add-pet-card h2 {
+    font-size: 26px;
+    margin-bottom: 32px;
+    color: #1e2937;
+    font-weight: 700;
+}
+
+/* Image Upload */
+.pet-avatar-upload {
+    margin-bottom: 30px;
+}
+
+.avatar-circle {
+    width: 82px;
+    height: 82px;
+    background: #14b8a6;
+    color: white;
+    border-radius: 50%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    box-shadow: 0 4px 15px rgba(20, 184, 166, 0.25);
+    overflow: hidden;
+    transition: box-shadow 0.3s ease;
+}
+
+.avatar-circle:hover {
+    box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
+}
+
+/* Form Groups */
+.form-group {
+    margin-bottom: 17px;
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #374151;
+    font-size: 14.5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 15px;
+    font-family: 'Nunito', system-ui, sans-serif;
+    background-color: #fff;
+    transition: all 0.3s ease;
+    color: #1e2937;
+}
+
+.form-group textarea {
+    height: 78px;
+    resize: none;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #14b8a6;
+    box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #aab0b8;
+}
+
+/* Submit Button */
+.btn-add {
+    background-color: #14b8a6;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    font-size: 16.5px;
+    font-weight: 700;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 25px;
+    width: 100%;
+    font-family: 'Nunito', system-ui, sans-serif;
+    transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+    background-color: #0f9b8a;
+    transform: translateY(-2px);
+}
+
+/* Alerts */
+.alert {
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 .alert-success {
-    background-color: #d1fae5;
+    background: #d1fae5;
     color: #0f766e;
     border: 1px solid #a7f3d0;
 }
- 
+
 .alert-error {
-    background-color: #fee2e2;
+    background: #fee2e2;
     color: #b91c1c;
     border: 1px solid #fecaca;
 }
- 
-/* =============== NO PETS =============== */
-.no-pets {
-    text-align: center;
-    padding: 80px 30px;
-    color: #94a3b8;
-    font-size: 16px;
-    font-weight: 500;
-}
- 
-/* =============== RESPONSIVE =============== */
+
 @media (max-width: 768px) {
     .main-content {
         padding: 20px;
+    }
+
+    .add-pet-card {
+        padding: 30px 25px;
+        max-width: 100%;
     }
 }

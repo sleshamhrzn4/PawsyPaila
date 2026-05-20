@@ -95,7 +95,7 @@ public class PetDAO {
         try (Connection con = DBconfig.getConnection();
              PreparedStatement pst = con.prepareStatement(sql)) {
 
-            pst.setString(1, "%" + keyword + "%");  // partial match anywhere in name
+            pst.setString(1, "%" + keyword + "%");  
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -112,7 +112,7 @@ public class PetDAO {
         try (Connection con = DBconfig.getConnection();
              PreparedStatement pst = con.prepareStatement(sql)) {
 
-            pst.setString(1, letter + "%");  // only names starting with the letter
+            pst.setString(1, letter + "%");  
             ResultSet rs = pst.executeQuery();
 
             while (rs.next()) {
@@ -139,7 +139,7 @@ public class PetDAO {
         return pets;
     }
 
-    // ── Shared row mapper ───────────────────────────────────────────────────
+    //  Shared row mapper 
     private PetModel mapRow(ResultSet rs) throws Exception {
         PetModel pet = new PetModel();
         pet.setPetId(rs.getInt("petId"));

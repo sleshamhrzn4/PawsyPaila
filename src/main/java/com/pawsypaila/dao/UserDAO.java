@@ -12,7 +12,7 @@ import com.pawsypaila.utils.DBconfig;
 
 public class UserDAO {
 
-    //INSERT
+    // INSERT
     public void insertUser(String fullName, String phone, String email,
                            String password, String address, int age,
                            String gender, boolean active, String profileImg)
@@ -20,8 +20,8 @@ public class UserDAO {
 
         Connection con = DBconfig.getConnection();
 
-        String sql = "INSERT INTO user (fullName, phone, email, password, address, age, gender, active, profileImg) "
-                   + "VALUES (?,?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO user (fullName, phone, email, password, address, age, gender, active, profileImg, role) "
+                   + "VALUES (?,?,?,?,?,?,?,?,?,?)";
 
         PreparedStatement pst = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         pst.setString(1, fullName);
@@ -33,6 +33,7 @@ public class UserDAO {
         pst.setString(7, gender);
         pst.setBoolean(8, active);
         pst.setString(9, profileImg);
+        pst.setString(10, "user"); 
 
         pst.executeUpdate();
         ResultSet rs = pst.getGeneratedKeys();
@@ -40,17 +41,16 @@ public class UserDAO {
             System.out.println("New user inserted with ID: " + rs.getInt(1));
         }
         rs.close();
-
         pst.close();
         con.close();
     }
 
-    //SELECT ALL
+ 
     public List<UserModel> getAllUsers() throws Exception {
         List<UserModel> users = new ArrayList<>();
         Connection con = DBconfig.getConnection();
 
-        String sql = "SELECT * FROM user";
+        String sql = "SELECT * FROM user WHERE role = 'user'"; 
         PreparedStatement pst = con.prepareStatement(sql);
         ResultSet rs = pst.executeQuery();
 
@@ -76,7 +76,7 @@ public class UserDAO {
         return users;
     }
 
-    //SELECT BY EMAIL
+    // SELECT BY EMAIL
     public UserModel getUserByEmail(String email) throws Exception {
         UserModel user = null;
         Connection con = DBconfig.getConnection();
@@ -106,9 +106,9 @@ public class UserDAO {
         con.close();
         return user;
     }
-    
 
-    //ACTIVATE / DEACTIVATE
+ 
+    //Update User Status
     public boolean setUserStatus(int userId, boolean active) throws Exception {
         Connection con = DBconfig.getConnection();
 
@@ -123,7 +123,9 @@ public class UserDAO {
         return success;
     }
 
-
+    
+    
+    // UPDATE USER
     public int updateUser(int userId, String fullName, String phone, String email,
                           String password, String address, int age, String gender,
                           boolean active, String profileImg) throws Exception {

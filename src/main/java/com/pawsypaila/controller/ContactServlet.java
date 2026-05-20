@@ -43,10 +43,36 @@ public class ContactServlet extends HttpServlet {
 	     
 	     if (email == null || email.trim().isEmpty() ||
 	             message == null || message.trim().isEmpty()) {
-	             request.setAttribute("error", "All fields are required.");
+	    	 	request.setAttribute("error", "Please fill out the form");
+	    	     request.setAttribute("emailValue", email);
+	    	     request.setAttribute("messageValue", message);
 	             doGet(request, response);
 	             return;
 	         }
+	     
+	     if (!email.contains("@") || !email.contains(".")) {
+	    	 	request.setAttribute("error", "Please enter a valid email.");
+	    	    request.setAttribute("emailValue", email);
+	    	    request.setAttribute("messageValue", message);
+	    	    doGet(request, response);
+	    	    return;
+	    	}
+	     
+	     if (message.trim().length() < 10) {
+	    	    request.setAttribute("error", "Message must be at least 10 characters.");
+	    	    request.setAttribute("emailValue", email);
+	    	    request.setAttribute("messageValue", message);
+	    	    doGet(request, response);
+	    	    return;
+	    	}
+	     
+	     if (message.trim().length() > 1000) {
+	    	    request.setAttribute("error", "Message cannot exceed 1000 characters.");
+	    	    request.setAttribute("emailValue", email);
+	    	    request.setAttribute("messageValue", message);
+	    	    doGet(request, response);
+	    	    return;
+	    	}
 	     
 	        ContactDAO dao = new ContactDAO();
 	        try {

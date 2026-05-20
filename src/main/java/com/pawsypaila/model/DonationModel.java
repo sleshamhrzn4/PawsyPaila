@@ -8,6 +8,7 @@ public class DonationModel {
     private double donationAmount;
     private Date donationDate;
     private String donationPaymentMethod;
+    private String userName;
 
     public int getDonationId() { return donationId; }
     public void setDonationId(int donationId) { this.donationId = donationId; }
@@ -23,6 +24,9 @@ public class DonationModel {
 
     public String getDonationPaymentMethod() { return donationPaymentMethod; }
     public void setDonationPaymentMethod(String donationPaymentMethod) { this.donationPaymentMethod = donationPaymentMethod; }
+    
+    public String getUserName() { return userName; }
+    public void setUserName(String userName) { this.userName = userName; }
 }
 
 

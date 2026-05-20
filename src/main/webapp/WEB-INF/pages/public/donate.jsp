@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/donation.css">
-<title>Donation-PawsyPaila</title>
+<title>Donation - Pawsy Paila</title>
 </head>
 <body>
 <%@ include file="header.jsp"%>
@@ -20,19 +20,26 @@
 		
 		<h1>Donate</h1>
 		<p>Your donation saves lives. 100% goes directly to shelter care, vet bills, and adoptive programs.</p>
-		    <%-- Success Message --%>
+		
+		    <!-- Success Message -->
             <c:if test="${not empty success}">
                 <p class="msg-success">${success}</p>
             </c:if>
 
-            <%-- Error Message --%>
+            <!-- Error Message -->
             <c:if test="${not empty error}">
                 <p class="msg-error">${error}</p>
             </c:if>
+            
 		<form action="${pageContext.request.contextPath}/donate" method="post">
-			<input type="number" name="donationAmount"  placeholder="Amount (Rs.)" class="form-control"  value="${param.donationAmount}" min="1" required>
-			<input name="donationDate" placeholder="Date" class="form-control" type="date" value="${param.donationDate}" required>
-			<input name="donationPaymentMethod" placeholder="Payment Method" class="form-control" value="${param.donationPaymentMethod}" required>
+			<input type="number" name="donationAmount"  placeholder="Amount (Rs.)" class="form-control" value="${donationAmount}">
+			<input name="donationDate" placeholder="Date" class="form-control" type="date" value="${donationDate}">
+			<select name="donationPaymentMethod" class="form-control">
+			    <option value=""> Select Payment Method </option>
+    			<option value="eSewa">eSewa</option>
+   	 			<option value="Khalti">Khalti</option>
+    			<option value="Bank Transfer">Bank Transfer</option>
+			</select>
 			<button type="submit" class="Donate-button">Donate</button>
 		</form>
 		</div>

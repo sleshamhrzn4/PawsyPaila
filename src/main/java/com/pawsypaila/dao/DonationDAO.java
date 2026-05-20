@@ -3,7 +3,12 @@ package com.pawsypaila.dao;
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.pawsypaila.model.DonationModel;
 import com.pawsypaila.utils.DBconfig;
 
 
@@ -30,4 +35,32 @@ public boolean insertDonation(int userId, double donationAmount,
 	 		return false;
 	 		}
 	}
+public List<DonationModel> getAllDonations() {
+	List<DonationModel> donationList = new ArrayList<>();
+	
+	String sql = "SELECT d.donationId, d.donationAmount, d.donationDate, " +
+            "d.donationPaymentMethod, u.fullName " +
+            "FROM Donation d " +
+            "JOIN User u ON d.userId = u.userId " +
+            "ORDER BY d.donationDate DESC";
+	
+	try (Connection con = DBconfig.getConnection();
+	         PreparedStatement pst = con.prepareStatement(sql);
+	         ResultSet rs = pst.executeQuery()) {
+		
+		 while (rs.next()) {
+	            DonationModel donation = new DonationModel();
+	            donation.setDonationId(rs.getInt("donationId"));
+	            donation.setDonationAmount(rs.getDouble("donationAmount"));
+	            donation.setDonationDate(rs.getDate("donationDate"));
+	            donation.setDonationPaymentMethod(rs.getString("donationPaymentMethod"));
+	            donation.setUserName(rs.getString("fullName"));
+	            donationList.add(donation);
+		 		}
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+			return donationList;
+		}
 }
+

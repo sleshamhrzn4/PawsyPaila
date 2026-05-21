@@ -1,3 +1,14 @@
+/**
+ * UserDashboardServlet - Loads the logged-in user's dashboard.
+ * Mapped to URL: /userdashboard
+ *
+ * Methods:
+ * - doGet()  : Checks if user is logged in via session, fetches their adoption requests
+ *              via AdoptionRequestDAO.getRequestsByUserId() and forwards to userDashboard.jsp.
+ *              Redirects to /login if user is not logged in.
+ * - doPost() : Delegates to doGet().
+ */
+
 package com.pawsypaila.controller;
 
 import com.pawsypaila.dao.AdoptionRequestDAO;

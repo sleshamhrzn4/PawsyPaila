@@ -14,7 +14,7 @@ body {
     margin: 0;
 }
 
-/* =============== LAYOUT =============== */
+
 .flex {
     display: flex;
     height: 100vh;
@@ -23,7 +23,7 @@ body {
     width: 100%;
 }
 
-/* =============== MAIN CONTENT =============== */
+
 .main-content {
     flex: 1;
     padding: 30px 35px;
@@ -33,7 +33,7 @@ body {
     min-width: 0;
 }
 
-/* =============== WELCOME HEADER =============== */
+
 .welcome-header {
     display: flex;
     align-items: center;
@@ -87,7 +87,7 @@ body {
     flex-direction: column;
 }
 
-/* =============== CARD HEADER =============== */
+
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -104,7 +104,6 @@ body {
     color: #1e2937;
 }
 
-/* =============== BUTTONS =============== */
 .btn-add,
 .btn-edit {
     background-color: #14b8a6;
@@ -151,7 +150,7 @@ body {
     transform: translateY(-1px);
 }
 
-/* =============== TABLE WRAPPER (scrollable) =============== */
+
 .table-wrapper {
     flex: 1;
     overflow-y: auto;
@@ -159,7 +158,7 @@ body {
     border-radius: 8px;
 }
 
-/* custom scrollbar */
+
 .table-wrapper::-webkit-scrollbar {
     width: 6px;
 }
@@ -175,7 +174,7 @@ body {
     background: #94a3b8;
 }
 
-/* =============== TABLE =============== */
+
 .product-table {
     width: 100%;
     border-collapse: collapse;
@@ -212,7 +211,7 @@ body {
     color: #334155;
 }
 
-/* =============== NAME CELL =============== */
+
 .name-cell {
     display: flex;
     align-items: center;
@@ -237,14 +236,14 @@ body {
     font-size: 15px;
 }
 
-/* =============== PRICE CELL =============== */
+
 .price-cell {
     white-space: nowrap;
     font-weight: 600;
     color: #334155;
 }
 
-/* =============== DESCRIPTION CELL =============== */
+
 .desc-cell {
     max-width: 100px;
     white-space: nowrap;
@@ -252,13 +251,13 @@ body {
     text-overflow: ellipsis;
 }
 
-/* =============== ACTION CELL =============== */
+
 .action-cell {
     white-space: nowrap;
     text-align: right;
 }
 
-/* =============== ALERTS =============== */
+
 .alert {
     padding: 15px 22px;
     border-radius: 10px;
@@ -279,7 +278,6 @@ body {
     border: 1px solid #fecaca;
 }
 
-/* =============== EMPTY STATE =============== */
 .no-data {
     text-align: center;
     padding: 80px 30px;
@@ -288,7 +286,6 @@ body {
     font-weight: 500;
 }
 
-/* =============== RESPONSIVE =============== */
 @media (max-width: 768px) {
     .main-content {
         padding: 20px;

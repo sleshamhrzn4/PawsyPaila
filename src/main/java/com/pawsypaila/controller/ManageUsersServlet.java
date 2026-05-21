@@ -1,3 +1,12 @@
+/**
+ * ManageUsersServlet - Handles admin operations for managing users.
+ * Mapped to URL: /manageUsers
+ *
+ * Methods:
+ * - doGet()  : Fetches all users via UserDAO.getAllUsers() and forwards to manageUsers.jsp.
+ * - doPost() : Handles activate/deactivate actions via UserDAO.setUserStatus()
+ *              and redirects to /manageUsers.
+ */
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

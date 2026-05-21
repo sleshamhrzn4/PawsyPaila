@@ -1,3 +1,15 @@
+/**
+ * ProductServlet - Loads and filters the product listing page.
+ * Mapped to URL: /products
+ *
+ * Methods:
+ * - doGet()  : Fetches all products via ProductDAO.getAllProducts(), then applies:
+ *              filterBy   → filters products by name keyword.
+ *              minPrice / maxPrice → filters products by price range.
+ *              sortBy     → sorts by priceLow, priceHigh, or nameAZ.
+ *              Forwards to product.jsp.
+ * - doPost() : Delegates to doGet().
+ */
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

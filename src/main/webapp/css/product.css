@@ -357,6 +357,34 @@ body {
     background: #ef4444;
 }
 
+.alert {
+    padding: 12px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+}
+
+.alert-success {
+    background: #d1fae5;
+    color: #059669;
+    border: 1.5px solid #6ee7b7;
+}
+
+.alert-error {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1.5px solid #fca5a5;
+}
+
+.alert-error a {
+    color: #dc2626;
+    font-weight: 700;
+    margin-left: 6px;
+    text-decoration: underline;
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 960px) {
     .products-grid {
@@ -403,4 +431,3 @@ body {
         padding: 12px 20px;
     }
 }
-

@@ -91,7 +91,8 @@
                 </div>
             </div>
         </section>
-		<%@ include file="/WEB-INF/pages/public/footer.jsp" %>
+		
     </main>
+    <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
 </body>
 </html>

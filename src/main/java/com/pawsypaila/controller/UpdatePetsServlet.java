@@ -1,3 +1,19 @@
+/**
+ * UpdatePetsServlet - Handles editing an existing pet by the admin.
+ * Mapped to URL: /updatePets
+ *
+ * Methods:
+ * - doGet()        : Fetches pet via PetDAO.getPetById() and forwards to updatePets.jsp.
+ *                    Redirects to /adminPets if pet is not found.
+ * - doPost()       : Validates pet fields, handles image upload, updates pet via
+ *                    PetDAO.updatePet() and redirects to /adminPets on success.
+ * - reloadEditPage(): Helper method to reload updatePets.jsp with pet data and error message.
+ *
+ * Validations:
+ * - Pet name must not be empty or contain numbers.
+ * - Pet age must be a valid number between 0 and 20.
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

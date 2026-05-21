@@ -1,3 +1,19 @@
+/**
+ * RegisterServlet - Handles new user registration.
+ * Mapped to URL: /register
+ *
+ * Methods:
+ * - doGet()  : Forwards the request to register.jsp.
+ * - doPost() : Validates input via RegisterService.validate(), handles profile image upload
+ *              via FileUploadUtil, hashes password via PasswordUtil.getHashPassword(),
+ *              saves user via UserDAO.insertUser() and redirects to /login on success.
+ *
+ * Validations:
+ * - All fields validated via RegisterService.
+ * - Uploaded file must be a valid image.
+ * - Account is set to inactive by default until admin activates it.
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

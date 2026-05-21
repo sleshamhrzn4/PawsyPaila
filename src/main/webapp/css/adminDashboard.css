@@ -19,21 +19,18 @@ body {
     overflow: hidden;
 }
 
-/* Sidebar stays fixed - controlled by adminSidebar.css */
-
-/* Main content scrolls */
 .main-content {
     flex: 1;
     padding: 28px 32px;
     display: flex;
     flex-direction: column;
     gap: 24px;
-    overflow-y: auto;   /* only this scrolls */
+    overflow-y: auto;   
     height: 100vh;
     background-color: #FDF8F5;
 }
 
-/* ── Welcome Banner ── */
+
 .welcome-header {
     display: flex;
     align-items: center;
@@ -94,14 +91,13 @@ body {
     color: #1a1a1a;
 }
 
-/* ── Top Row: Adoption + Manage Pets ── */
 .top-row {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
 }
 
-/* ── Cards ── */
+
 .table-card {
     background: #ffffff;
     border-radius: 16px;
@@ -117,7 +113,7 @@ body {
     margin-bottom: 18px;
 }
 
-/* ── Tables ── */
+
 .table-card table {
     width: 100%;
     border-collapse: collapse;
@@ -150,7 +146,7 @@ body {
     background: #f9fafb;
 }
 
-/* ── Product table specific ── */
+
 .name-cell {
     display: flex;
     align-items: center;
@@ -173,7 +169,7 @@ body {
     line-height: 1.5;
 }
 
-/* ── Manage header ── */
+
 .manage-header {
     display: flex;
     align-items: center;
@@ -188,7 +184,7 @@ body {
     color: #1a1a1a;
 }
 
-/* ── User icon ── */
+
 .user-icon-sm {
     display: inline-flex;
     align-items: center;
@@ -203,7 +199,7 @@ body {
     vertical-align: middle;
 }
 
-/* ── Buttons ── */
+
 a { text-decoration: none; }
 
 .btn-view, .btn-edit, .btn-add {
@@ -226,7 +222,6 @@ a { text-decoration: none; }
 
 
 
-/* ── Responsive ── */
 @media (max-width: 1100px) {
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
     .top-row { grid-template-columns: 1fr; }

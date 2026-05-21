@@ -19,13 +19,22 @@
 <div class="cart-page">
     <div class="cart-card">
     
-    <c:if test="${not empty successMessage}">
-            <div class="alert-success" style="background-color: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; text-align: center; font-family: 'Poppins', sans-serif; font-weight: 500; border: 1px solid #c3e6cb;">
-                <i class="fa-solid fa-circle-check" style="margin-right: 5px;"></i> ${successMessage}
-            </div>
-        </c:if>
+    <c:if test="${not empty sessionScope.message}">
+        <div class="alert alert-success">
+            ${sessionScope.message}
+        </div>
+        <c:remove var="message" scope="session"/>
+    </c:if>
 
-        <!-- Cart Icon -->
+  
+    <c:if test="${not empty sessionScope.error}">
+        <div class="alert alert-error">
+            ${sessionScope.error}
+        </div>
+        <c:remove var="error" scope="session"/>
+    </c:if>
+
+       
         <div class="cart-header">
             <i class="fa-solid fa-cart-shopping cart-icon"></i>
         </div>
@@ -50,6 +59,7 @@
                                 <p class="item-name">${entry.value.product.productName}</p>
                                 <p class="item-price">Rs. ${entry.value.product.productPrice}</p>
                             </div>
+                            <div class = "qty-controls">
                             <div class="quantity-control">
                                 <a href="${pageContext.request.contextPath}/cart?action=decrease&productId=${entry.key}"
                                    class="qty-btn">−</a>
@@ -58,25 +68,23 @@
                                    class="qty-btn">+</a>
                             </div>
                             
-                            <div class="item-actions">
-                                <a href="${pageContext.request.contextPath}/cart?action=remove&productId=${entry.key}"
-                                   class="remove-btn"
-                                   title="Remove">
-                                    <i class="fa-solid fa-trash"></i>
-                                </a>
-                            </div>
-                        </div>
+                            <a href="${pageContext.request.contextPath}/cart?action=remove&productId=${entry.key}"
+						           class="remove-btn" title="Remove">
+						            <i class="fa-solid fa-trash"></i>
+						        </a>
+						    </div>
+						</div>
                         <div class="divider"></div>
                     </c:forEach>
                 </div>
 
-                <!-- Total -->
+               
                 <div class="cart-total">
                     <span class="total-label">Total</span>
                     <span class="total-amount">Rs. ${total}</span>
                 </div>
 
-                <!-- Checkout -->
+              
                 <div class="cart-footer">
                     <form action="${pageContext.request.contextPath}/cart" method="POST" style="width: 100%;">
                         <input type="hidden" name="action" value="checkout">

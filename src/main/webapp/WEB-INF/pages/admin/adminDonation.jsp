@@ -18,10 +18,10 @@
 
     <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
 
-    <!-- Main Content -->
+   
     <div class="main-content">
 
-        <!-- Page Header -->
+       
         <div class="page-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>

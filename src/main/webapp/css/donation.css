@@ -7,7 +7,7 @@ body {
     font-family: "Poppins", sans-serif;
 }
 
-/* The Central Card */
+
 .card {
 	background: white;
     padding: 50px 40px;
@@ -19,7 +19,6 @@ body {
     z-index: 5;
 }
 
-/* Header Icon */
 .icon {
     background-color: white;
     width: 65px;
@@ -43,7 +42,7 @@ p {
     margin-bottom: 30px; 
 }
 
-/* Form Inputs */
+
 .form-control {
     width: 100%;
     padding: 15px;
@@ -60,7 +59,7 @@ p {
     border: 1px solid #008080;
 }
 
-/* Submit Button */
+
 .Donate-button {
     background-color: #008080;
     color: white;
@@ -78,7 +77,7 @@ p {
     transform: translateY(-1px);
 }
 
-/* Decorative Paw Prints */
+
 .paw {  
     position: absolute;
     width: 110px; 

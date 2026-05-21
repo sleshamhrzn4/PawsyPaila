@@ -27,14 +27,14 @@
         <div class="add-pet-card">
             <h2>Add Product</h2>
 
-            <!-- success message -->
+           
             <c:if test="${not empty sessionScope.message}">
                 <div class="alert alert-success">
                     <i class="fa-solid fa-check"></i> ${sessionScope.message}
                 </div>
             </c:if>
 
-            <!-- error message -->
+       
             <c:if test="${not empty sessionScope.error}">
                 <div class="alert alert-error">
                     <i class="fa-solid fa-circle-exclamation"></i> ${sessionScope.error}

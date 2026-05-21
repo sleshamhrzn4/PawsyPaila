@@ -31,8 +31,7 @@ public class AddProductServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Clear stale session messages on fresh page load
-        SessionUtil.removeAttribute(request, "message");
-        SessionUtil.removeAttribute(request, "error");
+        
         request.getRequestDispatcher("/WEB-INF/pages/admin/addProduct.jsp").forward(request, response);
     }
 

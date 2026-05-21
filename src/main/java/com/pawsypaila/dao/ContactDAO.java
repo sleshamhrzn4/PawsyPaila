@@ -1,3 +1,11 @@
+/**
+ * ContactDAO - Handles all database operations for the 'Contact' table.
+ *
+ * Methods:
+ * - insertContact() : Inserts a new contact message with email. Returns true if successful.
+ *
+ * Uses DBconfig.getConnection() for database connectivity.
+ */
 package com.pawsypaila.dao;
 
 import java.sql.Connection;

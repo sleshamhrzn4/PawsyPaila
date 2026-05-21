@@ -17,12 +17,11 @@
 
 <%@ include file="/WEB-INF/pages/public/header.jsp" %>
 
-<!-- Page title -->
+
 <header class="pets-header">
     <h1>Our Pets</h1>
 </header>
 
-<!-- Search + Filter controls -->
 <div class="pets-controls">
 
     <form class="pets-search" method="get" action="${pageContext.request.contextPath}/pets" id="searchForm">
@@ -58,7 +57,7 @@
    
 </div>
 
-<!-- Pet listing -->
+
 <c:choose>
 
     <c:when test="${empty pets}">

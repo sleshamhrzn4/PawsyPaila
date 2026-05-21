@@ -1,4 +1,13 @@
-  package com.pawsypaila.controller;
+ /**
+ * AdminPetsServlet - Handles admin operations for managing pets.
+ * Mapped to URL: /adminPets
+ *
+ * Methods:
+ * - doGet()  : Fetches all pets via PetDAO.getAllPets() and forwards to adminPets.jsp.
+ * - doPost() : Handles delete action using PetDAO.deletePet() and redirects to /adminPets.
+ */
+
+package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

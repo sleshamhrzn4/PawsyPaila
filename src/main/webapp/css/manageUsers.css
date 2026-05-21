@@ -1,14 +1,6 @@
 
 @charset "UTF-8";
  
-/* =============================================
-   ADMIN MANAGE USERS CSS
-   ============================================= */
- 
-/* =============================================
-   ADMIN MANAGE USERS CSS
-   ============================================= */
- 
 * {
     margin: 0;
     padding: 0;
@@ -23,7 +15,7 @@ body {
     margin: 0;
 }
  
-/* =============== FLEX LAYOUT =============== */
+
 .flex {
     display: flex;
     height: 100vh;
@@ -32,7 +24,7 @@ body {
     width: 100%;
 }
  
-/* =============== MAIN CONTENT =============== */
+
 .main-content {
     flex: 1;
     padding: 30px 35px;
@@ -41,8 +33,7 @@ body {
     background-color: #FDF8F0;
     min-width: 0;
 }
- 
-/* =============== WELCOME BOX =============== */
+
 .welcome-box {
     display: flex;
     align-items: center;
@@ -65,8 +56,7 @@ body {
     font-size: 22px;
     color: #14b8a6;
 }
- 
-/* =============== PAGE HEADER =============== */
+
 .page-header {
     display: flex;
     align-items: center;
@@ -85,7 +75,7 @@ body {
     color: #14b8a6;
 }
  
-/* =============== CARD =============== */
+
 .card {
     background-color: #ffffff;
     border-radius: 16px;
@@ -108,8 +98,7 @@ body {
     font-weight: 700;
     color: #1e2937;
 }
- 
-/* =============== TABLE =============== */
+
 .users-table {
     width: 100%;
     border-collapse: collapse;
@@ -138,7 +127,7 @@ body {
     color: #334155;
 }
  
-/* =============== USER NAME CELL =============== */
+
 .user-name-cell {
     display: flex;
     align-items: center;
@@ -157,7 +146,7 @@ body {
     font-size: 17px;
 }
  
-/* =============== STATUS =============== */
+
 .status-active {
     color: #0f766e;
     font-weight: 600;
@@ -168,7 +157,7 @@ body {
     font-weight: 600;
 }
  
-/* =============== ACTION BUTTONS =============== */
+
 .action-cell {
     display: flex;
     gap: 8px;
@@ -199,7 +188,7 @@ body {
     transform: translateY(-1px);
 }
  
-/* =============== ALERTS =============== */
+
 .alert {
     padding: 15px 22px;
     border-radius: 10px;
@@ -219,7 +208,7 @@ body {
     border: 1px solid #fecaca;
 }
  
-/* =============== NO USERS =============== */
+
 .no-users {
     text-align: center;
     padding: 80px 30px;
@@ -228,7 +217,7 @@ body {
     font-weight: 500;
 }
  
-/* =============== RESPONSIVE =============== */
+
 @media (max-width: 768px) {
     .main-content {
         padding: 20px;

@@ -4,10 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<%--
-        Page setup, responsive layout rules, and loading 
-        external styles, fonts, and icons.
-    --%>
+	
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products - Pawsy Paila</title>
@@ -18,20 +15,32 @@
 </head>
 <body>
 
-<%-- Include the main navigation header at the top --%>
+
 <%@ include file="headerProduct.jsp" %>
 
   
 <div class="products-page">
     <h1 class="page-title">All Products</h1>
+    
+    <c:if test="${not empty sessionScope.message}">
+		    <div class="alert alert-success">
+		        ${sessionScope.message}
+		    </div>
+		   <c:remove var="message" scope="session"/>
+		</c:if>
+
+
+		<c:if test="${not empty sessionScope.error}">
+		    <div class="alert alert-error">
+		        ${sessionScope.error}
+		        <a href="${pageContext.request.contextPath}/login">Login here</a>
+		    </div>
+		    <c:remove var="error" scope="session"/>
+		</c:if>
 
     <div class="page-layout">
 
-        <%-- 
-            Sidebar filters
-            Lets users sort items and filter by price range.
-            Uses standard GET forms so parameters stay in the URL.
-        --%>
+       
         <aside class="sidebar">
             <form method="get" action="${pageContext.request.contextPath}/products" id="filterForm">
 
@@ -45,7 +54,7 @@
                     </select>
                 </div>
 
-				<%-- Inputs for min and max price filtering. --%>
+				
                 <div class="filter-group">
                     <h4>Price</h4>
                     <div class="price-range">
@@ -61,19 +70,12 @@
             </form>
         </aside>
 
-        <%-- 
-            Products layout list
-            Loops through the products array sent from the backend servlet.
-        --%>
+      
         <div class="products-grid">
             <c:forEach var="product" items="${products}">
                 <div class="product-card">
                 
-                <%-- 
-                        Product image placeholder
-                        Tries to load the specific image file. If it fails,
-                        it uses default.png as a backup automatically.
-                    --%>
+            
                     
                     <div class="product-image">
                         <img src="${pageContext.request.contextPath}/getImage?name=${product.productImage}&type=products"
@@ -83,10 +85,14 @@
                     <div class="product-info">
                         <h3>${product.productName}</h3>
                         <p class="price">Rs. ${product.productPrice}</p>
-                        <button class="add-to-cart"
-                                onclick="addToCart(${product.productId}, '${product.productName}')">
-                            <i class="fa-solid fa-cart-plus"></i> Add to Cart
-                        </button>
+                       <form method="post" action="${pageContext.request.contextPath}/cart">
+							    <input type="hidden" name="action" value="add">
+							    <input type="hidden" name="productId" value="${product.productId}">
+							    <input type="hidden" name="quantity" value="1">
+							    	<button type="submit" class="add-to-cart">
+							        	<i class="fa-solid fa-cart-plus"></i> Add to Cart
+							    	</button>
+							</form>
                     </div>
                 </div>
             </c:forEach>
@@ -104,50 +110,6 @@
 
 
    <%@ include file="/WEB-INF/pages/public/footer.jsp" %>
-
-
-
-<script>
-function addToCart(productId, productName) {
-    fetch('${pageContext.request.contextPath}/cart', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: 'action=add&productId=' + productId + '&quantity=1'
-    })
-    .then(res => {
-        if (res.ok) {
-            showToast(productName + ' added to cart!');
-            updateCartCount();
-        } else {
-            showToast('Please log in to add items to cart.', true);
-        }
-    })
-    .catch(() => showToast('Something went wrong.', true));
-}
-
-function updateCartCount() {
-    fetch('${pageContext.request.contextPath}/cart?action=count')
-    .then(res => res.text())
-    .then(count => {
-        const badge = document.getElementById('cart-count');
-        if (badge) badge.textContent = count;
-    }).catch(() => {});
-}
-
-function showToast(msg, isError = false) {
-    const toast = document.createElement('div');
-    toast.className = 'toast' + (isError ? ' toast-error' : '');
-    toast.textContent = msg;
-    document.body.appendChild(toast);
-    setTimeout(() => toast.classList.add('show'), 10);
-    setTimeout(() => {
-        toast.classList.remove('show');
-        setTimeout(() => toast.remove(), 400);
-    }, 2500);
-}
-
-updateCartCount();
-</script>
 
 </body>
 </html>

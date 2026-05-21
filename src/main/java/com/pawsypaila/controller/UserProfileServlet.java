@@ -1,3 +1,13 @@
+/**
+ * UserProfileServlet - Handles viewing and updating the logged-in user's profile.
+ * Mapped to URL: /userprofile
+ *
+ * Methods:
+ * - doGet()  : Checks if user is logged in via session and forwards to userProfile.jsp.
+ *              Redirects to /login if user is not logged in.
+ * - doPost() : Handles profile image upload, updates user details via UserDAO.updateUser(),
+ *              refreshes session with updated user data and forwards back to userProfile.jsp.
+ */
 package com.pawsypaila.controller;
 
 import com.pawsypaila.dao.UserDAO;

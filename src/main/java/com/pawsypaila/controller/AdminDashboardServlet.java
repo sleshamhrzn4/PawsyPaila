@@ -1,3 +1,14 @@
+/**
+ * AdminDashboardServlet - Loads summary data for the admin dashboard.
+ * Mapped to URL: /adminDashboard
+ *
+ * Methods:
+ * - doGet()  : Fetches total counts and lists of pets, products, and adoption requests
+ *              via PetDAO.getAllPets(), ProductDAO.getAllProducts(), and AdoptionRequestDAO.getAllRequests().
+ *              Forwards to adminDashboard.jsp.
+ * - doPost() : Delegates to doGet().
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

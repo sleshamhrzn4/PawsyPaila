@@ -1,3 +1,11 @@
+/**
+ * PetDetailServlet - Loads details for a single pet.
+ * Mapped to URL: /petDetail
+ *
+ * Methods:
+ * - doGet() : Fetches a pet via PetDAO.getPetById() and forwards to petDetail.jsp.
+ *             Redirects to /pets if pet is not found.
+ */
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

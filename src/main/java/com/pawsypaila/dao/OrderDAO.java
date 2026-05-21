@@ -66,7 +66,7 @@ public class OrderDAO {
         return orders;
     }
 
-    // Update order status (like: processing, shipped, delivered)
+    // Update order status 
     public int updateOrderStatus(int orderId, String orderStatus) throws Exception {
         Connection con = DBconfig.getConnection();
         String sql = "UPDATE `Order` SET orderStatus = ? WHERE orderId = ?";

@@ -30,7 +30,7 @@ body {
     min-height: 100vh;
 }
 
-/* ---------- Page Hero / Title ---------- */
+
 .pets-header {
     text-align: center;
     padding: 48px 24px 20px;
@@ -43,7 +43,7 @@ body {
     color: var(--color-text);
 }
 
-/* ---------- Search & Filter Bar ---------- */
+
 .pets-controls {
     display: flex;
     align-items: center;
@@ -145,7 +145,7 @@ body {
     background: rgba(255, 255, 255, 0.5);
 }
 
-/* ---------- A–Z Letter Filter ---------- */
+
 .pets-letter-filter {
     width: 100%;
     display: flex;
@@ -192,13 +192,13 @@ body {
     color: var(--color-white);
 }
 
-/* "All" button is slightly wider */
+
 .letter-btn:first-child {
     width: auto;
     padding: 0 12px;
 }
 
-/* ---------- Pets Grid ---------- */
+
 .pets-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -237,7 +237,7 @@ body {
     }
 }
 
-/* ---------- Pet Card Link ---------- */
+
 .pet-card-link {
     text-decoration: none;
     color: inherit;
@@ -245,7 +245,7 @@ body {
     width: 100%;
 }
 
-/* ---------- Pet Card ---------- */
+
 .pet-card {
     background: var(--color-card-bg);
     border-radius: var(--radius-card);
@@ -335,7 +335,7 @@ body {
     text-align: center;
 }
 
-/* ---------- Empty State ---------- */
+
 .empty-state {
     display: flex;
     flex-direction: column;

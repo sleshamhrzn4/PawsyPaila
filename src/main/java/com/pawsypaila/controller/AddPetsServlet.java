@@ -1,3 +1,18 @@
+/**
+ * AddPetsServlet - Handles adding a new pet by the admin.
+ * Mapped to URL: /addPets
+ *
+ * Methods:
+ * - doGet()  : Forwards the request to addPets.jsp.
+ * - doPost() : Validates pet details, handles image upload via FileUploadUtil,
+ *              saves the pet using PetDAO.addPet(), and redirects to /adminPets.
+ *
+ * Validations:
+ * - Pet name must not be empty or contain numbers.
+ * - Pet age must be a valid number between 0 and 20.
+ * - Uploaded file must be a valid image.
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

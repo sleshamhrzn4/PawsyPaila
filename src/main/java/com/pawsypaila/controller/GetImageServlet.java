@@ -1,4 +1,13 @@
 package com.pawsypaila.controller;
+/**
+ * GetImageServlet - Serves uploaded images from the server file system.
+ * Mapped to URL: /getImage
+ *
+ * Methods:
+ * - doGet() : Reads 'name' and 'type' parameters to locate and stream the image file.
+ *             Supports types: 'pets', 'products', and 'userProfile'.
+ *             Falls back to default.png if the requested image is not found.
+ */
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

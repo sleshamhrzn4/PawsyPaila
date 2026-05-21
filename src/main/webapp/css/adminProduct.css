@@ -16,7 +16,7 @@ body {
     margin: 0;
 }
  
-/* ── LAYOUT ── */
+
 .flex {
     display: flex;
     height: 100vh;
@@ -24,7 +24,7 @@ body {
     overflow: hidden;
 }
  
-/* ── MAIN CONTENT ── */
+
 .main-content {
     flex: 1;
     padding: 24px 24px 24px 20px;
@@ -37,7 +37,7 @@ body {
     overflow: hidden;
 }
  
-/* ── WELCOME HEADER ── */
+
 .welcome-header {
     display: flex;
     align-items: center;
@@ -77,7 +77,7 @@ body {
     color: #fff;
 }
  
-/* ── CARD ── */
+
 .card {
     background: #ffffff;
     border-radius: 14px;
@@ -90,7 +90,7 @@ body {
     overflow: hidden;
 }
  
-/* ── CARD HEADER ── */
+
 .card-header {
     display: flex;
     justify-content: space-between;
@@ -121,7 +121,7 @@ body {
     background: #0f9b8a;
 }
  
-/* ── ALERTS ── */
+
 .alert {
     padding: 13px 18px;
     border-radius: 9px;
@@ -143,7 +143,7 @@ body {
     border: 1px solid #fecaca;
 }
  
-/* ── SCROLLABLE TABLE WRAPPER ── */
+
 .table-wrapper {
     overflow-y: auto;
     flex: 1;
@@ -151,7 +151,7 @@ body {
     border-radius: 8px;
 }
  
-/* custom scrollbar */
+
 .table-wrapper::-webkit-scrollbar {
     width: 6px;
 }
@@ -167,7 +167,6 @@ body {
     background: #94a3b8;
 }
  
-/* ── TABLE ── */
 .product-table {
     width: 100%;
     border-collapse: collapse;
@@ -207,7 +206,7 @@ body {
     color: #334155;
 }
  
-/* ── NAME CELL ── */
+
 .name-cell {
     display: flex;
     flex-direction: row;
@@ -232,14 +231,14 @@ body {
     font-size: 14px;
 }
  
-/* ── PRICE CELL ── */
+
 .price-cell {
     white-space: nowrap;
     font-weight: 600;
     color: #334155;
 }
  
-/* ── DESCRIPTION CELL ── */
+
 .desc-cell {
     max-width: 320px;
     color: #64748b;
@@ -249,7 +248,7 @@ body {
     white-space: normal;
 }
  
-/* ── ACTION CELL ── */
+
 .action-cell {
     white-space: nowrap;
     text-align: right;
@@ -292,7 +291,7 @@ body {
     background: #dc2626;
 }
  
-/* ── EMPTY STATE ── */
+
 .no-data {
     text-align: center;
     padding: 60px 20px;
@@ -300,7 +299,7 @@ body {
     font-size: 15px;
 }
  
-/* ── RESPONSIVE ── */
+
 @media (max-width: 768px) {
     .main-content {
         padding: 16px;

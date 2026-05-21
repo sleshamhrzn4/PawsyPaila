@@ -1,10 +1,9 @@
 @charset "UTF-8";
 
-/* ---------- Sidebar Container Structure ---------- */
 .sidebar {
     width: 240px;
     height: 100vh;
-    background: #EBF1FA; /* Soft blue/grey matching your design reference */
+    background: #EBF1FA; 
     display: flex;
     flex-direction: column;
     padding: 24px 0;
@@ -13,7 +12,7 @@
     overflow: hidden;
 }
 
-/* ---------- Logo Area ---------- */
+
 .logo {
     display: flex;
     align-items: center;
@@ -28,13 +27,13 @@
     object-fit: contain;
 }
 
-/* ---------- Navigation Stack ---------- */
+
 .sidebar-nav {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 24px 14px;
-    flex: 1; /* Pushes user profile container to the bottom line boundary */
+    flex: 1; 
 }
 
 .sidebar-nav a {
@@ -50,7 +49,7 @@
     font-family: 'Nunito', sans-serif;
     font-size: 0.95rem;
     font-weight: 600;
-    color: #475569; /* Slate profile grey tint */
+    color: #475569; 
     cursor: pointer;
     transition: all 0.2s ease;
 }
@@ -67,36 +66,36 @@
     transition: color 0.18s ease;
 }
 
-/* ---------- Hover & Active Selection Overlay Modifiers ---------- */
+
 .nav-item:hover {
-    background: #DCE5F2; /* Subtle background hover highlight */
+    background: #DCE5F2; 
     color: #1e293b;
 }
 
 .nav-item.active {
-    background: #D3DEF0; /* Darker clean selector block pill representation */
+    background: #D3DEF0; 
     color: #0f172a;
     font-weight: 700;
 }
 
 .nav-item:hover .nav-icon,
 .nav-item.active .nav-icon {
-    color: #14b8a6; /* Pawsy Paila iconic brand teal accent highlights */
+    color: #14b8a6; 
 }
 
-/* ---------- Sidebar Footer User Profile Card ---------- */
+
 .sidebar-user {
     padding: 16px 20px;
     border-top: 1px solid #d8e2f2;
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: auto; /* Solidifies pinning to bottom footer container bounds */
+    margin-top: auto; 
 }
 
 .sidebar-user .user-icon i {
     font-size: 32px;
-    color: #008080; /* Teal accent icon framework */
+    color: #008080; 
     display: block;
 }
 
@@ -110,7 +109,7 @@
     text-overflow: ellipsis;
 }
 
-/* =============== RESPONSIVE LAYOUT RESPONSIVENESS =============== */
+
 @media (max-width: 768px) {
     .sidebar {
         width: 76px;
@@ -119,7 +118,7 @@
     .logo img,
     .nav-item span,
     .sidebar-user .user-name-text {
-        display: none; /* Safely collapse typography elements on narrow mobile viewpoints */
+        display: none; 
     }
 
     .logo {

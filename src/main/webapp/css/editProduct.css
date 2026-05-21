@@ -9,7 +9,7 @@ body {
     font-family: 'Nunito', system-ui, sans-serif;
     background-color: #FDF8F0;
     height: 100vh;
-    overflow: hidden; /* Prevents double page scrollbars */
+    overflow: hidden;
 }
 
 .flex {
@@ -19,7 +19,7 @@ body {
     width: 100vw;
 }
 
-/* Stable Sidebar Scroller Core */
+
 .main-content {
     flex: 1;
     padding: 30px 35px;
@@ -28,10 +28,10 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-y: auto; /* Keeps sidebar fixed while right-side forms scroll smoothly */
+    overflow-y: auto; 
 }
 
-/* ── EXACT ADD-PRODUCT TOP HEADER BOX CARD ── */
+
 .top-header {
     display: flex;
     align-items: center;
@@ -74,12 +74,12 @@ body {
     color: #ffffff;
 }
 
-/* Unified Edit Product Center Container Card */
+
 .add-pet-card {
     background: white;
     width: 100%;
     max-width: 550px;
-    margin: 0 auto 40px auto; /* Provides bottom spacing inside the scroller view */
+    margin: 0 auto 40px auto; 
     padding: 40px 55px;
     border-radius: 16px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
@@ -94,7 +94,7 @@ body {
     font-weight: 700;
 }
 
-/* Image Upload Circle Component */
+
 .pet-avatar-upload {
     margin-bottom: 30px;
 }
@@ -119,7 +119,7 @@ body {
     box-shadow: 0 6px 20px rgba(20, 184, 166, 0.4);
 }
 
-/* Input Form Controls Styling */
+
 .form-group {
     margin-bottom: 17px;
     text-align: left;
@@ -158,7 +158,7 @@ body {
     box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
 }
 
-/* Action Form Submit Button */
+
 .btn-save {
     background-color: #14b8a6;
     color: white;

@@ -24,12 +24,12 @@
                     <img src="${pageContext.request.contextPath}/images/contact/logo_black.png" class="inline-logo" alt="Pawsy Paila">
                 </div>
                 
-                <%-- Success Message --%>
+               
                 <c:if test="${not empty success}">
                     <p class="msg-success">${success}</p>
                 </c:if>
 
-                <%-- Error Message --%>
+               
                 <c:if test="${not empty error}">
                     <p class="msg-error">${error}</p>
                 </c:if>
@@ -43,7 +43,7 @@
                 </form>
             </section>
 
-            <%-- RIGHT CARD --%>
+           
             <section class="info-card">
             	<h2>Get In Touch</h2>
             	<p class="info-subtitle">We would love to hear from you. Reach us through any of the following.</p>

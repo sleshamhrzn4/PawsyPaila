@@ -1,3 +1,20 @@
+/**
+ * PetDAO - Handles all database operations for the 'pet' table.
+ *
+ * Methods:
+ * - addPet()          : Inserts a new pet into the database using a PetModel object.
+ * - getAllPets()       : Returns all pets from the database.
+ * - getPetById()      : Fetches a single pet by petId, returns null if not found.
+ * - updatePet()       : Updates all fields of a pet using a PetModel object.
+ * - deletePet()       : Deletes a pet from the database by petId.
+ * - searchPets()      : Returns pets whose name contains the given keyword.
+ * - getPetsByLetter() : Returns pets whose name starts with the given letter.
+ * - getPetsByType()   : Returns pets matching the given type (case-insensitive).
+ * - getLatestPets()   : Returns a limited number of pets for the home page.
+ * - mapRow()          : Helper method to map a ResultSet row to a PetModel object.
+ *
+ * Uses DBconfig.getConnection() for database connectivity.
+ */
 package com.pawsypaila.dao;
 
 import java.sql.Connection;

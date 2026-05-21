@@ -1,3 +1,13 @@
+/**
+ * AdminDonationServlet - Loads all donations for the admin view.
+ * Mapped to URL: /adminDonation
+ *
+ * Methods:
+ * - doGet()  : Fetches all donations via DonationDAO.getAllDonations()
+ *              and forwards to adminDonation.jsp.
+ * - doPost() : Delegates to doGet().
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

@@ -25,7 +25,7 @@
     
     <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
 
-    <!-- Main Content -->
+   
     <div class="main-content">
 		    <div class="welcome-box">
 		   <img src="${pageContext.request.contextPath}/images/adminDashboard/pet.png" 
@@ -35,10 +35,10 @@
 
        
 
-        <!-- Card -->
+       
         <div class="card">
         
-         <!-- Page Header -->
+       
         <div class="page-header">
             <i class="fas fa-users"></i>
             <h1>Manage Users</h1>
@@ -47,7 +47,7 @@
                 <h2>All Users</h2>
             </div>
 
-            <!-- Flash Messages -->
+            
             <c:if test="${not empty successMessage}">
                 <div class="alert alert-success">${successMessage}</div>
             </c:if>
@@ -55,7 +55,7 @@
                 <div class="alert alert-error">${errorMessage}</div>
             </c:if>
 
-            <!-- Table -->
+
             <table class="users-table">
                 <thead>
                     <tr>

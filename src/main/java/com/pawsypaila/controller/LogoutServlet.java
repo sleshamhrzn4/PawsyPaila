@@ -1,3 +1,12 @@
+/**
+ * LogoutServlet - Handles user logout.
+ * Mapped to URL: /logout
+ *
+ * Methods:
+ * - doGet()  : Invalidates the current session and redirects to /login.
+ * - doPost() : Delegates to doGet().
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

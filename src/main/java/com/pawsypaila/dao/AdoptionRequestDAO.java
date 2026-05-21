@@ -1,11 +1,22 @@
+/**
+ * AdoptionRequestDAO - Handles all database operations for the 'AdoptionRequest' table.
+ *
+ * Methods:
+ * - insertAdoptionRequest() : Inserts a new adoption request with status defaulted to 'Pending'.
+ * - getAllRequests()         : Returns all adoption requests joined with user fullName and petName.
+ * - updateStatus()          : Updates the adoption status of a request by adoptionId. Returns true if successful.
+ * - deleteRequest()         : Deletes an adoption request by adoptionId. Returns true if successful.
+ * - getRequestsByUserId()   : Returns all adoption requests made by a specific user, joined with petName.
+ *
+ * Uses DBconfig.getConnection() for database connectivity.
+ */
+
 package com.pawsypaila.dao;
 
 import java.sql.Connection;
 
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import com.pawsypaila.model.AdoptionRequestModel;

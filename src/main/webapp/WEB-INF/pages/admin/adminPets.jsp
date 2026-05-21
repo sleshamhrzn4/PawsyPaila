@@ -21,16 +21,16 @@
 
     <%@ include file="/WEB-INF/pages/admin/adminSidebar.jsp" %>
 
-    <!-- Main Content -->
+   
     <div class="main-content">
 
-        <!-- Page Header -->
+    
         <div class="welcome-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>
         </div>
 
-        <!-- Flash Messages -->
+      
         <c:if test="${not empty sessionScope.message}">
             <div class="alert alert-success">${sessionScope.message}</div>
             <c:remove var="message" scope="session"/>
@@ -41,7 +41,7 @@
             <c:remove var="error" scope="session"/>
         </c:if>
 
-        <!-- Manage Pets Card -->
+       
         <div class="card">
             <div class="card-header">
                 <h2>Manage Pets</h2>

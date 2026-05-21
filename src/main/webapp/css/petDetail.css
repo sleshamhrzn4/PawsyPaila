@@ -25,7 +25,7 @@ body {
     background: transparent;
 }
 
-/* ---------- Left Image ---------- */
+
 .detail-img-wrap {
     width: 320px;
     height: 360px;
@@ -48,7 +48,7 @@ body {
     font-size: 8rem;
 }
 
-/* ---------- Right Info ---------- */
+
 .detail-info {
     flex: 1;
     display: flex;
@@ -80,7 +80,7 @@ body {
     font-weight: 700;
 }
 
-/* ---------- Adopt Button ---------- */
+
 .btn-adopt {
     display: inline-block;
     background: #14b8a6;
@@ -116,7 +116,7 @@ body {
     font-size: 1.1rem;
 }
 
-/* ---------- Description ---------- */
+
 .detail-desc h3 {
     font-size: 1rem;
     font-weight: 700;
@@ -130,7 +130,7 @@ body {
     line-height: 1.8;
 }
 
-/* ---------- Responsive ---------- */
+
 @media (max-width: 700px) {
     .detail-card {
         flex-direction: column;

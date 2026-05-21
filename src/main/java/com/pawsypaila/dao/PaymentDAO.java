@@ -58,7 +58,7 @@ public class PaymentDAO {
 	        return payment;
 	    }
 
-	    // Update payment status (e.g. pending → completed)
+	    
 	    public int updatePaymentStatus(int paymentId, String paymentStatus) throws Exception {
 	        Connection con = DBconfig.getConnection();
 	        String sql = "UPDATE Payment SET paymentStatus = ? WHERE paymentId = ?";

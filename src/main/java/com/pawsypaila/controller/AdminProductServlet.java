@@ -1,3 +1,16 @@
+/**
+ * AdminProductServlet - Handles admin operations for managing products.
+ * Mapped to URL: /adminProduct
+ *
+ * Methods:
+ * - doGet()  : Handles three actions:
+ *              'showAdd'  → Forwards to addProduct.jsp.
+ *              'delete'   → Deletes a product via ProductDAO.deleteProduct() and redirects.
+ *              default    → Fetches all products via ProductDAO.getAllProducts() and forwards to adminProduct.jsp.
+ * - doPost() : Handles edit and delete actions using
+ *              ProductDAO.updateProduct() and ProductDAO.deleteProduct().
+ *              Redirects to /adminProduct after action.
+ */
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
@@ -13,6 +26,7 @@ import com.pawsypaila.model.ProductModel;
 
 @WebServlet("/adminProduct")
 public class AdminProductServlet extends HttpServlet {
+	 private static final long serialVersionUID = 1L;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

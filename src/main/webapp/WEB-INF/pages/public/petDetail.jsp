@@ -28,7 +28,7 @@
 	<div class="detail-container">
 		<div class="detail-card">
 
-			<%-- Left: Pet Image --%>
+		
 			<div class="detail-img-wrap">
 				<c:choose>
 					<c:when test="${not empty pet.petImage}">
@@ -46,7 +46,7 @@
 				</c:choose>
 			</div>
 
-			<%-- Right: Pet Info --%>
+			
 			<div class="detail-info">
 				<h1 class="detail-name">${fn:escapeXml(pet.petName)}</h1>
 

@@ -1,3 +1,12 @@
+/**
+ * HomeServlet - Loads data for the public home page.
+ * Mapped to URL: /home
+ *
+ * Methods:
+ * - doGet()  : Fetches latest 3 pets via PetDAO.getLatestPets() and
+ *              latest 6 products via ProductDAO.getLatestProducts(), then forwards to home.jsp.
+ * - doPost() : Delegates to doGet().
+ */
 package com.pawsypaila.controller;
 
 import com.pawsypaila.dao.PetDAO;

@@ -110,4 +110,15 @@ body {
             </a>
         </div>
     </div>
+    
+    <script>
+    (function() {
+        fetch('${pageContext.request.contextPath}/cart?action=count')
+        .then(r => r.text())
+        .then(count => {
+            var badge = document.getElementById('cart-count');
+            if (badge) badge.textContent = count;
+        });
+    })();
+</script>
 </header>

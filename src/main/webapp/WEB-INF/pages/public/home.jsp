@@ -14,7 +14,7 @@
 
     <jsp:include page="header.jsp" />
 
-    <%-- hero --%>
+ 
     <section class="hero">
         <div class="hero-content">
             <h1>Where Every Paw Finds a Home</h1>
@@ -26,10 +26,10 @@
         </div>
     </section>
 
-    <%-- about us --%>
+  
     <section class="about-section">
         <h2>About</h2>
-        <%-- Logo sits above the three-column row --%>
+      
         <div class="about-logo-top">
             <img src="${pageContext.request.contextPath}/images/nav/logo_teal.png" alt="Pawsy Paila Logo">
         </div>
@@ -37,7 +37,7 @@
             <div class="about-bubble-left">
                 At Pawsy Paila, we believe that every pet deserves a loving family
             </div>
-            <%-- Center image: swap src to any about/pet image you prefer --%>
+          
             <div class="about-center">
                 <img src="${pageContext.request.contextPath}/images/home/about.png" alt="dog">
             </div>
@@ -48,7 +48,7 @@
         </div>
     </section>
 
-    <%-- pets --%>
+
     <section class="section-container">
         <div class="section-header">
             <h2>OUR PETS</h2>
@@ -75,7 +75,7 @@
         </div>
     </section>
 
-    <%-- products --%>
+ 
     <section class="section-container shop-bg">
         <div class="shop-layout">
             <div class="shop-sidebar">
@@ -105,7 +105,7 @@
         </div>
     </section>
 
-    <%-- support --%>
+ 
     <section class="support-section">
         <h2>Support Us</h2>
         <div class="support-image">
@@ -116,7 +116,7 @@
         <p>Your donation transforms lives. 100% goes directly to shelter care, vet bills, and adoption programs, with full transparency on every rescue.</p>
     </section>
 
-    <%-- footer --%>
+
     <jsp:include page="footer.jsp" />
 
 </body>

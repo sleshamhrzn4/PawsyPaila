@@ -1,3 +1,14 @@
+/**
+ * DonationDAO - Handles all database operations for the 'Donation' table.
+ *
+ * Methods:
+ * - insertDonation() : Inserts a new donation record for a user. Returns true if successful.
+ * - getAllDonations() : Returns all donations joined with user fullName, ordered by date descending.
+ *
+ * Uses DBconfig.getConnection() for database connectivity.
+ */
+
+
 package com.pawsypaila.dao;
 
 import java.sql.Connection;

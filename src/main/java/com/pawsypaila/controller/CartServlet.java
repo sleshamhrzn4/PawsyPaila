@@ -1,3 +1,24 @@
+/**
+ * CartServlet - Handles all shopping cart operations.
+ * Mapped to URL: /cart
+ *
+ * Methods:
+ * - doGet()  : Handles cart actions:
+ *              'count'    → Returns total item count in cart.
+ *              'remove'   → Removes a product from the cart.
+ *              'increase' → Increases quantity of a cart item.
+ *              'decrease' → Decreases quantity, removes item if quantity reaches 0.
+ *              default    → Builds cart total and forwards to cart.jsp.
+ *
+ * - doPost() : Handles cart actions:
+ *              'add'      → Fetches product via ProductDAO.getProductById() and adds to session cart.
+ *              'update'   → Updates quantity of a cart item, removes if quantity <= 0.
+ *              'checkout' → Clears the cart and sets success message.
+ *
+ * Helper Methods:
+ * - getCart()          : Retrieves or creates a cart from the session.
+ * - getLoggedInUser()  : Returns the logged-in UserModel from the session, or null.
+ */
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
@@ -17,7 +38,7 @@ import com.pawsypaila.model.UserModel;
 public class CartServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    
+    //CartItem inner class
     public static class CartItem {
         private ProductModel product;
         private int quantity;
@@ -34,7 +55,7 @@ public class CartServlet extends HttpServlet {
         public void setQuantity(int quantity) { this.quantity = quantity; }
     }
 
-    // ── Get or create cart from session ──
+    //Get or create cart from session
     @SuppressWarnings("unchecked")
     private Map<Integer, CartItem> getCart(HttpSession session) {
         Map<Integer, CartItem> cart = (Map<Integer, CartItem>) session.getAttribute("cart");
@@ -45,7 +66,7 @@ public class CartServlet extends HttpServlet {
         return cart;
     }
 
-    // ── Get logged in user ──
+    //Get logged in user
     private UserModel getLoggedInUser(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session == null) return null;
@@ -73,7 +94,7 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // ── Remove item ──
+        //Remove item
         if ("remove".equals(action)) {
             String productIdStr = request.getParameter("productId");
             if (productIdStr != null) {
@@ -84,7 +105,7 @@ public class CartServlet extends HttpServlet {
             response.sendRedirect(request.getContextPath() + "/cart");
             return;
         }
-     // ── Increase quantity ──
+     //Increase quantity
         if ("increase".equals(action)) {
             String productIdStr = request.getParameter("productId");
             if (productIdStr != null) {
@@ -98,7 +119,7 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // ── Decrease quantity ──
+        //Decrease quantity
         if ("decrease".equals(action)) {
             String productIdStr = request.getParameter("productId");
             if (productIdStr != null) {
@@ -117,7 +138,7 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // ── Show cart — redirect to login if not logged in ──
+        //Show cart
         UserModel user = getLoggedInUser(request);
         if (user == null) {
             request.getSession().setAttribute("redirectAfterLogin",
@@ -126,7 +147,7 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // ── Build cart and total ──
+      //Build cart and total
         Map<Integer, CartItem> cart = getCart(request.getSession());
         double total = 0;
         for (CartItem item : cart.values()) {
@@ -170,11 +191,12 @@ public class CartServlet extends HttpServlet {
             return;
         }
 
-        // Add to cart
+     // Add to cart
         if ("add".equals(action)) {
             UserModel user = getLoggedInUser(request);
             if (user == null) {
-                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            	request.getSession().setAttribute("error", "Please log in to add items to cart.");
+                response.sendRedirect(request.getContextPath() + "/products");
                 return;
             }
 
@@ -187,7 +209,6 @@ public class CartServlet extends HttpServlet {
                     int quantity  = (quantityStr != null) ? Integer.parseInt(quantityStr) : 1;
 
                     if (cart.containsKey(productId)) {
-                        // Already in cart — increment quantity
                         cart.get(productId).setQuantity(cart.get(productId).getQuantity() + quantity);
                     } else {
                         // Fetch product from DB and add to session cart
@@ -197,16 +218,20 @@ public class CartServlet extends HttpServlet {
                             cart.put(productId, new CartItem(product, quantity));
                         }
                     }
-                    response.setStatus(HttpServletResponse.SC_OK);
+                    request.getSession().setAttribute("message", "product successfully added to cart.");
+                    
                 } catch (Exception e) {
                     e.printStackTrace();
-                    response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+                   
+                    request.getSession().setAttribute("cartError", "Failed to add item to cart due to an internal error.");
                 }
             }
+            
+            response.sendRedirect(request.getContextPath() + "/products");
             return;
         }
 
-        // ── Update quantity ──
+        //Update quantity
         if ("update".equals(action)) {
             String productIdStr = request.getParameter("productId");
             String quantityStr  = request.getParameter("quantity");

@@ -69,7 +69,7 @@
 							<tbody>
 								<c:forEach var="req" items="${adoptionList}">
 									<tr>
-										<!-- User -->
+									
 										<td>
 											<div class="user-cell">
 												<div class="avatar">
@@ -79,7 +79,7 @@
 											</div>
 										</td>
 
-										<!-- Pet -->
+									
 										<td>
 											<div class="pet-cell">
 												<div class="avatar pet-avatar">
@@ -90,16 +90,15 @@
 										</td>
 
 
-										<!-- Status Badge -->
+										
 										<td><span
 											class="status-badge status-${req.adoptionStatus.toLowerCase()}">
 												${req.adoptionStatus} </span></td>
 
-										<!-- Actions -->
-										<!-- Actions -->
+										
 										<td class="action-cell"><c:choose>
 												<c:when test="${req.adoptionStatus == 'Pending'}">
-													<!-- Accept -->
+													
 													<form
 														action="${pageContext.request.contextPath}/adminAdoption"
 														method="post" style="display: inline;">
@@ -110,7 +109,7 @@
 															<i class="fa-solid fa-check"></i> Accept
 														</button>
 													</form>
-													<!-- Reject -->
+												
 													<form
 														action="${pageContext.request.contextPath}/adminAdoption"
 														method="post" style="display: inline;">
@@ -123,7 +122,7 @@
 													</form>
 												</c:when>
 												<c:otherwise>
-													<!-- Delete for resolved requests -->
+													
 													<form
 														action="${pageContext.request.contextPath}/adminAdoption"
 														method="post" style="display: inline;">

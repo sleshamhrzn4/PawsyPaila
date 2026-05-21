@@ -1,3 +1,19 @@
+/**
+ * DonateServlet - Handles donation form submission.
+ * Mapped to URL: /donate
+ *
+ * Methods:
+ * - doGet()  : Forwards the request to donate.jsp.
+ * - doPost() : Validates donation details, saves donation via DonationDAO.insertDonation()
+ *              and forwards back to donate.jsp with success or error message.
+ *
+ * Validations:
+ * - User must be logged in via session.
+ * - All fields must not be empty.
+ * - Donation amount must be greater than 499.
+ * - Donation date must not be in the past or future.
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

@@ -1,3 +1,17 @@
+/**
+ * ContactServlet - Handles the contact form submission.
+ * Mapped to URL: /contact
+ *
+ * Methods:
+ * - doGet()  : Forwards the request to contact.jsp.
+ * - doPost() : Validates email and message, saves contact via ContactDAO.insertContact()
+ *              and forwards back to contact.jsp with success or error message.
+ *
+ * Validations:
+ * - Email and message must not be empty.
+ * - Email must contain '@' and '.'.
+ * - Message must be between 10 and 1000 characters.
+ */
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

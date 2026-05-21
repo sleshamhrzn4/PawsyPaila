@@ -26,6 +26,20 @@
 
         <div class="add-pet-card">
             <h2>Edit Product</h2>
+            
+            <c:if test="${not empty message}">
+    			<div class="alert-success" style="background-color: #d4edda; color: #155724; padding: 12px; border-radius: 6px; margin-bottom: 20px; text-align: center; font-family: 'Nunito', sans-serif; font-weight: 600; border: 1px solid #c3e6cb;">
+        			<i class="fa-solid fa-circle-check"></i> ${message}
+    			</div>
+    		<c:remove var="message" scope="session" />
+			</c:if>
+
+			<c:if test="${not empty error}">
+			    <div class="alert-error" style="background-color: #f8d7da; color: #721c24; padding: 12px; border-radius: 6px; margin-bottom: 20px; text-align: center; font-family: 'Nunito', sans-serif; font-weight: 600; border: 1px solid #f5c6cb;">
+			        <i class="fa-solid fa-circle-exclamation"></i> ${error}
+			    </div>
+			    <c:remove var="error" scope="session" />
+			</c:if>
 
             <div class="pet-avatar-upload">
 		    <div class="avatar-circle" onclick="document.getElementById('productImage').click()" style="cursor:pointer;">

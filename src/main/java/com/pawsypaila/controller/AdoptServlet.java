@@ -1,3 +1,13 @@
+/**
+ * AdoptServlet - Handles pet adoption requests from users.
+ * Mapped to URL: /adopt
+ *
+ * Methods:
+ * - doPost() : Checks if user is logged in via session.
+ *              If not logged in → redirects to /login with saved redirect URL.
+ *              If logged in → saves adoption request via AdoptionRequestDAO.insertAdoptionRequest()
+ *              with status defaulted to 'Pending' and redirects to /petDetail.
+ */
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

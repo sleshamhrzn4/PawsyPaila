@@ -1,3 +1,12 @@
+/**
+ * AboutServlet - Handles requests for the About Us page.
+ * Mapped to URL: /aboutus
+ *
+ * Methods:
+ * - doGet()  : Forwards the request to aboutus.jsp.
+ * - doPost() : Delegates to doGet().
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

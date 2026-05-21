@@ -23,13 +23,13 @@
 
     
    <main class="main-content">
-        <%-- Welcome Banner --%>
+      
         <div class="welcome-header">
             <i class="fa-solid fa-paw"></i>
             <h1>Welcome Back, ${sessionScope.username}!</h1>
         </div>
 
-        <%-- Stats --%>
+       
         <div class="stats-grid">
             <div class="stat-card">
                 <p class="stat-label">Pets Listed</p>
@@ -45,10 +45,10 @@
             </div>
           </div>
 
-        <%-- Top Row: Adoption + Manage Pets side by side --%>
+     
         <div class="top-row">
 
-            <%-- Adoption Requests --%>
+           
             <div class="table-card">
             
                 <h3>Adoption Requests</h3>
@@ -78,7 +78,7 @@
                 </table>
             </div>
 
-            <%-- Manage Pets --%>
+            
             <div class="table-card">
                 <div class="manage-header">
                     <h3>Manage Pets</h3>
@@ -113,7 +113,7 @@
         </div>
         
 
-        <%-- Bottom Row: Manage Products full width --%>
+       
         <div class="table-card">
             <div class="manage-header">
                 <h3>Manage Products</h3>

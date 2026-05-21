@@ -21,12 +21,12 @@
 		<h1>Donate</h1>
 		<p>Your donation saves lives. 100% goes directly to shelter care, vet bills, and adoptive programs.</p>
 		
-		    <!-- Success Message -->
+		  
             <c:if test="${not empty success}">
                 <p class="msg-success">${success}</p>
             </c:if>
 
-            <!-- Error Message -->
+          
             <c:if test="${not empty error}">
                 <p class="msg-error">${error}</p>
             </c:if>

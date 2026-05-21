@@ -1,3 +1,15 @@
+/**
+ * AdminAdoptionServlet - Handles admin operations for adoption requests.
+ * Mapped to URL: /adminAdoption
+ *
+ * Methods:
+ * - doGet()  : Fetches all adoption requests via AdoptionRequestDAO.getAllRequests()
+ *              and forwards to adminAdoption.jsp.
+ * - doPost() : Handles delete, approve, or reject actions on an adoption request
+ *              using AdoptionRequestDAO.deleteRequest() and AdoptionRequestDAO.updateStatus().
+ *              Redirects back to /adminAdoption after action.
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;

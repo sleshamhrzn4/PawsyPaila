@@ -1,3 +1,18 @@
+/**
+ * ProductDAO - Handles all database operations for the 'product' table.
+ *
+ * Methods:
+ * - addProduct()       : Inserts a new product into the database.
+ * - getAllProducts()    : Returns all products from the database.
+ * - getProductById()   : Fetches a single product by productId, returns null if not found.
+ * - updateProduct()    : Updates name, price, quantity and description of a product by productId.
+ * - deleteProduct()    : Deletes a product from the database by productId.
+ * - getLatestProducts(): Returns a limited number of latest products.
+ * - mapRow()           : Helper method to map a ResultSet row to a ProductModel object.
+ *
+ * Uses DBconfig.getConnection() for database connectivity.
+ */
+
 package com.pawsypaila.dao;
 
 import java.sql.Connection;

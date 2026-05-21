@@ -47,7 +47,7 @@
                     </div>
                 </c:when>
                 <c:otherwise>
-                    <!-- Scrollable wrapper -->
+                 
                     <div class="table-wrapper">
                         <table class="product-table">
                             <thead>

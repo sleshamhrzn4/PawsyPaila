@@ -29,7 +29,7 @@ public class ProductServlet extends HttpServlet {
             ProductDAO dao = new ProductDAO();
             List<ProductModel> products = dao.getAllProducts();
 
-            // ── FILTER BY CATEGORY ────────────────────────────
+            //FILTER BY CATEGORY
             if (filterBy != null && !filterBy.isEmpty() && !filterBy.equalsIgnoreCase("All")) {
                 products = products.stream()
                     .filter(p -> p.getProductName() != null
@@ -37,7 +37,7 @@ public class ProductServlet extends HttpServlet {
                     .collect(Collectors.toList());
             }
 
-            // ── FILTER BY PRICE RANGE ─────────────────────────
+            //FILTER BY PRICE RANGE
             if (minPriceStr != null && !minPriceStr.isEmpty()) {
                 try {
                     double minPrice = Double.parseDouble(minPriceStr);
@@ -56,7 +56,7 @@ public class ProductServlet extends HttpServlet {
                 } catch (NumberFormatException ignored) {}
             }
 
-            // ── SORT ──────────────────────────────────────────
+            // SORT
             if (sortBy != null) {
                 switch (sortBy) {
                     case "priceLow":

@@ -19,7 +19,7 @@
 <body>
 	<div class="container">
 
-		<!-- LEFT SIDE -->
+		
 		<div class="left">
 			<div class="overlay"></div>
 
@@ -40,7 +40,7 @@
 		</div>
 
 
-		<!-- RIGHT SIDE -->
+	
 		<div class="right">
 
 			<div class="top-bar">

@@ -17,7 +17,7 @@
 <footer class="site-footer">
     <div class="footer-top">
 
-        <!-- Navigation links -->
+       
         <nav class="footer-nav">
             <a href="${pageContext.request.contextPath}/pets">Adopt</a>
             <a href="${pageContext.request.contextPath}/products">Shop</a>
@@ -25,7 +25,7 @@
             <a href="${pageContext.request.contextPath}/about">About Us</a>
         </nav>
 
-        <!-- Center: Logo, tagline, socials -->
+      
         <div class="footer-center">
             <a href="${pageContext.request.contextPath}/home">
                 <img
@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <!-- Contact  -->
+       
         <div class="footer-contact">
             <a href="mailto:info@pawsypaila.com.np">info@pawsypaila.com.np</a>
             <a href="tel:+97701-1234567">+977 01-1234567</a>
@@ -58,7 +58,7 @@
 
     </div>
 
-    <!-- Bottom  -->
+   
     <div class="footer-bottom">
         &copy; Pawsy Paila 2026
     </div>

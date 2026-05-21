@@ -1,6 +1,6 @@
 @charset "UTF-8";
 @charset "UTF-8";
-/* ===================== ADD PET PAGE STYLES ===================== */
+
 * {
     margin: 0;
     padding: 0;
@@ -14,7 +14,7 @@ body {
     overflow: hidden;
 }
 
-/* =============== FLEX LAYOUT =============== */
+
 .flex {
     display: flex;
     height: 100vh;
@@ -22,7 +22,7 @@ body {
     background-color: #FDF8F0;
 }
 
-/* =============== MAIN CONTENT =============== */
+ 
 .main-content {
     flex: 1;
     padding: 25px 50px;

@@ -1,3 +1,17 @@
+/**
+ * UserDAO - Handles all database operations for the 'user' table.
+ *
+ * Methods:
+ * - insertUser()     : Inserts a new user with role defaulted to 'user'.
+ * - getAllUsers()    : Returns all users where role = 'user'.
+ * - getUserByEmail() : Fetches a user by email, returns null if not found.
+ * - setUserStatus()  : Updates the active/inactive status of a user by userId.
+ * - updateUser()     : Updates all profile fields of a user by userId.
+ *
+ * Uses DBconfig.getConnection() for database connectivity.
+ */
+
+
 package com.pawsypaila.dao;
 
 import java.sql.Connection;

@@ -9,7 +9,7 @@
     </div>
     <nav class="sidebar-nav">
 
-        <%-- ✅ Changed from My Profile to Dashboard --%>
+      
         <a href="${pageContext.request.contextPath}/userdashboard" class="nav-item">
             <img src="${pageContext.request.contextPath}/images/adminDashboard/dash.png"
                  alt="dashboard" style="width: 30px; height: auto;">
@@ -23,7 +23,7 @@
 
     </nav>
 
-    <%-- ✅ Made footer clickable — redirects to edit profile --%>
+
 <a href="${pageContext.request.contextPath}/userprofile" class="sidebar-footer">
     <span class="sidebar-avatar">
         ${sessionScope.user.fullName.substring(0,1).toUpperCase()}

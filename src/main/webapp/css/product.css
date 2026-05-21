@@ -361,7 +361,7 @@ body {
 @media (max-width: 960px) {
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
-<<<<<<< HEAD
+
     }
 }
 
@@ -381,8 +381,7 @@ body {
 
     .navbar {
         padding: 12px 20px;
-=======
->>>>>>> origin/yunisha
+
     }
 }
 

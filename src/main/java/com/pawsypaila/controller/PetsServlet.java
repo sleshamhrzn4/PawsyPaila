@@ -1,3 +1,17 @@
+/**
+ * PetsServlet - Loads and filters the pet listing page.
+ * Mapped to URL: /pets
+ *
+ * Methods:
+ * - doGet()  : Fetches pets based on search or filter parameter:
+ *              single character search → PetDAO.getPetsByLetter()
+ *              keyword search          → PetDAO.searchPets()
+ *              filter by type          → PetDAO.getPetsByType()
+ *              default                 → PetDAO.getAllPets()
+ *              Forwards to pets.jsp.
+ * - doPost() : Delegates to doGet().
+ */
+
 package com.pawsypaila.controller;
 
 import jakarta.servlet.ServletException;
@@ -19,7 +33,7 @@ public class PetsServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String search = request.getParameter("search");
-        String filter = request.getParameter("filter");
+        String filter = request.getParameter("filter");  
 
         // Null-safe defaults
         if (search == null) search = "";

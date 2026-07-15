@@ -6,11 +6,8 @@ About this project
 Many pets end up in shelters or informal networks with no easy way for potential adopters to discover them. At the same time, pet owners often struggle to find a reliable, one-stop place to buy essentials for their pets. PawsyPaila solves both problems by giving users a platform to:
 
 -Browse and view pets available for adoption
-
 -Learn more about each pet before deciding to adopt
-
 -Shop for pet products (food, toys, accessories, and more)
-
 -Manage their account and activity through a personalized dashboard
 
 Behind the scenes, admins have full control over the platform's content through a dedicated admin panel supporting complete CRUD (Create, Read, Update, Delete) operations on both pets and products.
@@ -19,57 +16,39 @@ Behind the scenes, admins have full control over the platform's content through 
 #Features
 
 *For Users
-
 -Browse available pets with details and images
-
 -View and purchase pet products
-
 -User registration with account activation
-
 -Secure login and session-based authentication
 
 
 *For Admins
 
 -Full CRUD management of pet listings
-
 -Full CRUD management of product listings
-
 -Role-based access control separating admin and regular user privileges
-
 -Manage user accounts and activation status
 
 #Tech Stack: 
 
 Language: Java
-
 Web Layer: Jakarta Servlets, JSP, JSTL
-
 Database Access: JDBC
-
 Database: MySQL
-
 Build Tool: Maven
-
 Server: Apache Tomcat
-
 IDE: Eclipse
 
 
 Team Members:
 
 Slesha Maharjan
-
 Yunisha Basnet
-
 Swornima Maharjan 
-
 Swoyam Maharjan 
-
 Sulove Noko Shrestha
 
 #License
-
 This project is for educational purposes as part of a college coursework assignment.
 
 #Screenshots of pages

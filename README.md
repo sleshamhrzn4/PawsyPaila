@@ -43,10 +43,10 @@ IDE: Eclipse
 Team Members:
 
 Slesha Maharjan
-Yunisha Basnet
-Swornima Maharjan 
-Swoyam Maharjan 
-Sulove Noko Shrestha
+Yunisha Basnet(https://github.com/why0y0)
+Swornima Maharjan (https://github.com/sswornimaa)
+Swoyam Maharjan (https://github.com/swoyammaharjan)
+Sulove Noko Shrestha(https://github.com/nokooo-zip)
 
 #License
 This project is for educational purposes as part of a college coursework assignment.
